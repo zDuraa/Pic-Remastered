@@ -1,3 +1,2 @@
 # Pic-Remastered
 Rechenarchitekturen
-ddddd
