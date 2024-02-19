@@ -1,7 +1,8 @@
 package GUI;
 
-import Buttons.FileButton;
-import TempName.FileReader;
+
+
+import utils.FileManager;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -17,6 +18,7 @@ public class PicGUI {
     private JButton resetButton;
     private JButton fileButton;
     private JPanel displayPanal;
+    private JButton runButton;
     public ArrayList<JTextArea> textAreaList = new ArrayList<>();
     public ArrayList<JCheckBox> checkBoxBreakList = new ArrayList<>();
 
@@ -24,7 +26,7 @@ public class PicGUI {
         fileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FileButton.openFile();
+                FileManager.openFile();
                 displayManager();
             }
         });
@@ -43,8 +45,8 @@ public class PicGUI {
 
     private void displayManager()
     {
-        String code = FileButton.getFile();
-        String[] codeArray = FileReader.ladeDatei(code).toArray(new String[0]);
+        String code = FileManager.getFile();
+        String[] codeArray = FileManager.ladeDatei(code).toArray(new String[0]);
 
         displayPanal.setLayout(new BorderLayout());
 

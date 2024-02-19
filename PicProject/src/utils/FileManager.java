@@ -1,21 +1,46 @@
-package TempName;
+package utils;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 
-public class FileReader {
 
+public class FileManager {
+
+    private static String file = "";
+    public static void openFile()
+    {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setName("fileJFch");
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION)
+        {
+            File selectedFile = fileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+
+            file = selectedFile.getAbsolutePath();
+        }
+    }
+
+    public static void setFile(String file)
+    {
+        FileManager.file = file;
+    }
+    public static String getFile()
+    {
+        return file;
+    }
     public static ArrayList<Integer> code = new ArrayList<>();
     public static ArrayList<String> ladeDatei(String datName) {
         ArrayList<String> list = new ArrayList<String>();    //Ich habe hier erstens eine Array list erstellt namens commands
-        File file = new File(datName);        //neues File erstellt
         BufferedReader br = null;       //liest Text aus Symbolen und puffert die Symbole, um Zeichen, Arrays und Strings effizient einzulesen
         String command;
 
         int i;
-
         try {
             br = new BufferedReader(new java.io.FileReader(datName));
             String line = null;
@@ -36,6 +61,7 @@ public class FileReader {
                 try {
                     br.close();
                 } catch (IOException e) {
+                    System.out.println(e);
                 }
         }
         return list;           //Die Liste wird dann am ende returned so das wir zugriff drauf haben, deswegen ist die Methode eine ArrayList und nicht mehr void
