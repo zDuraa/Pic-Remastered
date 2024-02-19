@@ -14,6 +14,7 @@ public class ANDWF extends Command {
         int f = (command & 0b1111111);
 
         val = pic.w & pic.ram.getReg(f);
+        checkZ(val);
         writeD(command, val);
     }
 }
