@@ -11,7 +11,13 @@ public class ADDLW extends Command {
     @Override
     public void execute(int command) {
         int l = (command & 0b11111111);
+        int ret = l + pic.w;
 
-        this.pic.w += l;
+        checkC(ret);
+        checkZ(ret);
+        checkDC(l, pic.w, '+');
+
+        pic.w = ret;
     }
+
 }

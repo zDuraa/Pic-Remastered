@@ -61,4 +61,33 @@ public abstract class Command {
 
         pic.ram.setReg(3, erg);
     }
+
+    // val = l or value of f
+    // w = w register
+    // operation = '+' or '-'
+    protected void checkDC(int val, int w, char operation) {
+        int reg = pic.ram.getReg(3);
+        int bit = 0b10;
+        int lshort = 0b1111 & val;
+        int wshort = 0b1111 & w;
+        int ret = 0;
+
+        switch (operation) {
+            case '+':
+                ret = lshort + wshort;
+                break;
+
+            case '-':
+                ret = lshort - wshort;
+                break;
+        }
+
+        if (ret >= 0b10000) {
+            reg |= bit;
+        } else {
+            reg ^= bit;
+        }
+
+        pic.ram.setReg(3, reg);
+    }
 }
