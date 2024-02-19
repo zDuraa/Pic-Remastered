@@ -2,12 +2,14 @@ package Model;
 
 public abstract class Command {
     private int bitmask;
+    protected Pic pic;
 
-    public Command(int Bitmask) {
+    public Command(int Bitmask, Pic pic) {
         bitmask = Bitmask;
+        this.pic = pic;
     }
 
-    public abstract void execute(Pic pic, int command);
+    public abstract void execute(int command);
 
     public boolean is(int command) {
         boolean ret = false;
@@ -19,14 +21,14 @@ public abstract class Command {
         return ret;
     }
 
-    public boolean isD(int command)
-    {
-        boolean ret = false;
-        if((command & (1 << 6)) == 0){
-            ret = true;
+    protected void writeD(int command, int value) {
+        int d = (command & 0b10000000) >> 7;
+        int f = (command & 0b01111111);
+
+        if (d == 0) {
+            pic.w = value;
+        } else {
+            pic.ram.setReg(f, value);
         }
-
-        return ret;
     }
-
 }

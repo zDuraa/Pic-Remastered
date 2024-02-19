@@ -4,14 +4,14 @@ import Model.*;
 
 public class ADDLW extends Command {
 
-    public ADDLW() {
-        super(0b111110);
+    public ADDLW(Pic pic) {
+        super(0b111110, pic);
     }
 
     @Override
-    public void execute(Pic pic, int command) {
+    public void execute(int command) {
         int l = (command & 0b11111111);
 
-        pic.w += l;
+        this.pic.w += l;
     }
 }

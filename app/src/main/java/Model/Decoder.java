@@ -14,7 +14,7 @@ public class Decoder {
 
         for (var command : commands) {
             if (command.is(iinst)) {
-                command.execute(pic, iinst);
+                command.execute(iinst);
             }
         }
     }
