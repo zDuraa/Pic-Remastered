@@ -78,7 +78,9 @@ public abstract class Command {
                 break;
 
             case '-':
-                ret = lshort - wshort;
+                lshort ^= 0b1111;
+                lshort += 0b1;
+                ret = lshort + wshort;
                 break;
         }
 
