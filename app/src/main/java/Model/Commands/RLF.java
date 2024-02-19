@@ -9,6 +9,12 @@ public class RLF extends Command {
     }
     @Override
     public void execute(int command) {
+        int f = (command & 0b1111111);
 
+        int val = (pic.ram.getReg(f) & 0b10000000) >> 7;
+
+
+        writeD(command, val);
+        checkC(val);
     }
 }
