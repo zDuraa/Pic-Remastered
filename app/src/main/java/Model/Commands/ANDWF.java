@@ -4,21 +4,16 @@ import Model.*;
 
 public class ANDWF extends Command {
 
-    public ANDWF() {
-        super(0b000101);
+    public ANDWF(Pic pic) {
+        super(0b000101, pic);
     }
 
     @Override
-    public void execute(Pic pic, int command) {
+    public void execute(int command) {
         int val = 0;
         int f = (command & 0b1111111);
 
-        if(isD(command)){
-            val = pic.w & pic.ram.getReg(f);
-            pic.w = val;
-        }else{
-            val = pic.w & pic.ram.getReg(f);
-            pic.ram.setReg(f, val);
-        }
+        val = pic.w & pic.ram.getReg(f);
+        writeD(command, val);
     }
 }
