@@ -13,5 +13,6 @@ public class INCF extends Command {
         int val = pic.ram.getReg(f);
         val++;
         writeD(command, val);
+        checkZ(val);
     }
 }
