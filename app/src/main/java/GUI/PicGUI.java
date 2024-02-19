@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class PicGUI {
     public JPanel mainPanal;
+    //test
     private JButton stopButton;
     private JButton stepButton;
     private JButton resetButton;
