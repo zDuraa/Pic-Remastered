@@ -17,7 +17,7 @@ public class ADDLW extends Command {
         checkZ(ret);
         checkDC(l, pic.w, '+');
 
-        pic.w = ret;
+        pic.w = ret & 0b11111111;
     }
 
 }
