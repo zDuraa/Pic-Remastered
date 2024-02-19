@@ -31,4 +31,34 @@ public abstract class Command {
             pic.ram.setReg(f, value);
         }
     }
+
+    // the result musst be uncorrected (example -15 or 333)
+    protected void checkZ(int val) {
+        int reg = pic.ram.getReg(3);
+        int bit = 0b100;
+        int erg;
+
+        if (val == 0 || val == 256) {
+            erg = reg | bit;
+        } else {
+            erg = reg ^ bit;
+        }
+
+        pic.ram.setReg(3, erg);
+    }
+
+    // the result musst be uncorrected (example -15 or 333)
+    protected void checkC(int val) {
+        int reg = pic.ram.getReg(3);
+        int bit = 0b10;
+        int erg;
+
+        if (val > 255 || val < 0) {
+            erg = reg | bit;
+        } else {
+            erg = reg ^ bit;
+        }
+
+        pic.ram.setReg(3, erg);
+    }
 }
