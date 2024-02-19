@@ -9,6 +9,12 @@ public class SUBWF extends Command {
     }
     @Override
     public void execute(int command) {
+        int f = (command & 0b1111111);
+        int val = pic.w - pic.ram.getReg(f);
+        writeD(command, val);
 
+        checkZ(val);
+        checkC(val);
+        checkDC(val,pic.w, '-');
     }
 }
