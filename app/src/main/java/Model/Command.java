@@ -18,4 +18,15 @@ public abstract class Command {
 
         return ret;
     }
+
+    public boolean isD(int command)
+    {
+        boolean ret = false;
+        if((command & (1 << 6)) == 0){
+            ret = true;
+        }
+
+        return ret;
+    }
+
 }
