@@ -19,11 +19,15 @@ repositories {
 
 dependencies {
     // Use JUnit test framework.
-    //testImplementation libs.junit
-
+    //testImplementation 'org.junit.jupiter:junit-jupiter-api:latest.release'
+    //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:latest.release'
+    //testImplementation(platform("org.junit:junit-bom:5.10.2"))
     // This dependency is used by the application.
     implementation libs.guava
     implementation 'com.intellij:forms_rt:latest.release'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -36,4 +40,8 @@ java {
 application {
     // Define the main class for the application.
     mainClass = 'Main'
+}
+
+test {
+    useJUnitPlatform()
 }
