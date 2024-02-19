@@ -17,7 +17,7 @@ public class PicTest {
         list.add("3E25");
 
         Pic pic = new Pic(list);
-        pic.decoder.addCmd(new ADDLW());
+        pic.decoder.addCmd(new ADDLW(pic));
 
         for (int i = 0; i < 6; i++) {
             pic.next();
