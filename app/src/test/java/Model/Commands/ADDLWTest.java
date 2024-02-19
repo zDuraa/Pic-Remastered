@@ -58,4 +58,16 @@ public class ADDLWTest {
 
         assertEquals(1, z);
     }
+
+    @Test
+    public void overflow() {
+        Pic pic = new Pic(new ArrayList<>());
+        Command cmd = new ADDLW(pic);
+
+        pic.w = 240;
+        cmd.execute(27);
+
+        assertEquals(11, pic.w);
+    }
+
 }
