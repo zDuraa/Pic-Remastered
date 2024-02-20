@@ -9,7 +9,7 @@ public class RRFTest {
     @Test
     public void RRFc0() {
         Pic pic = new Pic(new ArrayList<>());
-        Command cmd = new RLF(pic);
+        Command cmd = new RRF(pic);
 
         pic.ram.setReg(10, 0b001100);
         pic.ram.setReg(3, 0b11111110);
@@ -22,7 +22,7 @@ public class RRFTest {
     @Test
     public void RRFc1() {
         Pic pic = new Pic(new ArrayList<>());
-        Command cmd = new RLF(pic);
+        Command cmd = new RRF(pic);
 
         pic.ram.setReg(10, 0b10000001);
         pic.ram.setReg(3, 0b1);
