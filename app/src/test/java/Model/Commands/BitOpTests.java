@@ -51,7 +51,26 @@ public class BitOpTests {
         assertEquals(15, pic.pCounter.get());
     }
 
-    // @Test
-    // public void
+    @Test
+    public void btfssTestIf0() {
+        Pic pic = new Pic(new ArrayList<>());
+        Command cmd = new BTFSS(pic);
+
+        pic.pCounter.set(15);
+        cmd.execute(33);
+
+        assertEquals(15, pic.pCounter);
+    }
+
+    public void btfssTest() {
+        Pic pic = new Pic(new ArrayList<>());
+        Command cmd = new BTFSS(pic);
+
+        pic.pCounter.set(15);
+        pic.ram.setReg(33, 0b10);
+        cmd.execute(0b10000000 + 33);
+
+        assertEquals(16, pic.pCounter.get());
+    }
 
 }
