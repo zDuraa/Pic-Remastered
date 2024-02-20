@@ -25,7 +25,7 @@ public class BitOpTests {
         pic.ram.setReg(33, 0);
         cmd.execute(0b100000000 + 33);
 
-        assertEquals(2, pic.ram.getReg(30));
+        assertEquals(2, pic.ram.getReg(33));
     }
 
     @Test
@@ -36,7 +36,10 @@ public class BitOpTests {
         pic.pCounter.set(15);
         cmd.execute(33);
 
-        assertEquals(16, pic.pCounter.get());
+        //If bit ’b’, in register ’f’, is ’0’ then the next
+        //instruction is discarded, and a NOP is
+        //executed instead
+        assertEquals(15, pic.pCounter.get());
     }
 
     @Test
@@ -48,7 +51,9 @@ public class BitOpTests {
         pic.ram.setReg(33, 1);
         cmd.execute(33);
 
-        assertEquals(15, pic.pCounter.get());
+        //If bit ’b’ in register ’f’ is ’1’ then the next
+        //instruction is executed.
+        assertEquals(16, pic.pCounter.get());
     }
 
     @Test
@@ -59,7 +64,9 @@ public class BitOpTests {
         pic.pCounter.set(15);
         cmd.execute(33);
 
-        assertEquals(15, pic.pCounter);
+        //If bit ’b’ in register ’f’ is ’0’ then the next
+        //instruction is executed
+        assertEquals(16, pic.pCounter.get());
     }
 
     public void btfssTest() {
@@ -70,7 +77,10 @@ public class BitOpTests {
         pic.ram.setReg(33, 0b10);
         cmd.execute(0b10000000 + 33);
 
-        assertEquals(16, pic.pCounter.get());
+        //If bit ’b’ is ’1’, then the next instruction is
+        //discarded and a NOP is executed
+        //instead,
+        assertEquals(15, pic.pCounter.get());
     }
 
 }
