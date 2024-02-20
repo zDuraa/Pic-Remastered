@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class RRFTest {
     @Test
-    public void RLFc0() {
+    public void RRFc0() {
         Pic pic = new Pic(new ArrayList<>());
         Command cmd = new RLF(pic);
 
@@ -20,7 +20,7 @@ public class RRFTest {
     }
 
     @Test
-    public void RLFc1() {
+    public void RRFc1() {
         Pic pic = new Pic(new ArrayList<>());
         Command cmd = new RLF(pic);
 
