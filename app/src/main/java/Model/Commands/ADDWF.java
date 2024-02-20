@@ -8,9 +8,8 @@ public class ADDWF extends Command {
     }
     @Override
     public void execute(int command) {
-        int val = 0;
         int f = (command & 0b1111111);
-        val = pic.w + pic.ram.getReg(f);
+        int val = pic.w + pic.ram.getReg(f);
 
         checkC(val);
         checkZ(val);

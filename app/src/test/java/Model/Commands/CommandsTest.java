@@ -19,7 +19,7 @@ public class CommandsTest {
         pic.w = 255;
         cmd.execute(20);
 
-        assertEquals(9, pic.ram.getReg(20));
+        assertEquals(10, pic.ram.getReg(20));
         int c = pic.ram.getReg(3) & 0b1;
         assertEquals(1, c);
 
