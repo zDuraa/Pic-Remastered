@@ -11,14 +11,21 @@ public class RLF extends Command {
     public void execute(int command) {
         int f = (command & 0b1111111);
 
-        int temp = pic.ram.getReg(3);
+        int oldCarryFlag = pic.ram.getReg(3);
 
-        int carryFlag = (pic.ram.getReg(f) & 0b10000000) >> 7;
-        pic.ram.setReg(3, carryFlag);
+        int newCarryFlag = (pic.ram.getReg(f) & 0b10000000) >> 7;
 
-        int val = (pic.ram.getReg(f) << 1) | temp;
+        int temp = ((oldCarryFlag) & 0b11111111) | newCarryFlag;
 
+        pic.ram.setReg(3, temp);
+
+        int test = oldCarryFlag >> 8;
+        int val = ((pic.ram.getReg(f) << 1) | test);
+
+        if(val > 255){
+            val = val-255;
+        }
         writeD(command, val);
-        checkC(val);
+
     }
 }
