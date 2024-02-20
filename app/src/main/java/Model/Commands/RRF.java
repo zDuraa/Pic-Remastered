@@ -7,18 +7,23 @@ public class RRF extends Command {
     public RRF(Pic pic) {
         super(0b001100, pic);
     }
+
     @Override
     public void execute(int command) {
         int f = (command & 0b1111111);
 
-        int temp = pic.ram.getReg(3);
+        int status = pic.ram.getReg(3);
+        int reg = pic.ram.getReg(f);
+        int carry = status & 0b1;
+        System.out.println(status);
 
-        int carryFlag = (pic.ram.getReg(f) & 0b10000000) << 7;
-        pic.ram.setReg(3, carryFlag);
+        int newCarry = reg & 0b1;
+        int newStatus = (status & 0b11111110) | newCarry;
 
-        int val = (pic.ram.getReg(f) >> 1) | temp;
+        int ret = (reg >> 1) | (carry << 7);
 
-        writeD(command, val);
-        checkC(val);
+        pic.ram.setReg(3, newStatus);
+        writeD(command, ret);
+
     }
 }
