@@ -10,6 +10,7 @@ public class NOP extends Command {
     }
     @Override
     public void execute(int command) {
+
         System.out.println("NOP");
     }
 }
