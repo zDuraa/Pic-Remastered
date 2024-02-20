@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
-public class RLFTest {
+public class RRFTest {
     @Test
     public void RLFc0() {
         Pic pic = new Pic(new ArrayList<>());
@@ -16,7 +16,7 @@ public class RLFTest {
         cmd.execute(10);
 
         assertEquals(0b11111110, pic.ram.getReg(3));
-        assertEquals(0b011000, pic.w);
+        assertEquals(0b0110, pic.w);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class RLFTest {
         cmd.execute(10);
 
         assertEquals(0b1, pic.ram.getReg(3));
-        assertEquals(0b11, pic.w);
+        assertEquals(0b11000000, pic.w);
         assertEquals(0b10000001, pic.ram.getReg(10));
     }
 }
