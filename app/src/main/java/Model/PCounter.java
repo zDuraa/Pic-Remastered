@@ -15,8 +15,8 @@ public class PCounter {
         return counter;
     }
 
-    public void incWith(int val) {
-        counter += val;
+    public void set(int val) {
+        counter = val;
     }
 
     /*
