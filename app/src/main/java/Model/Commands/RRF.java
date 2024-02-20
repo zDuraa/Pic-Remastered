@@ -15,7 +15,6 @@ public class RRF extends Command {
         int status = pic.ram.getReg(3);
         int reg = pic.ram.getReg(f);
         int carry = status & 0b1;
-        System.out.println(status);
 
         int newCarry = reg & 0b1;
         int newStatus = (status & 0b11111110) | newCarry;
