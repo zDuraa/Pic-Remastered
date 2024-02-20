@@ -13,6 +13,9 @@ public class RLF extends Command {
 
         int val = (pic.ram.getReg(f) & 0b10000000) >> 7;
 
+        //int temp = carry;
+        //int carry = val;
+        //int newF = (pic.ram.getReg(f) << 1) | temp
 
         writeD(command, val);
         checkC(val);

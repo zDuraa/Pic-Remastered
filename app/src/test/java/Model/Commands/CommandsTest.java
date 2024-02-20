@@ -140,17 +140,15 @@ public class CommandsTest {
     }
 
     @Test
-    public void movewfTest() {
+    public void movwfTest() {
         Pic pic = new Pic(new ArrayList<>());
         Command cmd = new MOVWF(pic);
 
         pic.w = 0;
         pic.ram.setReg(65, 20);
         cmd.execute(65);
-        int z = (pic.ram.getReg(3) & 0b100) >> 2;
 
         assertEquals(0, pic.ram.getReg(65));
-        assertEquals(1, z);
     }
 
     @Test
