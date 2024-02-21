@@ -36,11 +36,11 @@ public abstract class Command {
     protected void checkZ(int val) {
         int reg = pic.ram.getReg(3);
         int bit = 0b100;
-        int erg;
+        int erg = reg;
 
         if (val == 0 || val == 256) {
             erg = reg | bit;
-        } else {
+        } else if ((reg & 0b100) > 0) {
             erg = reg ^ bit;
         }
 
@@ -51,11 +51,11 @@ public abstract class Command {
     protected void checkC(int val) {
         int reg = pic.ram.getReg(3);
         int bit = 0b1;
-        int erg;
+        int erg = reg;
 
         if (val > 255 || val < 0) {
             erg = reg | bit;
-        } else {
+        } else if ((reg & 0b1) > 0) {
             erg = reg ^ bit;
         }
 
@@ -86,7 +86,7 @@ public abstract class Command {
 
         if (ret >= 0b10000) {
             reg |= bit;
-        } else {
+        } else if ((reg & 0b010) > 0) {
             reg ^= bit;
         }
 

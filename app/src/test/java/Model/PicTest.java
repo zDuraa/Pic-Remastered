@@ -24,11 +24,28 @@ public class PicTest {
         pic.decoder.addCmd(new XORLW(pic));
         pic.decoder.addCmd(new MOVLW(pic));
 
-        for (int i = 0; i < 6; i++) {
-            pic.next();
-        }
+        pic.next();
+        assertEquals(17, pic.w);
 
-        assertEquals(25, pic.w);
+        pic.next();
+        assertEquals(16, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b100);
+
+        pic.next();
+        assertEquals(29, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b100);
+
+        pic.next();
+        assertEquals(32, pic.w);
+        assertEquals(0b011, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(0, pic.w);
+        assertEquals(0b111, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(37, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
     }
 
     @Test
