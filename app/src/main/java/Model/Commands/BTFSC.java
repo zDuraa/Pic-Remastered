@@ -11,9 +11,10 @@ public class BTFSC extends Command {
     @Override
     public void execute(int command) {
         int f = (command & 0b0001111111);
-        int b = (command & 0b111);
+        int b = (command & 0b1110000000) >> 7;
 
-        if((pic.ram.getReg(f) & b) == 1){
+        int mask = 0b1 << b;
+        if((pic.ram.getReg(f) & mask) == 0){
             pic.pCounter.inc();
         }
     }

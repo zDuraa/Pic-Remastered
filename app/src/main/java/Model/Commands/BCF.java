@@ -10,7 +10,7 @@ public class BCF extends Command {
     @Override
     public void execute(int command) {
         int f = (command & 0b0001111111);
-        int b = (command & 0b111);
+        int b = (command & 0b1110000000) >> 7;
 
         int mask = ~(1 << b);
         int val = pic.ram.getReg(f) & mask;

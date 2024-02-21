@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class MOVLW extends Command {
     public MOVLW(Pic pic) {
-        super(0b1100, pic);
+        super(0b110000, pic);
     }
     @Override
     public void execute(int command) {

@@ -18,6 +18,11 @@ public class PicTest {
 
         Pic pic = new Pic(list);
         pic.decoder.addCmd(new ADDLW(pic));
+        pic.decoder.addCmd(new ANDLW(pic));
+        pic.decoder.addCmd(new IORLW(pic));
+        pic.decoder.addCmd(new SUBLW(pic));
+        pic.decoder.addCmd(new XORLW(pic));
+        pic.decoder.addCmd(new MOVLW(pic));
 
         for (int i = 0; i < 6; i++) {
             pic.next();
