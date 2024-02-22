@@ -4,6 +4,7 @@ import Model.Commands.*;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
+import utils.*;
 
 public class PicTest {
     @Test
@@ -181,6 +182,92 @@ public class PicTest {
         assertEquals(121, pic.w);
         pic.next();
         assertEquals(121, pic.w);
+
+    }
+
+    @Test
+    public void test4() {
+
+        FileManager.ladeDatei("/home/kai/code/Pic-Remastered/Testprogramme/TPicSim4.LST");
+        ArrayList<String> commands = FileManager.getCommands();
+
+        Pic pic = new Pic(commands);
+
+        pic.next();
+        assertEquals(17, pic.w);
+
+        pic.next();
+        assertEquals(17, pic.ram.getReg(12));
+
+        pic.next();
+        assertEquals(34, pic.w);
+
+        pic.next();
+        assertEquals(34, pic.ram.getReg(12));
+
+        pic.next();
+        assertEquals(68, pic.ram.getReg(12));
+
+        pic.next();
+        assertEquals(136, pic.ram.getReg(12));
+
+        pic.next();
+        assertEquals(16, pic.w);
+        assertEquals(0b001, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(17, pic.ram.getReg(12));
+        assertEquals(0b001, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(35, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(8, pic.ram.getReg(12));
+        assertEquals(0b001, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(35, pic.ram.getReg(13));
+        assertEquals(0b001, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(145, pic.ram.getReg(13));
+        assertEquals(0b001, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(200, pic.w);
+        assertEquals(0b001, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(9, pic.w);
+        assertEquals(0b001, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(9, pic.ram.getReg(12));
+        assertEquals(0b001, pic.ram.getReg(3) & 0b111);
+
+        pic.next();
+        assertEquals(0, pic.w);
+
+        for (int i = 0; i < 9; i++) {
+            pic.next();
+            assertEquals(i + 1, pic.w);
+
+            pic.next();
+            // add w to f
+
+            pic.next();
+            assertEquals(9 - (i + 1), pic.ram.getReg(12));
+
+            pic.next();
+            // goto
+        }
+        assertEquals(0, pic.ram.getReg(12));
+        assertEquals(240, pic.w);
+
+        pic.next();
+        assertEquals(240, pic.ram.getReg(12));
 
     }
 }
