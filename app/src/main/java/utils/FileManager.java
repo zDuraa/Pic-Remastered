@@ -6,19 +6,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 
-
 public class FileManager {
 
     private static String file = "";
-    public static void openFile()
-    {
+
+    public static void openFile() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setName("fileJFch");
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 
         int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION)
-        {
+        if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
 
@@ -26,18 +24,21 @@ public class FileManager {
         }
     }
 
-    public static void setFile(String file)
-    {
+    public static void setFile(String file) {
         FileManager.file = file;
     }
-    public static String getFile()
-    {
+
+    public static String getFile() {
         return file;
     }
+
     public static ArrayList<Integer> code = new ArrayList<>();
+
     public static ArrayList<String> ladeDatei(String datName) {
-        ArrayList<String> list = new ArrayList<String>();    //Ich habe hier erstens eine Array list erstellt namens commands
-        BufferedReader br = null;       //liest Text aus Symbolen und puffert die Symbole, um Zeichen, Arrays und Strings effizient einzulesen
+        ArrayList<String> list = new ArrayList<String>(); // Ich habe hier erstens eine Array list erstellt namens
+                                                          // commands
+        BufferedReader br = null; // liest Text aus Symbolen und puffert die Symbole, um Zeichen, Arrays und
+                                  // Strings effizient einzulesen
         String command;
 
         int i;
@@ -46,7 +47,7 @@ public class FileManager {
             String line = null;
             while ((line = br.readLine()) != null) {
 
-                list.add(line);                      //Jede einzelne Zeile die ausgegeben wird, wird in die Liste abgespeichert
+                list.add(line); // Jede einzelne Zeile die ausgegeben wird, wird in die Liste abgespeichert
                 command = line.substring(5, 9);
 
                 if (!command.equals("    ")) {
@@ -64,6 +65,7 @@ public class FileManager {
                     System.out.println(e);
                 }
         }
-        return list;           //Die Liste wird dann am ende returned so das wir zugriff drauf haben, deswegen ist die Methode eine ArrayList und nicht mehr void
+        return list; // Die Liste wird dann am ende returned so das wir zugriff drauf haben, deswegen
+                     // ist die Methode eine ArrayList und nicht mehr void
     }
 }
