@@ -8,8 +8,8 @@ public class Decoder {
 
     public Decoder(Pic pic) {
         commands = new ArrayList<Command>();
-        commands.add(new ADDLW(pic));
-        commands.add(new ANDLW(pic));
+        commands.add(new ADDWF(pic));
+        commands.add(new ANDWF(pic));
         commands.add(new CLRF(pic));
         commands.add(new CLRF(pic));
         commands.add(new CLRW(pic));
