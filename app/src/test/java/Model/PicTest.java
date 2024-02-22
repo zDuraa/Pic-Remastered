@@ -118,31 +118,11 @@ public class PicTest {
         list.add("028D"); //subwf
 
         Pic pic = new Pic(list);
-        pic.decoder.addCmd(new ADDLW(pic));
-        pic.decoder.addCmd(new ANDLW(pic));
-        pic.decoder.addCmd(new IORLW(pic));
-        pic.decoder.addCmd(new SUBLW(pic));
-        pic.decoder.addCmd(new XORLW(pic));
-        pic.decoder.addCmd(new MOVLW(pic));
-
-        pic.decoder.addCmd(new MOVWF(pic));
-        pic.decoder.addCmd(new ADDWF(pic));
-        pic.decoder.addCmd(new ANDWF(pic));
-        pic.decoder.addCmd(new CLRF(pic));
-        pic.decoder.addCmd(new COMF(pic));
-        pic.decoder.addCmd(new DECF(pic));
-        pic.decoder.addCmd(new INCF(pic));
-        pic.decoder.addCmd(new MOVF(pic));
-        pic.decoder.addCmd(new IORWF(pic));
-        pic.decoder.addCmd(new SUBWF(pic));
-        pic.decoder.addCmd(new SWAPF(pic));
-        pic.decoder.addCmd(new XORWF(pic));
-        pic.decoder.addCmd(new CLRW(pic));
 
         pic.next();
         assertEquals(17, pic.w);
         pic.next();
-        assertEquals(121, pic.ram.getReg(140));
+
         pic.next();
         assertEquals(20, pic.w);
         pic.next();

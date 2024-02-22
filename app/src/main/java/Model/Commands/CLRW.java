@@ -13,4 +13,16 @@ public class CLRW extends Command {
         pic.w = 0;
         checkZ(0);
     }
+
+    @Override
+    public boolean is(int command)
+    {
+        int val = command >> 7;
+        boolean ret = false;
+        if(val == bitmask)
+        {
+            ret = true;
+        }
+        return ret;
+    }
 }

@@ -15,4 +15,16 @@ public class CLRF extends Command {
         pic.ram.setReg(f, 0);
         checkZ(0);
     }
+
+    @Override
+    public boolean is(int command)
+    {
+        int val = command >> 7;
+        boolean ret = false;
+        if(val == 0b0000011)
+        {
+            ret = true;
+        }
+        return ret;
+    }
 }

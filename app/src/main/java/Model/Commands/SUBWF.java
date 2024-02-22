@@ -11,10 +11,11 @@ public class SUBWF extends Command {
     public void execute(int command) {
         int f = (command & 0b1111111);
         int val =  pic.ram.getReg(f)-pic.w;
-        writeD(command, val);
-
         checkZ(val);
         checkC(val);
         checkDC(val,pic.w, '-');
+
+        val &= 0b11111111;
+        writeD(command, val);
     }
 }

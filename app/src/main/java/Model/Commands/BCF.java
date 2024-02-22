@@ -16,4 +16,16 @@ public class BCF extends Command {
         int val = pic.ram.getReg(f) & mask;
         pic.ram.setReg(f, val);
     }
+
+    @Override
+    public boolean is(int command)
+    {
+        int val = command >> 10;
+        boolean ret = false;
+        if(val == 0b0100)
+        {
+            ret = true;
+        }
+        return ret;
+    }
 }

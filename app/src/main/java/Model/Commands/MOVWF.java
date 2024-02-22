@@ -14,4 +14,16 @@ public class MOVWF extends Command {
         pic.ram.setReg(f, pic.w);
 
     }
+
+    @Override
+    public boolean is(int command)
+    {
+        int val = command >> 7;
+        boolean ret = false;
+        if(val == 0b0000001)
+        {
+            ret = true;
+        }
+        return ret;
+    }
 }

@@ -16,4 +16,16 @@ public class BSF extends Command {
         int val = pic.ram.getReg(f) | mask;
         pic.ram.setReg(f, val);
     }
+
+    @Override
+    public boolean is(int command)
+    {
+        int val = command >> 10;
+        boolean ret = false;
+        if(val == 0b0101)
+        {
+            ret = true;
+        }
+        return ret;
+    }
 }

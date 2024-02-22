@@ -17,4 +17,15 @@ public class BTFSS extends Command {
             pic.pCounter.inc();
         }
     }
+    @Override
+    public boolean is(int command)
+    {
+        int val = command >> 10;
+        boolean ret = false;
+        if(val == 0b0111)
+        {
+            ret = true;
+        }
+        return ret;
+    }
 }

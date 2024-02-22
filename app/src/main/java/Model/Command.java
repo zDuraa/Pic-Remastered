@@ -1,7 +1,7 @@
 package Model;
 
 public abstract class Command {
-    private int bitmask;
+    protected int bitmask;
     protected Pic pic;
 
     public Command(int Bitmask, Pic pic) {

@@ -18,4 +18,16 @@ public class BTFSC extends Command {
             pic.pCounter.inc();
         }
     }
+
+    @Override
+    public boolean is(int command)
+    {
+        int val = command >> 10;
+        boolean ret = false;
+        if(val == 0b0110)
+        {
+            ret = true;
+        }
+        return ret;
+    }
 }
