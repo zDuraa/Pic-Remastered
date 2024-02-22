@@ -13,9 +13,7 @@ public class DECF extends Command {
         int f = (command & 0b1111111);
         int val = pic.ram.getReg(f);
         val--;
-        if(val == -1){
-            val = 255;
-        }
+        val &= 0b11111111;
         writeD(command, val);
         checkZ(val);
     }
