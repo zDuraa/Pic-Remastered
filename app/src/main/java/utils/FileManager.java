@@ -33,6 +33,11 @@ public class FileManager {
     }
 
     public static ArrayList<Integer> code = new ArrayList<>();
+    private static ArrayList<String> commands = new ArrayList<>();
+
+    public static ArrayList<String> getCommands() {
+        return (ArrayList<String>) commands.clone();
+    }
 
     public static ArrayList<String> ladeDatei(String datName) {
         ArrayList<String> list = new ArrayList<String>(); // Ich habe hier erstens eine Array list erstellt namens
@@ -53,6 +58,7 @@ public class FileManager {
                 if (!command.equals("    ")) {
                     i = Integer.parseInt(command, 16);
                     code.add(i);
+                    commands.add(command);
                 }
             }
         } catch (IOException e) {
