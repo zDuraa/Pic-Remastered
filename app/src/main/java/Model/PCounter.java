@@ -19,13 +19,7 @@ public class PCounter {
         counter = val;
     }
 
-    /*
-     * public static void main(String[] args) {
-     * PCounter pCounter = new PCounter();
-     * pCounter.inc();
-     * System.out.println(pCounter.get());
-     * pCounter.incWith(20);
-     * System.out.println(pCounter.get());
-     * }
-     */
+    public void dec() {
+        counter--;
+    }
 }

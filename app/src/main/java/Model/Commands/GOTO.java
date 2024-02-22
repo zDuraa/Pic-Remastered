@@ -12,6 +12,7 @@ public class GOTO extends Command {
         int k = command & 0b11111111111;
         int PCLath = (pic.ram.getReg(10) & 0b11000) << 7;
         pic.pCounter.set((k | PCLath) & 0b1111111111111);
+        pic.pCounter.dec();
     }
 
     @Override

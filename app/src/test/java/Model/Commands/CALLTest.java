@@ -17,7 +17,7 @@ public class CALLTest {
         cmd.execute(12);
 
         assertEquals(188, pic.stack.pop());
-        assertEquals(12, pic.pCounter.get());
+        assertEquals(11, pic.pCounter.get());
     }
 
     @Test
@@ -30,6 +30,6 @@ public class CALLTest {
         cmd.execute(0b11000);
 
         assertEquals(14, pic.stack.pop());
-        assertEquals(0b10000011000, pic.pCounter.get());
+        assertEquals(1047, pic.pCounter.get());
     }
 }

@@ -56,7 +56,33 @@ public class PicTest {
         list.add("3477");
 
         Pic pic = new Pic(list);
-        // missing a lot
+
+        pic.next();
+        assertEquals(17, pic.w);
+
+        pic.next();
+        assertEquals(2, pic.stack.getStack()[0]);
+        assertEquals(6, pic.pCounter.get());
+
+        pic.next();
+        assertEquals(54, pic.w);
+
+        pic.next();
+        assertEquals(2, pic.pCounter.get());
+
+        pic.next();
+        assertEquals(54, pic.w);
+
+        pic.next();
+        assertEquals(4, pic.stack.getStack()[0]);
+        assertEquals(8, pic.pCounter.get());
+
+        pic.next();
+        assertEquals(119, pic.w);
+        assertEquals(4, pic.stack.getStack()[0]);
+
+        pic.next();
+        assertEquals(119, pic.w);
     }
 
     // 0000 3011 00035 movlw 11h ;in W steht nun 11h, DC=?, C=?, Z=?

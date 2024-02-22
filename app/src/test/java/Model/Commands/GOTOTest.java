@@ -15,7 +15,7 @@ public class GOTOTest {
         pic.pCounter.set(187);
         cmd.execute(12);
 
-        assertEquals(12, pic.pCounter.get());
+        assertEquals(11, pic.pCounter.get());
     }
 
     @Test
@@ -27,6 +27,6 @@ public class GOTOTest {
         pic.pCounter.set(13);
         cmd.execute(0b11000);
 
-        assertEquals(0b110000011000, pic.pCounter.get());
+        assertEquals(3095, pic.pCounter.get());
     }
 }

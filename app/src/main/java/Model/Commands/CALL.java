@@ -16,6 +16,7 @@ public class CALL extends Command {
 
         pic.stack.push(returnAdr);
         pic.pCounter.set(k | pcLath);
+        pic.pCounter.dec();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Arrays;
+
 public class Stack {
     private int[] buffer;
     private int pointer;
@@ -34,7 +36,7 @@ public class Stack {
     }
 
     public int[] getStack() {
-        return buffer.clone();
+        return Arrays.copyOf(buffer, buffer.length);
     }
 
 }
