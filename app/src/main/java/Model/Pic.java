@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.ArrayList;
-import Model.Commands.*;
 
 public class Pic {
     public Ram ram;
@@ -16,23 +15,14 @@ public class Pic {
         ram = new Ram();
         stack = new Stack();
         pCounter = new PCounter();
-        decoder = new Decoder();
+        decoder = new Decoder(this);
 
         pCode = ProgrammFile;
     }
 
     public void next() {
-        decoder.decode(pCode.get(pCounter.get()), this);
+        decoder.decode(pCode.get(pCounter.get()));
         pCounter.inc();
     }
 
-    /*static public void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("3E01");
-
-        Pic pic = new Pic(list);
-        pic.decoder.addCmd(new ADDLW());
-        pic.next();
-        System.out.println(pic.w);
-    }*/
 }
