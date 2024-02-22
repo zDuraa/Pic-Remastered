@@ -187,7 +187,6 @@ public class PicTest {
 
     @Test
     public void test4() {
-
         FileManager.ladeDatei("./../Testprogramme/TPicSim4.LST");
         ArrayList<String> commands = FileManager.getCommands();
 
@@ -290,5 +289,56 @@ public class PicTest {
         }
 
         assertEquals(28, pic.pCounter.get());
+    }
+
+    @Test
+    public void test5() {
+        FileManager.ladeDatei("./../Testprogramme/TPicSim5.LST");
+        ArrayList<String> commands = FileManager.getCommands();
+        Pic pic = new Pic(commands);
+
+        pic.next();// movlw
+        assertEquals(17, pic.w);
+
+        pic.next(); // movwf
+
+        pic.next(); // clrf
+        assertEquals(17, pic.w);
+        assertEquals(17, pic.ram.getReg(12)); // wert1
+        assertEquals(0, pic.ram.getReg(13)); // wert2
+        assertEquals(1, (pic.ram.getReg(3) & 0b100) >> 2); // z
+        pic.next(); // bsf
+        assertEquals(17, pic.w);
+        assertEquals(145, pic.ram.getReg(12));
+        assertEquals(0, pic.ram.getReg(13));
+        assertEquals(1, (pic.ram.getReg(3) & 0b100) >> 2);
+        pic.next(); // bsf
+        assertEquals(17, pic.w);
+        assertEquals(153, pic.ram.getReg(12));
+        assertEquals(0, pic.ram.getReg(13));
+        assertEquals(1, (pic.ram.getReg(3) & 0b100) >> 2);
+        pic.next(); // bcf
+        assertEquals(17, pic.w);
+        assertEquals(137, pic.ram.getReg(12));
+        assertEquals(0, pic.ram.getReg(13));
+        assertEquals(1, (pic.ram.getReg(3) & 0b100) >> 2);
+        pic.next(); // bcf
+        assertEquals(17, pic.w);
+        assertEquals(136, pic.ram.getReg(12));
+        assertEquals(0, pic.ram.getReg(13));
+        assertEquals(1, (pic.ram.getReg(3) & 0b100) >> 2);
+        pic.next(); // btfsc
+        pic.next(); // incf
+        pic.next(); // incf
+        pic.next(); // btfsc
+        pic.next(); // incf
+        pic.next(); // incf
+        pic.next(); // btfss
+        pic.next(); // incf
+        pic.next(); // incf
+        pic.next(); // btfss
+        pic.next(); // incf
+        pic.next(); // decf in wert2 muss 04h stehen
+        assertEquals(4, pic.ram.getReg(13)); // wert2
     }
 }

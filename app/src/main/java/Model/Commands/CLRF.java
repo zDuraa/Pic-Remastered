@@ -21,7 +21,7 @@ public class CLRF extends Command {
     {
         int val = command >> 7;
         boolean ret = false;
-        if(val == 0b0000011)
+        if(val == bitmask)
         {
             ret = true;
         }

@@ -40,6 +40,7 @@ public class FileManager {
     }
 
     public static ArrayList<String> ladeDatei(String datName) {
+        commands = new ArrayList<>();
         ArrayList<String> list = new ArrayList<String>(); // Ich habe hier erstens eine Array list erstellt namens
                                                           // commands
         BufferedReader br = null; // liest Text aus Symbolen und puffert die Symbole, um Zeichen, Arrays und
