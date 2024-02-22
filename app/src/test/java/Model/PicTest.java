@@ -188,7 +188,7 @@ public class PicTest {
     @Test
     public void test4() {
 
-        FileManager.ladeDatei("/home/kai/code/Pic-Remastered/Testprogramme/TPicSim4.LST");
+        FileManager.ladeDatei("./../Testprogramme/TPicSim4.LST");
         ArrayList<String> commands = FileManager.getCommands();
 
         Pic pic = new Pic(commands);
@@ -269,5 +269,26 @@ public class PicTest {
         pic.next();
         assertEquals(240, pic.ram.getReg(12));
 
+        pic.next();
+        assertEquals(0, pic.ram.getReg(13));
+
+        pic.next();
+        assertEquals(0, pic.w);
+
+        for (int i = 0; i < 16; i++) {
+            pic.next();
+            // add w to wert1
+
+            pic.next();
+            assertEquals(i + 1, pic.ram.getReg(13));
+
+            assertEquals(240 + i, pic.ram.getReg(12));
+            pic.next();
+
+            pic.next();
+            // goto
+        }
+
+        assertEquals(28, pic.pCounter.get());
     }
 }
