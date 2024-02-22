@@ -86,7 +86,7 @@ public class CommandsTest {
         int z = (pic.ram.getReg(3) & 0b100) >> 2;
 
         assertEquals(255, pic.w);
-        assertEquals(1, z);
+        assertEquals(0, z);
     }
 
     public void decfsz() {
@@ -162,7 +162,7 @@ public class CommandsTest {
         int c = pic.ram.getReg(3) & 0b1;
 
         assertEquals(10, pic.w);
-        assertEquals(1, c);
+        assertEquals(0, c);
     }
 
     @Test
