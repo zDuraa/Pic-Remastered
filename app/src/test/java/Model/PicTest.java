@@ -86,32 +86,6 @@ public class PicTest {
         assertEquals(119, pic.w);
     }
 
-    // 0000 3011 00035 movlw 11h ;in W steht nun 11h, DC=?, C=?, Z=?
-    // 0001 008C 00036 movwf wert1 ;diesen Wert abspeichern, DC=?, C=?, Z=?
-    // 0002 3014 00037 movlw 14h ;W = 14h, DC=?, C=?, Z=?
-    // 0003 070C 00038 addwf wert1,w ;W = 25h, DC=0, C=0, Z=0
-    // 0004 078C 00039 addwf wert1 ;W = 25h, wert1 = 36h, DC=0, C=0, Z=0
-    // 0005 050C 00040 andwf wert1,w ;W = 24h, wert1 = 36h, DC=0, C=0, Z=0
-    // 0006 008D 00041 movwf wert2 ;W=24h, wert1=36, wert2=24h
-    // 0007 018C 00042 clrf wert1 ;W=24h, wert1=0, wert2=24h, DC=0, C=0, Z=1
-    // 0008 090D 00043 comf wert2,w ;W=DBh, wert1=0, wert2=24h, DC=0, C=0, Z=0
-
-    // 0009 030C 00044 decf wert1,w ;W=FFh, wert1=0, wert2=24h, DC=0, C=0, Z=0
-    // 000A 0A8D 00045 incf wert2 ;W=FFh, wert1=0, wert2=25h, DC=0, C=0, Z=0
-    // 000B 088C 00046 movf wert1 ;W=FFh, wert1=0, wert2=25h, DC=0, C=0, Z=1
-    // 000C 048C 00047 iorwf wert1 ;W=FFh, wert1=FFh, wert2=25h, DC=0, C=0, Z=0
-    // 000D 020D 00048 subwf wert2,w ;W=26h, wert1=FFh, wert2=25h, DC=0, C=0, Z=0
-    // 000E 0E8D 00049 swapf wert2 ;W=26h, wert1=FFh, wert2=52h, DC=0, C=0, Z=0
-    // 000F 068C 00050 xorwf wert1 ;W=26h, wert1=D9h, wert2=52h, DC=0, C=0, Z=0
-    // 0010 0100 00051 clrw ;W=00h, wert1=D9h, wert2=52h, DC=0, C=0, Z=1
-    // 00052
-    // 0011 020C 00053 subwf wert1,w ;W=D9h, wert1=D9h, wert2=52h, DC=1, C=1, Z=0
-    // 0012 020D 00054 subwf wert2,w ;W=79h, wert1=D9h, wert2=52h, DC=0, C=0, Z=0
-    // 0013 028D 00055 subwf wert2 ;W=79h, wert1=D9h, wert2=D9h, DC=0, C=0, Z=0
-    // 0014 028D 00056 subwf wert2 ;W=79h, wert1=D9h, wert2=60h, DC=1, C=1, Z=0
-    // 00057
-    // 00058
-    // 00059 ende
     @Test
     public void test3() {
         ArrayList<String> list = new ArrayList<>();
