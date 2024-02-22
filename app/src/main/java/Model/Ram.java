@@ -8,10 +8,21 @@ public class Ram {
     }
 
     public int getReg(int pos) {
-        return buffer[pos];
+        int ret;
+        if (pos == 0) {
+            ret = getReg(getReg(4));
+        } else {
+            ret = buffer[pos];
+        }
+
+        return ret;
     }
 
     public void setReg(int pos, int val) {
+        if (pos == 0) {
+            setReg(getReg(4), val);
+            return;
+        }
 
         // status register (pos3) should be mirrored
         // check if pr0 (03h 00100000) is set case: (bank 1 not active)
@@ -24,14 +35,4 @@ public class Ram {
             buffer[pos + 128] = val;
         }
     }
-
-    /*
-     * public static void main(String[] args) {
-     * Ram ram = new Ram();
-     * 
-     * ram.setReg(10, 10);
-     * System.out.println(ram.getReg(10));
-     * }
-     */
-
 }

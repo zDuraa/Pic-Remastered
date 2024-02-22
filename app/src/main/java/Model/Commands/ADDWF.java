@@ -6,6 +6,7 @@ public class ADDWF extends Command {
     public ADDWF(Pic pic) {
         super(0b000111, pic);
     }
+
     @Override
     public void execute(int command) {
         int f = (command & 0b1111111);
@@ -13,10 +14,11 @@ public class ADDWF extends Command {
 
         checkC(val);
         checkZ(val);
-        checkDC(val,pic.w, '+');
+        checkDC(val, pic.w, '+');
+
+        val &= 0b11111111;
 
         writeD(command, val);
     }
-
 
 }
