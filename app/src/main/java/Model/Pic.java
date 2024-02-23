@@ -26,4 +26,11 @@ public class Pic {
         decoder.decode(pCode.get(pCounter.get()));
         pCounter.inc();
     }
+
+    public void RA4() {
+        if ((ram.getOpt() & 0b10000) == 0)
+            return;
+
+        prescaler.inc(1);
+    }
 }

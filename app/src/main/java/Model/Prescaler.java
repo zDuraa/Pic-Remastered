@@ -10,11 +10,17 @@ public class Prescaler {
     }
 
     public void inc(int val) {
-        buffer += val;
+        if ((pic.ram.getOpt() & 0b1000) == 0) {
 
-        if (buffer >= checkOps()) {
-            buffer -= checkOps();
+            buffer += val;
+
+            if (buffer >= checkOps()) {
+                buffer -= checkOps();
+                pic.ram.incTmr0();
+            }
+        } else {
             pic.ram.incTmr0();
+
         }
     }
 

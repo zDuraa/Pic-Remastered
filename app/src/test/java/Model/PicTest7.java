@@ -37,7 +37,6 @@ public class PicTest7 {
             }
 
             pic.next();// btfss
-
             pic.next(); // goto loop1
         }
         // movlw (goto get skiped last clall)
@@ -71,17 +70,46 @@ public class PicTest7 {
         assertEquals(49, pic.ram.getReg(16)); // num muss 31H in 10h stehen
         assertEquals(26, pic.pCounter.get());
 
+        assertEquals(0b111000, pic.w);
         pic.next(); // bsf
         pic.next(); // movwf
         pic.next(); // bcf
         pic.next(); // clrf
+        assertEquals(30, pic.pCounter.get());
 
         // loop3
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 10; i++) {
             pic.next();// btfss
-
-            pic.next();// goto loop3
         }
+        pic.RA4();
+        assertEquals(1, pic.ram.GetTmr0());
+
+        for (int i = 0; i < 5; i++) {
+            pic.next();
+        }
+        pic.RA4();
+        assertEquals(2, pic.ram.GetTmr0());
+
+        for (int i = 0; i < 17; i++) {
+            pic.next();
+        }
+        pic.RA4();
+        assertEquals(3, pic.ram.GetTmr0());
+
+        for (int i = 0; i < 3; i++) {
+            pic.next();
+        }
+        pic.RA4();
+        assertEquals(4, pic.ram.GetTmr0());
+
+        for (int i = 0; i < 12; i++) {
+            pic.RA4();
+        }
+        assertEquals(16, pic.ram.GetTmr0());
+
+        pic.next();
+        pic.next();
+        assertEquals(32, pic.pCounter.get());
 
         pic.next();// movlw
         pic.next();// bsf
@@ -91,10 +119,24 @@ public class PicTest7 {
 
         // loop4
         for (int i = 0; i < 16; i++) {
-            pic.next();// btfss
-
             pic.next();// goto loop4
         }
+
+        for (int i = 0; i < 31; i++) {
+            pic.RA4();
+        }
+
+        for (int i = 0; i < 29; i++) {
+            pic.next();
+        }
+
+        pic.RA4();
+
+        pic.next();
+        pic.next();
+
+        assertEquals(8, pic.ram.GetTmr0());
+        assertEquals(39, pic.pCounter.get());
 
     }
 }
