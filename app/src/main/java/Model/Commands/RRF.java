@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class RRF extends Command {
     public RRF(Pic pic) {
-        super(0b001100, pic);
+        super(0b001100, pic, 1);
     }
 
     @Override
@@ -23,6 +23,6 @@ public class RRF extends Command {
 
         pic.ram.setReg(3, newStatus);
         writeD(command, ret);
-
+        incPrescaler();
     }
 }

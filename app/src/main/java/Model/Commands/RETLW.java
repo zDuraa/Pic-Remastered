@@ -6,7 +6,7 @@ import Model.Pic;
 public class RETLW extends Command {
 
     public RETLW(Pic pic) {
-        super(0b110100, pic);
+        super(0b110100, pic, 2);
     }
 
     // The W register is loaded with the eight
@@ -21,5 +21,6 @@ public class RETLW extends Command {
 
         pic.pCounter.set(pic.stack.pop());
         pic.pCounter.dec();
+        incPrescaler();
     }
 }
