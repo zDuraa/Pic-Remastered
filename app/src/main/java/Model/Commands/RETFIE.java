@@ -6,7 +6,7 @@ import Model.Pic;
 public class RETFIE extends Command {
 
     public RETFIE(Pic pic) {
-        super(0b00000000001001, pic);
+        super(0b00000000001001, pic,2);
     }
 
     // Return from Interrupt. Stack is POPed
@@ -19,5 +19,6 @@ public class RETFIE extends Command {
     public void execute(int command) {
         pic.pCounter.set(pic.stack.pop());
         pic.pCounter.dec();
+        incPrescaler();
     }
 }

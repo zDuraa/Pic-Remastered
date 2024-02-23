@@ -5,7 +5,7 @@ import Model.*;
 public class CALL extends Command {
 
     public CALL(Pic pic) {
-        super(0b100, pic);
+        super(0b100, pic,2);
     }
 
     @Override
@@ -17,6 +17,7 @@ public class CALL extends Command {
         pic.stack.push(returnAdr);
         pic.pCounter.set(k | pcLath);
         pic.pCounter.dec();
+        incPrescaler();
     }
 
     @Override

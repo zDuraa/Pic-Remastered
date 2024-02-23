@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class BTFSS extends Command {
     public BTFSS(Pic pic) {
-        super(0b0111, pic);
+        super(0b0111, pic,1);
     }
     @Override
     public void execute(int command) {
@@ -16,6 +16,7 @@ public class BTFSS extends Command {
         if((pic.ram.getReg(f) & mask) >= 1){
             pic.pCounter.inc();
         }
+        incPrescaler();
     }
     @Override
     public boolean is(int command)

@@ -6,7 +6,7 @@ import Model.Pic;
 public class INCFSZ extends Command {
 
     public INCFSZ(Pic pic) {
-        super(0b001111, pic);
+        super(0b001111, pic,1);
     }
 
     @Override
@@ -33,5 +33,6 @@ public class INCFSZ extends Command {
         } else {
             // NOP
         }
+        incPrescaler();
     }
 }

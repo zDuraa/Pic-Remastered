@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class IORLW extends Command {
     public IORLW(Pic pic) {
-        super(0b111000, pic);
+        super(0b111000, pic,1);
     }
     @Override
     public void execute(int command) {
@@ -14,5 +14,6 @@ public class IORLW extends Command {
 
         pic.w = val;
         checkZ(val);
+        incPrescaler();
     }
 }

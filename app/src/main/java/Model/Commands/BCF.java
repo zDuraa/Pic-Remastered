@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class BCF extends Command {
     public BCF(Pic pic) {
-        super(0b0100, pic);
+        super(0b0100, pic, 1);
     }
     @Override
     public void execute(int command) {
@@ -15,6 +15,7 @@ public class BCF extends Command {
         int mask = ~(1 << b);
         int val = pic.ram.getReg(f) & mask;
         pic.ram.setReg(f, val);
+        incPrescaler();
     }
 
     @Override

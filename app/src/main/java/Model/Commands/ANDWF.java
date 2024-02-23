@@ -5,7 +5,7 @@ import Model.*;
 public class ANDWF extends Command {
 
     public ANDWF(Pic pic) {
-        super(0b000101, pic);
+        super(0b000101, pic, 1);
     }
 
     @Override
@@ -16,5 +16,6 @@ public class ANDWF extends Command {
         val = pic.w & pic.ram.getReg(f);
         checkZ(val);
         writeD(command, val);
+        incPrescaler();
     }
 }

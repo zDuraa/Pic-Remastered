@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class MOVF extends Command {
     public MOVF(Pic pic) {
-        super(0b001000, pic);
+        super(0b001000, pic,1);
     }
     @Override
     public void execute(int command) {
@@ -14,5 +14,6 @@ public class MOVF extends Command {
         int val = pic.ram.getReg(f);
         writeD(command, val);
         checkZ(val);
+        incPrescaler();
     }
 }

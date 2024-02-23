@@ -6,12 +6,13 @@ import Model.Pic;
 public class NOP extends Command {
 
     public NOP(Pic pic) {
-        super(0b00000000000000, pic);
+        super(0b00000000000000, pic,1);
     }
     @Override
     public void execute(int command) {
 
         System.out.println("NOP");
+        incPrescaler();
     }
 
     @Override

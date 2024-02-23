@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class INCF extends Command {
     public INCF(Pic pic) {
-        super(0b001010, pic);
+        super(0b001010, pic, 1);
     }
     @Override
     public void execute(int command) {
@@ -17,5 +17,6 @@ public class INCF extends Command {
         }
         writeD(command, val);
         checkZ(val);
+        incPrescaler();
     }
 }

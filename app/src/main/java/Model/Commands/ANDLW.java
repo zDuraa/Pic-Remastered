@@ -5,7 +5,7 @@ import Model.*;
 public class ANDLW extends Command {
 
     public ANDLW(Pic pic) {
-        super(0b111001, pic);
+        super(0b111001, pic, 1);
     }
 
     public void execute(int command) {
@@ -15,5 +15,6 @@ public class ANDLW extends Command {
         checkZ(ret);
 
         pic.w = ret;
+        incPrescaler();
     }
 }

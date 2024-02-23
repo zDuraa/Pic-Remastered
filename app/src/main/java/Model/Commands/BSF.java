@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class BSF extends Command {
     public BSF(Pic pic) {
-        super(0b0101, pic);
+        super(0b0101, pic,1);
     }
     @Override
     public void execute(int command) {
@@ -15,6 +15,7 @@ public class BSF extends Command {
         int mask = (1 << b);
         int val = pic.ram.getReg(f) | mask;
         pic.ram.setReg(f, val);
+        incPrescaler();
     }
 
     @Override

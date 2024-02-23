@@ -6,7 +6,7 @@ import Model.Pic;
 public class BTFSC extends Command {
 
     public BTFSC(Pic pic) {
-        super(0b0110, pic);
+        super(0b0110, pic, 1);
     }
     @Override
     public void execute(int command) {
@@ -17,6 +17,7 @@ public class BTFSC extends Command {
         if((pic.ram.getReg(f) & mask) == 0){
             pic.pCounter.inc();
         }
+        incPrescaler();
     }
 
     @Override

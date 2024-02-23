@@ -4,7 +4,7 @@ import Model.*;
 
 public class GOTO extends Command {
     public GOTO(Pic pic) {
-        super(0b101, pic);
+        super(0b101, pic,2);
     }
 
     @Override
@@ -13,6 +13,7 @@ public class GOTO extends Command {
         int PCLath = (pic.ram.getReg(10) & 0b11000) << 7;
         pic.pCounter.set((k | PCLath) & 0b1111111111111);
         pic.pCounter.dec();
+        incPrescaler();
     }
 
     @Override

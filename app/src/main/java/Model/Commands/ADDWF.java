@@ -4,7 +4,7 @@ import Model.*;
 
 public class ADDWF extends Command {
     public ADDWF(Pic pic) {
-        super(0b000111, pic);
+        super(0b000111, pic, 1);
     }
 
     @Override
@@ -19,6 +19,7 @@ public class ADDWF extends Command {
         val &= 0b11111111;
 
         writeD(command, val);
+        incPrescaler();
     }
 
 }

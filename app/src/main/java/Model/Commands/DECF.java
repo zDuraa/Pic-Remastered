@@ -6,7 +6,7 @@ import Model.Pic;
 public class DECF extends Command {
 
     public DECF(Pic pic) {
-        super(0b000011, pic);
+        super(0b000011, pic,1);
     }
     @Override
     public void execute(int command) {
@@ -16,5 +16,6 @@ public class DECF extends Command {
         val &= 0b11111111;
         writeD(command, val);
         checkZ(val);
+        incPrescaler();
     }
 }

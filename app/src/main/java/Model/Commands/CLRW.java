@@ -6,12 +6,13 @@ import Model.Pic;
 public class CLRW extends Command {
 
     public CLRW(Pic pic) {
-        super(0b0000010, pic);
+        super(0b0000010, pic,1);
     }
     @Override
     public void execute(int command) {
         pic.w = 0;
         checkZ(0);
+        incPrescaler();
     }
 
     @Override
