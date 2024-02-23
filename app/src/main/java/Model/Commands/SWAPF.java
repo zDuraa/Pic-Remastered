@@ -6,7 +6,7 @@ import Model.Pic;
 public class SWAPF extends Command {
 
     public SWAPF(Pic pic) {
-        super(0b001110, pic, i);
+        super(0b001110, pic, 1);
     }
 
     @Override
