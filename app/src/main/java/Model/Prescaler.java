@@ -6,21 +6,22 @@ public class Prescaler {
 
     public Prescaler(Pic pic) {
         this.pic = pic;
+        buffer = 0;
     }
 
     public void inc(int val) {
         buffer += val;
 
-        if (buffer > checkOps()) {
-            buffer %= checkOps();
-            pic.incTmr0();
+        if (buffer >= checkOps()) {
+            buffer -= checkOps();
+            pic.ram.incTmr0();
         }
     }
 
     public int checkOps() {
         int ret;
 
-        switch (pic.ram.getReg(81)) {
+        switch (pic.ram.getOpt() & 0b111) {
             case 0b000:
                 ret = 2;
                 break;
@@ -51,5 +52,9 @@ public class Prescaler {
         }
 
         return ret;
+    }
+
+    public void reset() {
+        buffer = 0;
     }
 }

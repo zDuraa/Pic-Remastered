@@ -13,7 +13,7 @@ public class Pic {
     public int w;
 
     public Pic(ArrayList<String> ProgrammFile) {
-        ram = new Ram();
+        ram = new Ram(this);
         stack = new Stack();
         pCounter = new PCounter();
         decoder = new Decoder(this);
@@ -25,14 +25,5 @@ public class Pic {
     public void next() {
         decoder.decode(pCode.get(pCounter.get()));
         pCounter.inc();
-    }
-
-    public void incTmr0() {
-        int val = ram.getReg(1);
-        val++;
-
-        if (val > 255) {
-            val = 0;
-        }
     }
 }
