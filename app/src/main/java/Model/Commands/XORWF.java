@@ -6,8 +6,9 @@ import Model.Pic;
 public class XORWF extends Command {
 
     public XORWF(Pic pic) {
-        super(0b000110, pic);
+        super(0b000110, pic, 1);
     }
+
     @Override
     public void execute(int command) {
         int f = (command & 0b1111111);
@@ -15,5 +16,7 @@ public class XORWF extends Command {
 
         writeD(command, val);
         checkZ(val);
+
+        incPrescaler();
     }
 }

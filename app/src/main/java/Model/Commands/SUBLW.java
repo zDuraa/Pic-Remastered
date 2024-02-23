@@ -4,7 +4,7 @@ import Model.*;
 
 public class SUBLW extends Command {
     public SUBLW(Pic pic) {
-        super(0b111100, pic);
+        super(0b111100, pic, 1);
     }
 
     public void execute(int command) {
@@ -20,5 +20,6 @@ public class SUBLW extends Command {
         }
 
         pic.w = ret & 0b11111111;
+        incPrescaler();
     }
 }

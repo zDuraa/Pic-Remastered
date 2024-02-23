@@ -5,7 +5,7 @@ import Model.Pic;
 
 public class RLF extends Command {
     public RLF(Pic pic) {
-        super(0b001101, pic);
+        super(0b001101, pic, 1);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class RLF extends Command {
             val = val - 256;
         }
         writeD(command, val);
-
+        incPrescaler();
     }
 
 }

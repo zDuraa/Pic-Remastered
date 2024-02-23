@@ -6,8 +6,9 @@ import Model.Pic;
 public class SWAPF extends Command {
 
     public SWAPF(Pic pic) {
-        super(0b001110, pic);
+        super(0b001110, pic, i);
     }
+
     @Override
     public void execute(int command) {
         int f = (command & 0b1111111);
@@ -17,5 +18,7 @@ public class SWAPF extends Command {
         int val = (upper >> 4) | (lower << 4);
 
         writeD(command, val);
+
+        incPrescaler();
     }
 }

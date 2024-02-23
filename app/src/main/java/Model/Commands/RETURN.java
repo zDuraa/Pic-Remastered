@@ -6,7 +6,7 @@ import Model.Pic;
 
 public class RETURN extends Command {
     public RETURN(Pic pic) {
-        super(0b00000000001000, pic);
+        super(0b00000000001000, pic, 2);
     }
 
     // Return from subroutine. The stack is
@@ -17,6 +17,8 @@ public class RETURN extends Command {
     public void execute(int command) {
         pic.pCounter.set(pic.stack.pop());
         pic.pCounter.dec();
+
+        incPrescaler();
     }
 
     @Override

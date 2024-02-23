@@ -5,17 +5,20 @@ import Model.Pic;
 
 public class SUBWF extends Command {
     public SUBWF(Pic pic) {
-        super(0b000010, pic);
+        super(0b000010, pic, 1);
     }
+
     @Override
     public void execute(int command) {
         int f = (command & 0b1111111);
-        int val =  pic.ram.getReg(f)-pic.w;
+        int val = pic.ram.getReg(f) - pic.w;
         checkZ(val);
         checkC(val);
-        checkDC(val,pic.w, '-');
+        checkDC(val, pic.w, '-');
 
         val &= 0b11111111;
         writeD(command, val);
+
+        incPrescaler();
     }
 }

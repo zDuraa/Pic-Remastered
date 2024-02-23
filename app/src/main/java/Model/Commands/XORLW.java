@@ -6,7 +6,7 @@ import Model.Pic;
 public class XORLW extends Command {
 
     public XORLW(Pic pic) {
-        super(0b111010, pic);
+        super(0b111010, pic, 1);
     }
 
     @Override
@@ -16,5 +16,7 @@ public class XORLW extends Command {
 
         pic.w = val;
         checkZ(val);
+
+        incPrescaler();
     }
 }
