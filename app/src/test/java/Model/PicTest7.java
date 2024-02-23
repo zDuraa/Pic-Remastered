@@ -52,18 +52,25 @@ public class PicTest7 {
         pic.next(); // movwf
         assertEquals(1, pic.ram.GetTmr0());
         pic.next(); // clrf
-        assertEquals(0, pic.ram.getReg(10));
+        assertEquals(0, pic.ram.getReg(16));
 
         // loop2
-        for (int i = 0; i < 16; i++) {
+        // 308
+        for (int i = 0; i < 817; i++) {
             pic.next();// incf
+            assertEquals((i + 1) % 256, pic.ram.getReg(16));
             pic.next();// movf
+            System.out.println(pic.ram.GetTmr0());
+            if (pic.ram.GetTmr0() == 0) {
+                assertEquals(0b100, pic.ram.getReg(3) & 0b100);
+            }
             pic.next();// btfss
             pic.next();// goto loop2
         }
+        // movlw if goto gets skiped
         assertEquals(49, pic.ram.getReg(16)); // num muss 31H in 10h stehen
+        assertEquals(26, pic.pCounter.get());
 
-        pic.next(); // movlw
         pic.next(); // bsf
         pic.next(); // movwf
         pic.next(); // bcf
