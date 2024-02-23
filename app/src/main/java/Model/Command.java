@@ -3,8 +3,10 @@ package Model;
 public abstract class Command {
     protected int bitmask;
     protected Pic pic;
+    protected int zyc;
 
-    public Command(int Bitmask, Pic pic) {
+    public Command(int Bitmask, Pic pic, int Zyc) {
+        zyc = Zyc;
         bitmask = Bitmask;
         this.pic = pic;
     }
@@ -91,5 +93,9 @@ public abstract class Command {
         }
 
         pic.ram.setReg(3, reg);
+    }
+
+    public void incPrescaler() {
+        pic.prescaler.inc(zyc);
     }
 }
