@@ -24,7 +24,7 @@ public class PicTest7 {
 
 
         // loop1
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 128; i++) {
             pic.next();//NOP
             pic.next();//NOP
             pic.next();//NOP
@@ -46,7 +46,8 @@ public class PicTest7 {
         pic.next(); //clrf
 
         // loop2
-        for (int i = 0; i < 16; i++) {
+        //308
+        for (int i = 0; i < 308; i++) {
             pic.next();//incf
             pic.next();//movf
             pic.next();//btfss
