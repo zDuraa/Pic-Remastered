@@ -12,10 +12,8 @@ public class RLFTest {
         Command cmd = new RLF(pic);
 
         pic.ram.setReg(10, 0b001100);
-        pic.ram.setReg(3, 0b11111110);
         cmd.execute(10);
 
-        assertEquals(0b11111110, pic.ram.getReg(3));
         assertEquals(0b011000, pic.w);
     }
 

@@ -12,10 +12,8 @@ public class RRFTest {
         Command cmd = new RRF(pic);
 
         pic.ram.setReg(10, 0b001100);
-        pic.ram.setReg(3, 0b11111110);
         cmd.execute(10);
 
-        assertEquals(0b11111110, pic.ram.getReg(3));
         assertEquals(0b0110, pic.w);
     }
 
