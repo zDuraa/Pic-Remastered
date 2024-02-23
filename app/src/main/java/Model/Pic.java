@@ -7,6 +7,7 @@ public class Pic {
     public Stack stack;
     public PCounter pCounter;
     public Decoder decoder;
+    public Prescaler prescaler;
 
     private ArrayList<String> pCode;
     public int w;
@@ -16,6 +17,7 @@ public class Pic {
         stack = new Stack();
         pCounter = new PCounter();
         decoder = new Decoder(this);
+        prescaler = new Prescaler(this);
 
         pCode = ProgrammFile;
     }
@@ -25,4 +27,12 @@ public class Pic {
         pCounter.inc();
     }
 
+    public void incTmr0() {
+        int val = ram.getReg(1);
+        val++;
+
+        if (val > 255) {
+            val = 0;
+        }
+    }
 }
