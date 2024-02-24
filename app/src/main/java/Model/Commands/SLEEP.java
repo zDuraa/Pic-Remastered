@@ -13,12 +13,20 @@ public class SLEEP extends Command {
     @Override
     public void execute(int command) {
 
-        while(true){
-            try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                //do nothing
-            }
+        while (!pic.reset) {
+            pic.watchdog.incWTD(1);
         }
+
+        pic.reset = false;
+    }
+
+    public boolean is(int command) {
+        boolean ret = false;
+
+        if (command == bitmask) {
+            ret = true;
+        }
+
+        return ret;
     }
 }
