@@ -54,7 +54,6 @@ public class PicTest7 {
         assertEquals(0, pic.ram.getReg(16));
 
         // loop2
-        // 308
         for (int i = 0; i < 817; i++) {
             pic.next();// incf
             assertEquals((i + 1) % 256, pic.ram.getReg(16));
@@ -78,6 +77,7 @@ public class PicTest7 {
         assertEquals(30, pic.pCounter.get());
 
         // loop3
+        //Timer ist irrelevant von den Zyklen
         for (int i = 0; i < 10; i++) {
             pic.next();// btfss
         }
