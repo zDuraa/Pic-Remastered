@@ -40,6 +40,7 @@ public class Decoder {
         commands.add(new GOTO(pic));
         commands.add(new IORLW(pic));
         commands.add(new MOVLW(pic));
+        commands.add(new RETFIE(pic));
         commands.add(new RETLW(pic));
         commands.add(new RETURN(pic));
         commands.add(new SLEEP(pic));

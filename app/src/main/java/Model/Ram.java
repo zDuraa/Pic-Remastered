@@ -38,12 +38,12 @@ public class Ram {
 
         // status register (pos3) should be mirrored
         // check if pr0 (03h 00100000) is set case: (bank 1 not active)
-        if ((getReg(3) & 0b00100000) == 0 || pos == 3 || pos == 4) {
+        if ((getReg(3) & 0b00100000) == 0 || pos == 3 || pos == 4 || pos == 11) {
             buffer[pos] = val;
         }
 
         // check if pr0 (03h 00100000) is set case: (bank 1 active)
-        if ((getReg(3) & 0b00100000) > 0 || pos == 3 || pos == 4) {
+        if ((getReg(3) & 0b00100000) > 0 || pos == 3 || pos == 4 || pos == 11) {
             buffer[pos + 128] = val;
         }
     }

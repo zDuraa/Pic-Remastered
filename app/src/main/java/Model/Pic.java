@@ -8,6 +8,7 @@ public class Pic {
     public PCounter pCounter;
     public Decoder decoder;
     public Prescaler prescaler;
+    private Interrupt interrupt;
 
     private ArrayList<String> pCode;
     public int w;
@@ -18,6 +19,7 @@ public class Pic {
         pCounter = new PCounter();
         decoder = new Decoder(this);
         prescaler = new Prescaler(this);
+        interrupt = new Interrupt(this);
 
         pCode = ProgrammFile;
     }
@@ -25,6 +27,7 @@ public class Pic {
     public void next() {
         decoder.decode(pCode.get(pCounter.get()));
         pCounter.inc();
+        interrupt.checkIe();
     }
 
     public void RA4() {

@@ -6,7 +6,7 @@ import Model.Pic;
 public class RETFIE extends Command {
 
     public RETFIE(Pic pic) {
-        super(0b00000000001001, pic,2);
+        super(0b00000000001001, pic, 2);
     }
 
     // Return from Interrupt. Stack is POPed
@@ -20,5 +20,13 @@ public class RETFIE extends Command {
         pic.pCounter.set(pic.stack.pop());
         pic.pCounter.dec();
         incPrescaler();
+    }
+
+    public boolean is(int command) {
+        boolean ret = false;
+        if (command == bitmask) {
+            ret = true;
+        }
+        return ret;
     }
 }
