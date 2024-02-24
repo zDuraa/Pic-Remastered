@@ -3,8 +3,6 @@ package Model.Commands;
 import Model.Command;
 import Model.Pic;
 
-import static java.lang.Thread.sleep;
-
 public class SLEEP extends Command {
     public SLEEP(Pic pic) {
         super(0b00000001100011, pic, 1);
@@ -13,11 +11,13 @@ public class SLEEP extends Command {
     @Override
     public void execute(int command) {
 
-        while (!pic.reset) {
-            pic.watchdog.incWTD(1);
+        if (pic.reset) {
+            pic.reset = false;
+            return;
         }
 
-        pic.reset = false;
+        pic.pCounter.dec();
+        incPrescaler();
     }
 
     public boolean is(int command) {
