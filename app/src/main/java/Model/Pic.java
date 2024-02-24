@@ -13,7 +13,6 @@ public class Pic {
 
     public ArrayList<String> pCode;
     public int w;
-    public boolean reset;
 
     public Pic(ArrayList<String> ProgrammFile) {
         ram = new Ram(this);
@@ -25,7 +24,6 @@ public class Pic {
         watchdog = new Watchdog(this);
 
         pCode = ProgrammFile;
-        reset = false;
     }
 
     public void next() {
@@ -49,7 +47,6 @@ public class Pic {
         prescaler = new Prescaler(this);
         interrupt = new Interrupt(this);
         watchdog = new Watchdog(this);
-        reset = true;
 
         pCounter.dec();
         w = 0;

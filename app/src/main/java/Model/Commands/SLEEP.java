@@ -11,11 +11,6 @@ public class SLEEP extends Command {
     @Override
     public void execute(int command) {
 
-        if (pic.reset) {
-            pic.reset = false;
-            return;
-        }
-
         pic.pCounter.dec();
         incPrescaler();
     }
