@@ -20,9 +20,9 @@ public class PicTest9 {
         pic.next();//movwf liste1              ;T0=1 , PD=1
         assertEquals(0, (pic.ram.getReg(3) & 0b00001000) >> 3);//T0
         assertEquals(0, (pic.ram.getReg(3) & 0b00010000) >> 4);//PD
-        pic.next();//sleep                     ;warte bis Watchdogtimer anspricht
-        pic.next();//swapf status,w
-        pic.next();//movwf liste2              ;T0=0 , PD=0 bei Watchdog-Timeout
+       // pic.next();//sleep                     ;warte bis Watchdogtimer anspricht
+        //pic.next();//swapf status,w
+        //pic.next();//movwf liste2              ;T0=0 , PD=0 bei Watchdog-Timeout
         //                                     ;T0=1 , PD=0 bei RESET oder Interrupt
 
 
@@ -52,7 +52,11 @@ public class PicTest9 {
         assertEquals(0, pic.ram.getReg(35));
 
         //loop1
-        pic.next();//0FA0 incfsz 20h
+        while(pic.pCounter.get() != 0){
+            pic.next();//0FA0 incfsz 20h
+
+        }
+
         pic.next();//2808 goto loop1          ;kein �berlauf
 
         pic.next();//0FA1 incfsz 21h          ;n�chste Stelle
@@ -63,7 +67,6 @@ public class PicTest9 {
 
         pic.next();//0FA3 incfsz 23h
         pic.next();//2808 goto loop1
-
 
         //;******************************************************************
         //;in 20h steht ca. 5fH

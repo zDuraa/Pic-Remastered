@@ -12,6 +12,7 @@ public class Prescaler {
     public void inc(int val) {
         if ((pic.ram.getOpt() & 0b1000) == 0) {
 
+            pic.watchdog.incWTD(val);
             buffer += val;
 
             if (buffer >= checkOps()) {
@@ -20,7 +21,11 @@ public class Prescaler {
             }
         } else {
             pic.ram.incTmr0();
-
+            buffer += val;
+            if (buffer >= pic.watchdog.checkOps()) {
+                buffer -= pic.watchdog.checkOps();
+                pic.watchdog.incWTD(1);
+            }
         }
     }
 

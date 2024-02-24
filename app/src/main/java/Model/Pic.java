@@ -1,5 +1,6 @@
 package Model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Pic {
@@ -9,8 +10,9 @@ public class Pic {
     public Decoder decoder;
     public Prescaler prescaler;
     private Interrupt interrupt;
+    public Watchdog watchdog;
 
-    private ArrayList<String> pCode;
+    public ArrayList<String> pCode;
     public int w;
 
     public Pic(ArrayList<String> ProgrammFile) {
@@ -20,6 +22,7 @@ public class Pic {
         decoder = new Decoder(this);
         prescaler = new Prescaler(this);
         interrupt = new Interrupt(this);
+        watchdog = new Watchdog(this);
 
         pCode = ProgrammFile;
     }
@@ -36,4 +39,5 @@ public class Pic {
 
         prescaler.inc(1);
     }
+
 }

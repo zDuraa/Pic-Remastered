@@ -7,20 +7,25 @@ public class Watchdog {
     private boolean WTD;
     private int quarzfrequenz;
     private int WTDVal;
-    public Watchdog() {
-        quarzfrequenz = 4000000;
+    public Watchdog(Pic pic) {
+        quarzfrequenz = 1000000;
+        this.pic = pic;
     }
 
     public int getZeit(){
        int ret = 1000000 / quarzfrequenz;
-
-
-
        return ret;
     }
 
-    public void incWTD(){
-        WTDVal += getZeit();
+    public void incWTD(int var){
+
+        WTDVal += getZeit() * var;
+        if(18000 <= WTDVal)
+        {
+            reset();
+        }
+
+
     }
     public int checkOps() {
         int ret;
@@ -58,7 +63,10 @@ public class Watchdog {
         return ret;
     }
 
-    public void WTDReset(){
+    public void reset(){
+        this.pic = new Pic(pic.pCode);
+    }
+
+
 
     }
-}
