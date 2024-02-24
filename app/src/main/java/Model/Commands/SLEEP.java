@@ -11,6 +11,8 @@ public class SLEEP extends Command {
     @Override
     public void execute(int command) {
 
-        incPrescaler();
+        while(true){
+
+        }
     }
 }
