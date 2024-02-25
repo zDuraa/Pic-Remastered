@@ -65,7 +65,7 @@
                         </Pane>
                      </children>
                   </GridPane>
-                  <Pane fx:id="paneRam" prefHeight="171.0" prefWidth="400.0" />
+                  <ScrollPane fx:id="scrollPaneRam" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="2">

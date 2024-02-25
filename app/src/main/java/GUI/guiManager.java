@@ -2,12 +2,14 @@ package GUI;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.geometry.Pos;
+
+import javax.swing.text.StyledEditorKit;
+
+import static utils.converter.intToHex;
 
 public class guiManager {
 
@@ -141,9 +143,6 @@ public class guiManager {
     private Pane paneRB;
 
     @FXML
-    private Pane paneRam;
-
-    @FXML
     private Pane paneSFRSichtbar;
 
     @FXML
@@ -160,6 +159,9 @@ public class guiManager {
 
     @FXML
     private ScrollPane scrollPaneCode;
+
+    @FXML
+    private ScrollPane scrollPaneRam;
 
     @FXML
     void buttonGoOnClick(ActionEvent event) {
@@ -189,6 +191,48 @@ public class guiManager {
     @FXML
     void buttonStepOverOnClick(ActionEvent event) {
 
+    }
+
+    TextField[] field = new TextField[256];
+
+    public void initialize() {
+        scrollPaneRam.setContent(CreateRamGrid());
+    }
+
+
+    private GridPane CreateRamGrid() {
+        GridPane newGridPane = new GridPane();
+        int column = 9;
+        int row = 33;
+        int i = 0;
+
+        for(int x = 1; x < 9; x++){
+            Label label = new Label();
+            label.setText(intToHex(x-1));
+            label.setAlignment(Pos.CENTER);
+            label.setPrefWidth(30);
+            label.setPrefHeight(30);
+            newGridPane.add(label, x, 0);
+        }
+        for(int y = 1; y < row; y++){
+            Label label = new Label();
+            label.setText(intToHex((y-1)*8));
+            label.setPrefWidth(30);
+            label.setPrefHeight(30);
+            label.setAlignment(Pos.CENTER);
+            newGridPane.add(label, 0, y);
+
+            for(int x = 1; x < column; x++){
+                field[i] = new TextField();
+                field[i].setMaxSize(30, 15);
+                field[i].setAlignment(Pos.CENTER);
+                newGridPane.add(field[i], x, y);
+                i++;
+            }
+        }
+
+        newGridPane.setAlignment(Pos.CENTER);
+        return newGridPane;
     }
 
 }
