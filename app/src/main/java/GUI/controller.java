@@ -1,25 +1,21 @@
 package GUI;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
+import utils.*;
 
 public class controller {
 
     @FXML
-    private Button button;
-
-    @FXML
-    private ProgressBar progressBar;
-
-    @FXML
-    void button_click(ActionEvent event) {
-        progressBar.setProgress(progressBar.getProgress() + 0.1);
-
-    }
+    private TextArea textArea;
 
     public void initialize() {
-    }
+        String all = "";
 
+        for (String str : FileManager.ladeDatei(FileManager.getFile())) {
+            all += str + "\n";
+        }
+
+        textArea.setText(all);
+    }
 }
