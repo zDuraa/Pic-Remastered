@@ -15,9 +15,7 @@ public class start {
 
     @FXML
     void buttonOpenFileClick(ActionEvent event) {
-        System.out.println("select file");
         FileManager.openFile();
-
         Stage secondStage = new Stage();
         try {
             Parent root = FXMLLoader.load(start.class.getResource("./../views/main.fxml"));
