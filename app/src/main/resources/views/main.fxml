@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
@@ -9,13 +10,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="834.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="GUI.guiManager">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.guiManager">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="358.0" minHeight="10.0" prefHeight="353.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <GridPane GridPane.rowIndex="1">
@@ -51,11 +52,15 @@
                         <Pane fx:id="paneRA" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
                               <Label layoutX="8.0" layoutY="6.0" text="RA" />
+                              <Label layoutX="9.0" layoutY="23.0" text="Tris" />
+                              <Label layoutX="9.0" layoutY="40.0" text="Pin" />
                            </children>
                         </Pane>
                         <Pane fx:id="paneRB" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
                               <Label layoutX="7.0" layoutY="6.0" text="RB" />
+                              <Label layoutX="7.0" layoutY="23.0" text="Tris" />
+                              <Label layoutX="8.0" layoutY="40.0" text="Pin" />
                            </children>
                         </Pane>
                      </children>
@@ -83,12 +88,31 @@
                      <children>
                         <Pane fx:id="paneSFRSichtbar" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="28.0" layoutY="6.0" text="Sichtbar" />
+                              <Label layoutX="78.0" layoutY="6.0" text="Sichtbar" />
+                              <Label layoutX="28.0" layoutY="36.0" text="W-Reg" />
+                              <Label layoutX="28.0" layoutY="53.0" text="FSR" />
+                              <Label layoutX="28.0" layoutY="70.0" text="PCL" />
+                              <Label layoutX="28.0" layoutY="87.0" text="PCLATH" />
+                              <Label layoutX="28.0" layoutY="104.0" text="Status" />
+                              <Label fx:id="labelWReg" layoutX="100.0" layoutY="36.0" text="00" />
+                              <Label fx:id="labelFSR" layoutX="100.0" layoutY="53.0" text="00" />
+                              <Label fx:id="labelPCL" layoutX="100.0" layoutY="70.0" text="00" />
+                              <Label fx:id="labelPCLATH" layoutX="100.0" layoutY="87.0" text="00" />
+                              <Label fx:id="labelStatus" layoutX="100.0" layoutY="104.0" text="00" />
                            </children>
                         </Pane>
                         <Pane fx:id="paneSFRversteckt" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Label layoutX="26.0" layoutY="6.0" text="Versteckt" />
+                              <Label layoutX="76.0" layoutY="6.0" text="Versteckt" />
+                              <Label layoutX="48.0" layoutY="38.0" text="PC" />
+                              <Label layoutX="48.0" layoutY="55.0" text="Stackpointer" />
+                              <Label layoutX="48.0" layoutY="72.0" text="VT" />
+                              <CheckBox fx:id="radioWDT" layoutX="48.0" layoutY="89.0" mnemonicParsing="false" text="WDT aktiv" />
+                              <Label layoutX="48.0" layoutY="106.0" text="WDT" />
+                              <Label fx:id="labelPC" layoutX="138.0" layoutY="38.0" text="0000" />
+                              <Label layoutX="138.0" layoutY="55.0" text="0" />
+                              <Label layoutX="138.0" layoutY="72.0" text="FF" />
+                              <Label layoutX="138.0" layoutY="106.0" text="0.0" />
                            </children>
                         </Pane>
                      </children>
@@ -106,16 +130,66 @@
                         <Pane fx:id="paneStatusRegister" prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Label layoutX="14.0" layoutY="6.0" text="Status" />
+                              <Label layoutX="15.0" layoutY="23.0" text="IRP" />
+                              <Label layoutX="45.0" layoutY="23.0" text="RP" />
+                              <Label layoutX="75.0" layoutY="23.0" text="RP0" />
+                              <Label layoutX="105.0" layoutY="23.0" text="TO" />
+                              <Label layoutX="135.0" layoutY="23.0" text="PD" />
+                              <Label layoutX="165.0" layoutY="23.0" text="Z" />
+                              <Label layoutX="195.0" layoutY="23.0" text="DC" />
+                              <Label layoutX="225.0" layoutY="23.0" text="C" />
+                              <Label fx:id="labelIRP" layoutX="20.0" layoutY="54.0" text="0" />
+                              <Label fx:id="labelRP" layoutX="48.0" layoutY="54.0" prefHeight="17.0" prefWidth="7.0" text="0" />
+                              <Label fx:id="labelRP0" layoutX="82.0" layoutY="54.0" prefHeight="17.0" prefWidth="6.0" text="0" />
+                              <Label fx:id="labelTO" layoutX="109.0" layoutY="54.0" prefHeight="17.0" prefWidth="7.0" text="0" />
+                              <Label fx:id="labelPD" layoutX="139.0" layoutY="54.0" text="0" />
+                              <Label fx:id="labelZ" layoutX="165.0" layoutY="54.0" text="0" />
+                              <Label fx:id="labelDC" layoutX="199.0" layoutY="54.0" text="0" />
+                              <Label fx:id="labelC" layoutX="225.0" layoutY="54.0" prefHeight="17.0" prefWidth="7.0" text="0" />
                            </children>
                         </Pane>
                         <Pane fx:id="paneOptionRegister" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
                               <Label layoutX="14.0" layoutY="6.0" text="Option" />
+                              <Label layoutX="15.0" layoutY="23.0" text="RBP" />
+                              <Label layoutX="45.0" layoutY="23.0" text="IntEdg" />
+                              <Label layoutX="95.0" layoutY="23.0" text="T0CS" />
+                              <Label layoutX="136.0" layoutY="23.0" text="T0SE" />
+                              <Label layoutX="178.0" layoutY="23.0" text="PSA" />
+                              <Label layoutX="218.0" layoutY="23.0" text="PS2" />
+                              <Label layoutX="259.0" layoutY="23.0" text="PS1" />
+                              <Label layoutX="297.0" layoutY="23.0" text="PS0" />
+                              <Label fx:id="labelRBP" layoutX="22.0" layoutY="46.0" text="0" />
+                              <Label fx:id="labelIntEdg" layoutX="59.0" layoutY="46.0" prefHeight="17.0" prefWidth="6.0" text="0" />
+                              <Label fx:id="labelT0CS" layoutX="105.0" layoutY="46.0" prefHeight="17.0" prefWidth="7.0" text="0" />
+                              <Label fx:id="labelT0SE" layoutX="145.0" layoutY="46.0" prefHeight="17.0" prefWidth="6.0" text="0" />
+                              <Label fx:id="labelPSA" layoutX="185.0" layoutY="46.0" text="0" />
+                              <Label fx:id="labelPS2" layoutX="228.0" layoutY="46.0" text="0" />
+                              <Label fx:id="labelPS1" layoutX="269.0" layoutY="46.0" text="0" />
+                              <Label fx:id="labelPS0" layoutX="307.0" layoutY="46.0" text="0" />
+                              <Label fx:id="labelOption" layoutX="65.0" layoutY="6.0" text="FF" />
                            </children>
                         </Pane>
                         <Pane fx:id="paneINTCONRegister" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
                               <Label layoutX="14.0" layoutY="6.0" text="INTCON" />
+                              <Label layoutX="14.0" layoutY="23.0" text="GIE" />
+                              <Label fx:id="labeINTCON" layoutX="75.0" layoutY="6.0" text="00" />
+                              <Label layoutX="47.0" layoutY="23.0" text="PIE" />
+                              <Label layoutX="81.0" layoutY="23.0" text="T0IE" />
+                              <Label layoutX="121.0" layoutY="23.0" text="INTE" />
+                              <Label layoutX="163.0" layoutY="23.0" text="RBIE" />
+                              <Label layoutX="206.0" layoutY="23.0" text="T0IF" />
+                              <Label layoutX="249.0" layoutY="23.0" text="INTF" />
+                              <Label layoutX="293.0" layoutY="23.0" text="RBIF" />
+                              <Label fx:id="labelGIE" layoutX="22.0" layoutY="45.0" text="0" />
+                              <Label fx:id="labelPIE" layoutX="55.0" layoutY="45.0" text="0" />
+                              <Label fx:id="labelT0IE" layoutX="92.0" layoutY="45.0" text="0" />
+                              <Label fx:id="labelINTE" layoutX="133.0" layoutY="45.0" text="0" />
+                              <Label fx:id="labelRBIE" layoutX="175.0" layoutY="45.0" text="0" />
+                              <Label fx:id="labelT0IF" layoutX="217.0" layoutY="45.0" text="0" />
+                              <Label fx:id="labelINTF" layoutX="261.0" layoutY="45.0" text="0" />
+                              <Label fx:id="labelRBIF" layoutX="305.0" layoutY="45.0" text="0" />
                            </children>
                         </Pane>
                      </children>
@@ -124,7 +198,7 @@
             </GridPane>
             <ScrollPane fx:id="scrollPaneCode" prefHeight="365.0" prefWidth="400.0" GridPane.columnIndex="1">
                <content>
-                  <ListView fx:id="listViewCode" prefHeight="343.0" prefWidth="399.0" />
+                  <ListView fx:id="listViewCode" prefHeight="629.0" prefWidth="399.0" />
                </content>
             </ScrollPane>
          </children>

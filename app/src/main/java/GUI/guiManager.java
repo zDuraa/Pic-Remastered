@@ -3,6 +3,8 @@ package GUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
@@ -26,6 +28,102 @@ public class guiManager {
 
     @FXML
     private Button buttonStepOver;
+
+    @FXML
+    private Label labeINTCON;
+
+    @FXML
+    private Label labelC;
+
+    @FXML
+    private Label labelDC;
+
+    @FXML
+    private Label labelFSR;
+
+    @FXML
+    private Label labelGIE;
+
+    @FXML
+    private Label labelINTE;
+
+    @FXML
+    private Label labelINTF;
+
+    @FXML
+    private Label labelIRP;
+
+    @FXML
+    private Label labelIntEdg;
+
+    @FXML
+    private Label labelOption;
+
+    @FXML
+    private Label labelPC;
+
+    @FXML
+    private Label labelPCL;
+
+    @FXML
+    private Label labelPCLATH;
+
+    @FXML
+    private Label labelPD;
+
+    @FXML
+    private Label labelPIE;
+
+    @FXML
+    private Label labelPS0;
+
+    @FXML
+    private Label labelPS1;
+
+    @FXML
+    private Label labelPS2;
+
+    @FXML
+    private Label labelPSA;
+
+    @FXML
+    private Label labelRBIE;
+
+    @FXML
+    private Label labelRBIF;
+
+    @FXML
+    private Label labelRBP;
+
+    @FXML
+    private Label labelRP;
+
+    @FXML
+    private Label labelRP0;
+
+    @FXML
+    private Label labelStatus;
+
+    @FXML
+    private Label labelT0CS;
+
+    @FXML
+    private Label labelT0IE;
+
+    @FXML
+    private Label labelT0IF;
+
+    @FXML
+    private Label labelT0SE;
+
+    @FXML
+    private Label labelTO;
+
+    @FXML
+    private Label labelWReg;
+
+    @FXML
+    private Label labelZ;
 
     @FXML
     private ListView<?> listViewCode;
@@ -56,6 +154,9 @@ public class guiManager {
 
     @FXML
     private Pane paneStatusRegister;
+
+    @FXML
+    private CheckBox radioWDT;
 
     @FXML
     private ScrollPane scrollPaneCode;
@@ -91,4 +192,3 @@ public class guiManager {
     }
 
 }
-
