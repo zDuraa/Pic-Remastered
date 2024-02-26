@@ -52,15 +52,11 @@
                         <Pane fx:id="paneRA" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
                               <Label layoutX="8.0" layoutY="6.0" text="RA" />
-                              <Label layoutX="9.0" layoutY="23.0" text="Tris" />
-                              <Label layoutX="9.0" layoutY="40.0" text="Pin" />
                            </children>
                         </Pane>
                         <Pane fx:id="paneRB" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
                               <Label layoutX="7.0" layoutY="6.0" text="RB" />
-                              <Label layoutX="7.0" layoutY="23.0" text="Tris" />
-                              <Label layoutX="8.0" layoutY="40.0" text="Pin" />
                            </children>
                         </Pane>
                      </children>

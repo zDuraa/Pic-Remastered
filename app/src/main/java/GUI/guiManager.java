@@ -194,9 +194,14 @@ public class guiManager {
     }
 
     TextField[] field = new TextField[256];
+    TextField[] fieldRATris = new TextField[8];
+    TextField[] fieldRAPin = new TextField[8];
+    TextField[] fieldRBTris = new TextField[8];
+    TextField[] fieldRBPin = new TextField[8];
 
     public void initialize() {
         scrollPaneRam.setContent(CreateRamGrid());
+        createRGrids();
     }
 
 
@@ -233,6 +238,88 @@ public class guiManager {
 
         newGridPane.setAlignment(Pos.CENTER);
         return newGridPane;
+    }
+
+
+    private void createRGrids(){
+        CreateRAGrid();
+        CreateRBGrid();
+    }
+    private void CreateRAGrid() {
+        int resize = 10;
+        Label label = new Label();
+        label.setText("Tris");
+        label.setAlignment(Pos.CENTER);
+        label.setLayoutX(9);
+        label.setLayoutY(23);
+        paneRA.getChildren().add(label);
+
+        int x;
+        for(x = 0; x < 8; x++){
+            fieldRATris[x] = new TextField();
+            fieldRATris[x].setMinSize(20,20);
+            fieldRATris[x].setMaxSize(20,20);
+            fieldRATris[x].setLayoutX(30+resize);
+            fieldRATris[x].setLayoutY(23);
+            fieldRATris[x].setAlignment(Pos.CENTER);
+            paneRA.getChildren().add(fieldRATris[x]);
+            resize +=20;
+        }
+        Label label1 = new Label();
+        label1.setText("Pin");
+        label1.setAlignment(Pos.CENTER);
+        label1.setLayoutX(9);
+        label1.setLayoutY(40);
+        paneRA.getChildren().add(label1);
+        resize = 0;
+        for(x = 0; x < 8; x++){
+            fieldRAPin[x] = new TextField();
+            fieldRAPin[x].setMinSize(20,20);
+            fieldRAPin[x].setMaxSize(20,20);
+            fieldRAPin[x].setLayoutX(40+resize);
+            fieldRAPin[x].setLayoutY(40);
+            fieldRAPin[x].setAlignment(Pos.CENTER);
+            paneRA.getChildren().add(fieldRAPin[x]);
+            resize +=20;
+        }
+    }
+    private void CreateRBGrid() {
+        int resize = 10;
+        Label label = new Label();
+        label.setText("Tris");
+        label.setAlignment(Pos.CENTER);
+        label.setLayoutX(9);
+        label.setLayoutY(23);
+        paneRB.getChildren().add(label);
+
+        int x;
+        for(x = 0; x < 8; x++){
+            fieldRBTris[x] = new TextField();
+            fieldRBTris[x].setMinSize(20,20);
+            fieldRBTris[x].setMaxSize(20,20);
+            fieldRBTris[x].setLayoutX(30+resize);
+            fieldRBTris[x].setLayoutY(23);
+            fieldRBTris[x].setAlignment(Pos.CENTER);
+            paneRB.getChildren().add(fieldRBTris[x]);
+            resize +=20;
+        }
+        Label label1 = new Label();
+        label1.setText("Pin");
+        label1.setAlignment(Pos.CENTER);
+        label1.setLayoutX(9);
+        label1.setLayoutY(40);
+        paneRB.getChildren().add(label1);
+        resize = 0;
+        for(x = 0; x < 8; x++){
+            fieldRBPin[x] = new TextField();
+            fieldRBPin[x].setMinSize(20,20);
+            fieldRBPin[x].setMaxSize(20,20);
+            fieldRBPin[x].setLayoutX(40+resize);
+            fieldRBPin[x].setLayoutY(40);
+            fieldRBPin[x].setAlignment(Pos.CENTER);
+            paneRB.getChildren().add(fieldRBPin[x]);
+            resize +=20;
+        }
     }
 
 }
