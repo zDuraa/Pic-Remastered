@@ -6,10 +6,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.geometry.Pos;
-
+import javafx.scene.text.*;
 import javax.swing.text.StyledEditorKit;
 
+import java.util.ArrayList;
+
 import static utils.converter.intToHex;
+import utils.FileManager;
 
 public class guiManager {
 
@@ -128,7 +131,7 @@ public class guiManager {
     private Label labelZ;
 
     @FXML
-    private ListView<?> listViewCode;
+    private ListView<GridPane> listViewCode;
 
     @FXML
     private Pane paneINTCONRegister;
@@ -199,9 +202,12 @@ public class guiManager {
     TextField[] fieldRBTris = new TextField[8];
     TextField[] fieldRBPin = new TextField[8];
 
+    ArrayList<CheckBox> debugPoints = new ArrayList<>();
+
     public void initialize() {
         scrollPaneRam.setContent(CreateRamGrid());
         createRGrids();
+        addCode();
     }
 
     private GridPane CreateRamGrid() {
@@ -330,6 +336,24 @@ public class guiManager {
             fieldRBPin[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBPin[x]);
             resize += 20;
+        }
+    }
+
+    private void addCode() {
+        ArrayList<String> file = FileManager.ladeDatei(FileManager.getFile());
+
+        for (String line : file) {
+            GridPane gPane = new GridPane();
+            gPane.getStyleClass().add("gGrid");
+            CheckBox debugPoint = new CheckBox();
+            debugPoint.getStyleClass().add("CB");
+            Text t = new Text(line);
+            t.getStyleClass().add("TStyle");
+
+            gPane.add(debugPoint, 0, 0);
+            gPane.add(t, 1, 0);
+            debugPoints.add(debugPoint);
+            listViewCode.getItems().add(gPane);
         }
     }
 
