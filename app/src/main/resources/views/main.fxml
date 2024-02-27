@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.guiManager">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.guiManager">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
@@ -194,7 +194,7 @@
             </GridPane>
             <ScrollPane fx:id="scrollPaneCode" prefHeight="365.0" prefWidth="400.0" GridPane.columnIndex="1">
                <content>
-                  <ListView fx:id="listViewCode" prefHeight="629.0" prefWidth="399.0" />
+                  <ListView fx:id="listViewCode" />
                </content>
             </ScrollPane>
          </children>
@@ -218,9 +218,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="buttonReset" mnemonicParsing="false" onAction="#buttonResetOnClick" text="Reset" />
-                  <Button fx:id="buttonIgnore" mnemonicParsing="false" onAction="#buttonIgnoreOnClick" text="Ignore" GridPane.columnIndex="1" />
-                  <Button fx:id="buttonStepIn" mnemonicParsing="false" onAction="#buttonStepInOnClick" text="Step in" GridPane.columnIndex="2" />
+                  <Button fx:id="buttonReset" mnemonicParsing="false" onAction="#buttonResetOnClick" text="Reset" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="buttonIgnore" mnemonicParsing="false" onAction="#buttonIgnoreOnClick" text="Ignore" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="buttonStepIn" mnemonicParsing="false" onAction="#buttonStepInOnClick" text="Step in" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="1">
@@ -233,9 +233,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="buttonStepOut" mnemonicParsing="false" onAction="#buttonStepOutOnClick" text="Step out" />
-                  <Button fx:id="buttonStepOver" mnemonicParsing="false" onAction="#buttonStepOverOnClick" text="Step over" GridPane.columnIndex="1" />
-                  <Button fx:id="buttonGo" mnemonicParsing="false" onAction="#buttonGoOnClick" text="Go" GridPane.columnIndex="2" />
+                  <Button fx:id="buttonStepOut" mnemonicParsing="false" onAction="#buttonStepOutOnClick" text="Step out" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="buttonStepOver" mnemonicParsing="false" onAction="#buttonStepOverOnClick" text="Step over" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="buttonGo" mnemonicParsing="false" onAction="#buttonGoOnClick" text="Go" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </children>
