@@ -204,33 +204,35 @@ public class guiManager {
         createRGrids();
     }
 
-
     private GridPane CreateRamGrid() {
         GridPane newGridPane = new GridPane();
         int column = 9;
         int row = 33;
         int i = 0;
 
-        for(int x = 1; x < 9; x++){
+        for (int x = 1; x < 9; x++) {
             Label label = new Label();
-            label.setText(intToHex(x-1));
+            label.setText(intToHex(x - 1));
             label.setAlignment(Pos.CENTER);
             label.setPrefWidth(30);
             label.setPrefHeight(30);
+            label.getStyleClass().add("textSty");
             newGridPane.add(label, x, 0);
         }
-        for(int y = 1; y < row; y++){
+        for (int y = 1; y < row; y++) {
             Label label = new Label();
-            label.setText(intToHex((y-1)*8));
+            label.setText(intToHex((y - 1) * 8));
             label.setPrefWidth(30);
             label.setPrefHeight(30);
             label.setAlignment(Pos.CENTER);
+            label.getStyleClass().add("textSty");
             newGridPane.add(label, 0, y);
 
-            for(int x = 1; x < column; x++){
+            for (int x = 1; x < column; x++) {
                 field[i] = new TextField();
                 field[i].setMaxSize(30, 15);
                 field[i].setAlignment(Pos.CENTER);
+                field[i].getStyleClass().add("TFSty");
                 newGridPane.add(field[i], x, y);
                 i++;
             }
@@ -240,11 +242,11 @@ public class guiManager {
         return newGridPane;
     }
 
-
-    private void createRGrids(){
+    private void createRGrids() {
         CreateRAGrid();
         CreateRBGrid();
     }
+
     private void CreateRAGrid() {
         int resize = 10;
         Label label = new Label();
@@ -252,37 +254,42 @@ public class guiManager {
         label.setAlignment(Pos.CENTER);
         label.setLayoutX(9);
         label.setLayoutY(23);
+        label.getStyleClass().add("textSty");
         paneRA.getChildren().add(label);
 
         int x;
-        for(x = 0; x < 8; x++){
+        for (x = 0; x < 8; x++) {
             fieldRATris[x] = new TextField();
-            fieldRATris[x].setMinSize(20,20);
-            fieldRATris[x].setMaxSize(20,20);
-            fieldRATris[x].setLayoutX(30+resize);
+            fieldRATris[x].setMinSize(20, 20);
+            fieldRATris[x].setMaxSize(20, 20);
+            fieldRATris[x].setLayoutX(30 + resize);
             fieldRATris[x].setLayoutY(23);
             fieldRATris[x].setAlignment(Pos.CENTER);
+            fieldRATris[x].getStyleClass().add("TFSty");
             paneRA.getChildren().add(fieldRATris[x]);
-            resize +=20;
+            resize += 20;
         }
         Label label1 = new Label();
         label1.setText("Pin");
         label1.setAlignment(Pos.CENTER);
         label1.setLayoutX(9);
         label1.setLayoutY(40);
+        label1.getStyleClass().add("textSty");
         paneRA.getChildren().add(label1);
         resize = 0;
-        for(x = 0; x < 8; x++){
+        for (x = 0; x < 8; x++) {
             fieldRAPin[x] = new TextField();
-            fieldRAPin[x].setMinSize(20,20);
-            fieldRAPin[x].setMaxSize(20,20);
-            fieldRAPin[x].setLayoutX(40+resize);
+            fieldRAPin[x].setMinSize(20, 20);
+            fieldRAPin[x].setMaxSize(20, 20);
+            fieldRAPin[x].setLayoutX(40 + resize);
             fieldRAPin[x].setLayoutY(40);
             fieldRAPin[x].setAlignment(Pos.CENTER);
+            fieldRAPin[x].getStyleClass().add("TFSty");
             paneRA.getChildren().add(fieldRAPin[x]);
-            resize +=20;
+            resize += 20;
         }
     }
+
     private void CreateRBGrid() {
         int resize = 10;
         Label label = new Label();
@@ -290,35 +297,39 @@ public class guiManager {
         label.setAlignment(Pos.CENTER);
         label.setLayoutX(9);
         label.setLayoutY(23);
+        label.getStyleClass().add("textSty");
         paneRB.getChildren().add(label);
 
         int x;
-        for(x = 0; x < 8; x++){
+        for (x = 0; x < 8; x++) {
             fieldRBTris[x] = new TextField();
-            fieldRBTris[x].setMinSize(20,20);
-            fieldRBTris[x].setMaxSize(20,20);
-            fieldRBTris[x].setLayoutX(30+resize);
+            fieldRBTris[x].setMinSize(20, 20);
+            fieldRBTris[x].setMaxSize(20, 20);
+            fieldRBTris[x].setLayoutX(30 + resize);
             fieldRBTris[x].setLayoutY(23);
             fieldRBTris[x].setAlignment(Pos.CENTER);
+            fieldRBTris[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBTris[x]);
-            resize +=20;
+            resize += 20;
         }
         Label label1 = new Label();
         label1.setText("Pin");
         label1.setAlignment(Pos.CENTER);
         label1.setLayoutX(9);
         label1.setLayoutY(40);
+        label1.getStyleClass().add("textSty");
         paneRB.getChildren().add(label1);
         resize = 0;
-        for(x = 0; x < 8; x++){
+        for (x = 0; x < 8; x++) {
             fieldRBPin[x] = new TextField();
-            fieldRBPin[x].setMinSize(20,20);
-            fieldRBPin[x].setMaxSize(20,20);
-            fieldRBPin[x].setLayoutX(40+resize);
+            fieldRBPin[x].setMinSize(20, 20);
+            fieldRBPin[x].setMaxSize(20, 20);
+            fieldRBPin[x].setLayoutX(40 + resize);
             fieldRBPin[x].setLayoutY(40);
             fieldRBPin[x].setAlignment(Pos.CENTER);
+            fieldRBPin[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBPin[x]);
-            resize +=20;
+            resize += 20;
         }
     }
 

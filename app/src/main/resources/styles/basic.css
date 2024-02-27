@@ -1,0 +1,45 @@
+.buttonSty {
+    -fx-background-color: #4d004d; /* Hintergrundfarbe für Buttons */
+    -fx-background-radius: 10px;
+    -fx-text-fill: #ffffff;       /* Textfarbe für Buttons */
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
+    -fx-border-color: #330033;
+    -fx-border-width: 2px;
+    -fx-border-radius:10px;
+}
+
+.root {
+    -fx-background-color: #00001a;
+}
+
+/*scrollpane*/
+.SPSty {
+    -fx-background: #00001a;
+    -fx-border-color: #00001a;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: black;
+}
+
+.textSty {
+    -fx-text-fill: #ffffff;
+}
+
+#listViewCode {
+    -fx-background-color: #4d004d; /* Dunkelgraues Code-Feld */
+    -fx-text-fill: #ffffff;       /* Weißer Text im Code-Feld */
+}
+
+/* TextField */
+.TFSty {
+    -fx-background-color: #4d004d;
+    -fx-text-fill: #000000;
+    -fx-border-color: #330033;
+}
