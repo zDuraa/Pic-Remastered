@@ -68,7 +68,7 @@ public class FileManager {
         }
     }
 
-    private ArrayList<String> getText() {
+    public ArrayList<String> getText() {
         return textList;
     }
 }
