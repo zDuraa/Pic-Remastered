@@ -239,8 +239,6 @@ public class guiManager {
         newGridPane.setAlignment(Pos.CENTER);
         return newGridPane;
     }
-
-
     private void createRGrids(){
         CreateRAGrid();
         CreateRBGrid();
