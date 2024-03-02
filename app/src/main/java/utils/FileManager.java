@@ -13,9 +13,10 @@ public class FileManager {
     public static void openFile() {
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Datei auswählen");
+        fileChooser.setTitle("FileChooser");
         File selectedFile = fileChooser.showOpenDialog(stage);
         file = selectedFile.toPath().toString();
+        ladeDatei();
     }
 
     public static void setFile(String file) {
@@ -28,26 +29,25 @@ public class FileManager {
 
     public static ArrayList<Integer> code = new ArrayList<>();
     private static ArrayList<String> commands = new ArrayList<>();
+    private static ArrayList<String> textList = new ArrayList<>();
 
     public static ArrayList<String> getCommands() {
         return (ArrayList<String>) commands.clone();
     }
 
-    public static ArrayList<String> ladeDatei(String datName) {
+    public static void ladeDatei() {
         commands = new ArrayList<>();
-        ArrayList<String> list = new ArrayList<String>(); // Ich habe hier erstens eine Array list erstellt namens
-                                                          // commands
         BufferedReader br = null; // liest Text aus Symbolen und puffert die Symbole, um Zeichen, Arrays und
                                   // Strings effizient einzulesen
         String command;
 
         int i;
         try {
-            br = new BufferedReader(new java.io.FileReader(datName));
+            br = new BufferedReader(new java.io.FileReader(file));
             String line = null;
             while ((line = br.readLine()) != null) {
 
-                list.add(line); // Jede einzelne Zeile die ausgegeben wird, wird in die Liste abgespeichert
+                textList.add(line); // Jede einzelne Zeile die ausgegeben wird, wird in die Liste abgespeichert
                 command = line.substring(5, 9);
 
                 if (!command.equals("    ")) {
@@ -66,7 +66,9 @@ public class FileManager {
                     System.out.println(e);
                 }
         }
-        return list; // Die Liste wird dann am ende returned so das wir zugriff drauf haben, deswegen
-                     // ist die Methode eine ArrayList und nicht mehr void
+    }
+
+    private ArrayList<String> getText() {
+        return textList;
     }
 }
