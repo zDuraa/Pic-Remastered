@@ -1,0 +1,85 @@
+.buttonSty {
+    -fx-background-color: #4d004d; /* Hintergrundfarbe für Buttons */
+    -fx-background-radius: 10px;
+    -fx-text-fill: #ffffff;       /* Textfarbe für Buttons */
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
+    -fx-border-color: #330033;
+    -fx-border-width: 2px;
+    -fx-border-radius:10px;
+}
+
+.buttonSty:hover {
+    -fx-background-color: #800080;
+}
+
+.root {
+    -fx-background-color: #00001a;
+}
+
+/*scrollpane*/
+.SPSty {
+    -fx-background: #00001a;
+    -fx-border-color: #00001a;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: black;
+}
+/*mainly used for labels*/
+.textSty {
+    -fx-text-fill: #ffffff;
+}
+
+.LSty {
+    -fx-control-inner-background: #4d004d;
+    -fx-border-color: #00001a;
+}
+
+/*.LSty:selected {
+    -fx-background-color: #800080;
+}
+
+.pGrid {
+    -fx-background-color: #4d004d; 
+    -fx-border-color: #4d004d;
+}
+
+.pGrid:hover {
+    -fx-background-color: #800080;
+    -fx-border-color: #4d004d;
+}*/
+
+/* TextField */
+.TFSty {
+    -fx-background-color: #4d004d;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #330033;
+}
+
+/* CheckBox */
+.CB {
+    -fx-text-fill: #ffffff;
+}
+
+.CB .box {
+    -fx-background-color: #cc00cc;
+    /*-fx-background-radius: 10px;
+    -fx-border-color: #330033;
+    -fx-border-witdh: 2px;
+    -fx-border-raduis: 10px;*/
+}
+
+.CB:selected .box {
+    -fx-background-color: #cc0000;
+}
+
+/*Text elm*/
+.TStyle {
+    -fx-fill: #ffffff;
+}
