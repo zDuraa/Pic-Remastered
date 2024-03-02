@@ -29,6 +29,8 @@ public class Ram {
         buffer[135] = 0;
         buffer[137] = 0;
         buffer[138] = 0;
+
+        //z, dc, c
     }
 
     public int getReg(int pos) {

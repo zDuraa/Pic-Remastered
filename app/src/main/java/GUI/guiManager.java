@@ -44,6 +44,8 @@ public class guiManager {
 
     @FXML
     private Label labelDC;
+    @FXML
+    private Label  labelStackpointer;
 
     @FXML
     private Label labelFSR;
@@ -127,6 +129,9 @@ public class guiManager {
     private Label labelTO;
 
     @FXML
+    private Label labelWDT;
+
+    @FXML
     private Label labelWReg;
 
     @FXML
@@ -143,6 +148,8 @@ public class guiManager {
 
     @FXML
     private Pane paneRA;
+
+
 
     @FXML
     private Pane paneRB;
@@ -371,6 +378,13 @@ public class guiManager {
         setRamIntoField();
         labelWReg.setText(intToHex(pic.w));
         labelPC.setText(""+pic.pCounter.get());
+        labelWDT.setText(""+pic.watchdog.get());
+        labelStackpointer.setText(""+pic.stack.getPointer());
+        labelC.setText(""+(pic.ram.getReg(3) & 0b001));
+        labelDC.setText(""+((pic.ram.getReg(3) & 0b010) >> 1));
+        labelZ.setText(""+((pic.ram.getReg(3) & 0b100) >> 2));
+
+
     }
 
     private void setRamIntoField(){

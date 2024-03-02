@@ -39,4 +39,8 @@ public class Stack {
         return Arrays.copyOf(buffer, buffer.length);
     }
 
+    public int getPointer(){
+        return pointer;
+    }
+
 }
