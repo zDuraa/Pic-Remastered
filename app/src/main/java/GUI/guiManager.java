@@ -181,12 +181,13 @@ public class guiManager {
     @FXML
     void buttonResetOnClick(ActionEvent event) {
         pic = new Pic(FileManager.getCommands());
-        resetGuiValues();
+        updateGUI();
     }
 
     @FXML
     void buttonStepInOnClick(ActionEvent event) {
-
+        pic.next();
+        updateGUI();
     }
 
     @FXML
@@ -212,6 +213,7 @@ public class guiManager {
     public void initialize() {
         pic = new Pic(FileManager.getCommands());
         scrollPaneRam.setContent(CreateRamGrid());
+        updateGUI();
         createRGrids();
         addCode();
 
@@ -347,7 +349,7 @@ public class guiManager {
     }
 
     private void addCode() {
-        ArrayList<String> file = FileManager.ladeDatei(FileManager.getFile());
+        ArrayList<String> file = FileManager.getText();
 
         for (String line : file) {
             GridPane gPane = new GridPane();
@@ -364,28 +366,17 @@ public class guiManager {
         }
     }
 
-    private void resetGuiValues()
-    {
-        //Status Register
-        labelIRP.setText(""+0);
-        labelRP0.setText(""+0);
-        labelRP1.setText(""+0);
-        labelTO.setText(""+1);
-        labelPD.setText(""+1);
 
-        //Option Register
-        labelRBP.setText(""+1);
-        labelIntEdg.setText(""+1);
-        labelT0CS.setText(""+1);
-        labelT0SE.setText(""+1);
-        labelPSA.setText(""+1);
-        labelPS2.setText(""+1);
-        labelPS1.setText(""+1);
-        labelPS0.setText(""+1);
-
-        //Intcon Register
-
+    private void updateGUI(){
+        setRamIntoField();
+        labelWReg.setText(intToHex(pic.w));
+        labelPC.setText(""+pic.pCounter.get());
     }
 
+    private void setRamIntoField(){
+        for(int i = 0; i < 256; i++){
+            field[i].setText(intToHex(pic.ram.getBuffer(i)));
+        }
+    }
 
 }

@@ -89,4 +89,8 @@ public class Ram {
         return buffer[129];
     }
 
+    public int getBuffer(int pos){
+        return buffer[pos];
+    }
+
 }
