@@ -4,24 +4,18 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JFileChooser;
+import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 
 public class FileManager {
-
     private static String file = "";
 
     public static void openFile() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setName("fileJFch");
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-
-        int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-
-            file = selectedFile.getAbsolutePath();
-        }
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Datei auswählen");
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        file = selectedFile.toPath().toString();
     }
 
     public static void setFile(String file) {
