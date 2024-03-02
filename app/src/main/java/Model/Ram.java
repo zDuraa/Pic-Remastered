@@ -7,6 +7,24 @@ public class Ram {
     public Ram(Pic pic) {
         this.pic = pic;
         buffer = new int[256];
+
+        //Bank 0
+        buffer[0] = 0;
+        buffer[2] = 0;
+        buffer[3] = 24;
+        buffer[7] = 0;
+        buffer[10] = 0;
+
+        //Bank 1
+        buffer[128] = 0;
+        buffer[129] = 255;
+        buffer[130] = 0;
+        buffer[131] = 24;
+        buffer[133] = 31;
+        buffer[134] = 255;
+        buffer[135] = 0;
+        buffer[137] = 0;
+        buffer[138] = 0;
     }
 
     public int getReg(int pos) {

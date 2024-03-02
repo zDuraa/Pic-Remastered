@@ -1,5 +1,6 @@
 package GUI;
 
+import Model.Pic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.text.*;
 import javax.swing.text.StyledEditorKit;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static utils.converter.intToHex;
@@ -101,7 +103,7 @@ public class guiManager {
     private Label labelRBP;
 
     @FXML
-    private Label labelRP;
+    private Label labelRP1;
 
     @FXML
     private Label labelRP0;
@@ -178,7 +180,8 @@ public class guiManager {
 
     @FXML
     void buttonResetOnClick(ActionEvent event) {
-
+        pic = new Pic(FileManager.getCommands());
+        resetGuiValues();
     }
 
     @FXML
@@ -204,10 +207,14 @@ public class guiManager {
 
     ArrayList<CheckBox> debugPoints = new ArrayList<>();
 
+
+    Pic pic;
     public void initialize() {
+        pic = new Pic(FileManager.getCommands());
         scrollPaneRam.setContent(CreateRamGrid());
         createRGrids();
         addCode();
+
     }
 
     private GridPane CreateRamGrid() {
@@ -356,5 +363,29 @@ public class guiManager {
             listViewCode.getItems().add(gPane);
         }
     }
+
+    private void resetGuiValues()
+    {
+        //Status Register
+        labelIRP.setText(""+0);
+        labelRP0.setText(""+0);
+        labelRP1.setText(""+0);
+        labelTO.setText(""+1);
+        labelPD.setText(""+1);
+
+        //Option Register
+        labelRBP.setText(""+1);
+        labelIntEdg.setText(""+1);
+        labelT0CS.setText(""+1);
+        labelT0SE.setText(""+1);
+        labelPSA.setText(""+1);
+        labelPS2.setText(""+1);
+        labelPS1.setText(""+1);
+        labelPS0.setText(""+1);
+
+        //Intcon Register
+
+    }
+
 
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1200.0" stylesheets="@../styles/basic.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.guiManager">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1200.0" stylesheets="@../styles/basic.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.guiManager">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
@@ -127,7 +127,7 @@
                            <children>
                               <Label layoutX="14.0" layoutY="6.0" styleClass="textSty" text="Status" />
                               <Label layoutX="15.0" layoutY="23.0" styleClass="textSty" text="IRP" />
-                              <Label layoutX="45.0" layoutY="23.0" styleClass="textSty" text="RP" />
+                              <Label layoutX="45.0" layoutY="23.0" styleClass="textSty" text="RP1" />
                               <Label layoutX="75.0" layoutY="23.0" styleClass="textSty" text="RP0" />
                               <Label layoutX="105.0" layoutY="23.0" styleClass="textSty" text="TO" />
                               <Label layoutX="135.0" layoutY="23.0" styleClass="textSty" text="PD" />
@@ -135,10 +135,10 @@
                               <Label layoutX="195.0" layoutY="23.0" styleClass="textSty" text="DC" />
                               <Label layoutX="225.0" layoutY="23.0" styleClass="textSty" text="C" />
                               <Label fx:id="labelIRP" layoutX="20.0" layoutY="54.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelRP" layoutX="48.0" layoutY="54.0" prefHeight="17.0" prefWidth="7.0" styleClass="textSty" text="0" />
+                              <Label fx:id="labelRP1" layoutX="48.0" layoutY="54.0" prefHeight="17.0" prefWidth="7.0" styleClass="textSty" text="0" />
                               <Label fx:id="labelRP0" layoutX="82.0" layoutY="54.0" prefHeight="17.0" prefWidth="6.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelTO" layoutX="109.0" layoutY="54.0" prefHeight="17.0" prefWidth="7.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelPD" layoutX="139.0" layoutY="54.0" styleClass="textSty" text="0" />
+                              <Label fx:id="labelTO" layoutX="109.0" layoutY="54.0" prefHeight="17.0" prefWidth="7.0" styleClass="textSty" text="1" />
+                              <Label fx:id="labelPD" layoutX="139.0" layoutY="54.0" styleClass="textSty" text="1" />
                               <Label fx:id="labelZ" layoutX="165.0" layoutY="54.0" styleClass="textSty" text="0" />
                               <Label fx:id="labelDC" layoutX="199.0" layoutY="54.0" styleClass="textSty" text="0" />
                               <Label fx:id="labelC" layoutX="225.0" layoutY="54.0" prefHeight="17.0" prefWidth="7.0" styleClass="textSty" text="0" />
@@ -155,14 +155,14 @@
                               <Label layoutX="218.0" layoutY="23.0" styleClass="textSty" text="PS2" />
                               <Label layoutX="259.0" layoutY="23.0" styleClass="textSty" text="PS1" />
                               <Label layoutX="297.0" layoutY="23.0" styleClass="textSty" text="PS0" />
-                              <Label fx:id="labelRBP" layoutX="22.0" layoutY="46.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelIntEdg" layoutX="59.0" layoutY="46.0" prefHeight="17.0" prefWidth="6.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelT0CS" layoutX="105.0" layoutY="46.0" prefHeight="17.0" prefWidth="7.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelT0SE" layoutX="145.0" layoutY="46.0" prefHeight="17.0" prefWidth="6.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelPSA" layoutX="185.0" layoutY="46.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelPS2" layoutX="228.0" layoutY="46.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelPS1" layoutX="269.0" layoutY="46.0" styleClass="textSty" text="0" />
-                              <Label fx:id="labelPS0" layoutX="307.0" layoutY="46.0" styleClass="textSty" text="0" />
+                              <Label fx:id="labelRBP" layoutX="22.0" layoutY="46.0" styleClass="textSty" text="1" />
+                              <Label fx:id="labelIntEdg" layoutX="59.0" layoutY="46.0" prefHeight="17.0" prefWidth="6.0" styleClass="textSty" text="1" />
+                              <Label fx:id="labelT0CS" layoutX="105.0" layoutY="46.0" prefHeight="17.0" prefWidth="7.0" styleClass="textSty" text="1" />
+                              <Label fx:id="labelT0SE" layoutX="145.0" layoutY="46.0" prefHeight="17.0" prefWidth="6.0" styleClass="textSty" text="1" />
+                              <Label fx:id="labelPSA" layoutX="185.0" layoutY="46.0" styleClass="textSty" text="1" />
+                              <Label fx:id="labelPS2" layoutX="228.0" layoutY="46.0" styleClass="textSty" text="1" />
+                              <Label fx:id="labelPS1" layoutX="269.0" layoutY="46.0" styleClass="textSty" text="1" />
+                              <Label fx:id="labelPS0" layoutX="307.0" layoutY="46.0" styleClass="textSty" text="1" />
                               <Label fx:id="labelOption" layoutX="65.0" layoutY="6.0" styleClass="textSty" text="FF" />
                            </children>
                         </Pane>
@@ -194,7 +194,7 @@
             </GridPane>
             <ScrollPane fx:id="scrollPaneCode" prefHeight="365.0" prefWidth="400.0" styleClass="SPSty" GridPane.columnIndex="1">
                <content>
-                  <ListView fx:id="listViewCode" styleClass="LSty" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="640.0" prefWidth="555.0" />
+                  <ListView fx:id="listViewCode" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="640.0" prefWidth="555.0" styleClass="LSty" />
                </content>
             </ScrollPane>
          </children>

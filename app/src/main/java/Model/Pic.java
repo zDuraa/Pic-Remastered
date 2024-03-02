@@ -22,8 +22,9 @@ public class Pic {
         prescaler = new Prescaler(this);
         interrupt = new Interrupt(this);
         watchdog = new Watchdog(this);
-
         pCode = ProgrammFile;
+
+
     }
 
     public void next() {
