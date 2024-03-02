@@ -247,12 +247,8 @@ public class guiManager {
         newGridPane.setAlignment(Pos.CENTER);
         return newGridPane;
     }
-<<<<<<< HEAD
 
     private void createRGrids() {
-=======
-    private void createRGrids(){
->>>>>>> main
         CreateRAGrid();
         CreateRBGrid();
     }
