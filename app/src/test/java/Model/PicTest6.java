@@ -8,7 +8,8 @@ import utils.*;
 public class PicTest6 {
     @Test
     public void Test6() {
-        FileManager.ladeDatei("./../Testprogramme/TPicSim6.LST");
+        FileManager.setFile("./../Testprogramme/TPicSim6.LST");
+        FileManager.ladeDatei();
         ArrayList<String> commands = FileManager.getCommands();
 
         Pic pic = new Pic(commands);

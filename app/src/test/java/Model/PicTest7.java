@@ -8,7 +8,8 @@ import utils.*;
 public class PicTest7 {
     @Test
     public void Test7() {
-        FileManager.ladeDatei("./../Testprogramme/TPicSim7.LST");
+        FileManager.setFile("./../Testprogramme/TPicSim7.LST");
+        FileManager.ladeDatei();
         ArrayList<String> commands = FileManager.getCommands();
 
         Pic pic = new Pic(commands);
@@ -77,7 +78,7 @@ public class PicTest7 {
         assertEquals(30, pic.pCounter.get());
 
         // loop3
-        //Timer ist irrelevant von den Zyklen
+        // Timer ist irrelevant von den Zyklen
         for (int i = 0; i < 10; i++) {
             pic.next();// btfss
         }
