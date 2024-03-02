@@ -7,15 +7,19 @@ public class Ram {
     public Ram(Pic pic) {
         this.pic = pic;
         buffer = new int[256];
+        init();
 
-        //Bank 0
+    }
+
+    private void init() {
+        // Bank 0
         buffer[0] = 0;
         buffer[2] = 0;
         buffer[3] = 24;
         buffer[7] = 0;
         buffer[10] = 0;
 
-        //Bank 1
+        // Bank 1
         buffer[128] = 0;
         buffer[129] = 255;
         buffer[130] = 0;
@@ -89,7 +93,7 @@ public class Ram {
         return buffer[129];
     }
 
-    public int getBuffer(int pos){
+    public int getBuffer(int pos) {
         return buffer[pos];
     }
 
