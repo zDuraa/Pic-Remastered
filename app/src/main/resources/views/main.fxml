@@ -194,7 +194,6 @@
             </GridPane>
             <ScrollPane fx:id="scrollPaneCode" prefHeight="365.0" prefWidth="400.0" styleClass="SPSty" GridPane.columnIndex="1">
                <content>
-                  <ListView fx:id="listViewCode" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="640.0" prefWidth="555.0" styleClass="LSty" />
                </content>
             </ScrollPane>
          </children>
