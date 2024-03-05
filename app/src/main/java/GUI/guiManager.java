@@ -1,6 +1,7 @@
 package GUI;
 
 import Model.Pic;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -177,18 +178,23 @@ public class guiManager {
 
     @FXML
     void buttonGoOnClick(ActionEvent event) {
-        boolean breakpoint = false;
-        int i = 0;
-
-        while(breakpoint == false){
-            if(i != pic.pCode.size()){
-                pic.next();
-                updateGUI();
-                i++;
-            }else{
-                break;
-            }
-        }
+            new Thread(() -> {
+                while (true) {
+                    if(debugPoints.get(pic.pCounter.get()).isSelected() == true){
+                        break;
+                    }else{
+                        pic.next();
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Platform.runLater(() -> {
+                            updateGUI();
+                        });
+                    }
+                }
+            }).start();
     }
 
     @FXML
@@ -226,15 +232,16 @@ public class guiManager {
 
     ArrayList<CheckBox> debugPoints = new ArrayList<>();
 
+    ArrayList<Integer> lookupTable = new ArrayList<>();
+
 
     Pic pic;
     public void initialize() {
         pic = new Pic(FileManager.getCommands());
         scrollPaneRam.setContent(CreateRamGrid());
-        updateGUI();
         createRGrids();
         addCode();
-
+        updateGUI();
     }
 
     private GridPane CreateRamGrid() {
@@ -368,16 +375,17 @@ public class guiManager {
 
     private void addCode() {
         ArrayList<String> file = FileManager.getText();
-
+        int x = 0;
+        int y = 0;
         for (String line : file) {
             GridPane gPane = new GridPane();
             gPane.getStyleClass().add("gGrid");
             Text t = new Text(line);
             t.getStyleClass().add("TStyle");
-
             gPane.add(t, 1, 0);
 
             if (FileManager.checkForCode(line)) {
+                lookupTable.add(x);
                 CheckBox debugPoint = new CheckBox();
                 debugPoint.getStyleClass().add("CB");
                 gPane.add(debugPoint, 0, 0);
@@ -385,6 +393,7 @@ public class guiManager {
             }
 
             listViewCode.getItems().add(gPane);
+            x++;
         }
     }
 
@@ -398,9 +407,8 @@ public class guiManager {
         labelC.setText(""+(pic.ram.getReg(3) & 0b001));
         labelDC.setText(""+((pic.ram.getReg(3) & 0b010) >> 1));
         labelZ.setText(""+((pic.ram.getReg(3) & 0b100) >> 2));
-        listViewCode.getSelectionModel().select(pic.pCounter.get());
 
-
+        highLightLine();
     }
 
     private void setRamIntoField(){
@@ -408,6 +416,16 @@ public class guiManager {
             field[i].setText(intToHex(pic.ram.getBuffer(i)));
         }
     }
+
+    private void highLightLine(){
+        int pCounter = pic.pCounter.get();
+        if(pCounter < lookupTable.size()){
+            listViewCode.getSelectionModel().select(lookupTable.get(pCounter));
+        }
+
+    }
+
+
 
 
 }
