@@ -179,6 +179,7 @@ public class guiManager {
     void buttonGoOnClick(ActionEvent event) {
         boolean breakpoint = false;
         int i = 0;
+
         while(breakpoint == false){
             if(i != pic.pCode.size()){
                 pic.next();
@@ -408,15 +409,5 @@ public class guiManager {
         }
     }
 
-    public boolean isCode(String line) {
-        boolean ret = false;
-        char beginning = line.charAt(0);
-
-        if (beginning != ' ') {
-            ret = true;
-        }
-
-        return ret;
-    }
 
 }
