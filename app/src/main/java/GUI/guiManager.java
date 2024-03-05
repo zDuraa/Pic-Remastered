@@ -175,11 +175,19 @@ public class guiManager {
 
     @FXML
     private ScrollPane scrollPaneRam;
+    private boolean controle = false;
 
     @FXML
     void buttonGoOnClick(ActionEvent event) {
+
+            if(controle){
+                controle = false;
+            }else{
+                controle = true;
+            }
+
             new Thread(() -> {
-                while (true) {
+                while (controle) {
                     if(debugPoints.get(pic.pCounter.get()).isSelected() == true){
                         break;
                     }else{
@@ -230,6 +238,8 @@ public class guiManager {
     TextField[] fieldRBTris = new TextField[8];
     TextField[] fieldRBPin = new TextField[8];
 
+    Label[] labelStack = new Label[8];
+
     ArrayList<CheckBox> debugPoints = new ArrayList<>();
 
     ArrayList<Integer> lookupTable = new ArrayList<>();
@@ -240,6 +250,7 @@ public class guiManager {
         pic = new Pic(FileManager.getCommands());
         scrollPaneRam.setContent(CreateRamGrid());
         createRGrids();
+        CreateStack();
         addCode();
         updateGUI();
     }
@@ -373,6 +384,27 @@ public class guiManager {
         }
     }
 
+    private void CreateStack(){
+        int resize = 0;
+        Label labelTitle = new Label();
+        labelTitle.setText("Stack");
+        labelTitle.setLayoutY(50);
+        labelTitle.setLayoutX(28);
+        labelTitle.getStyleClass().add("textSty");
+        paneStack.getChildren().add(labelTitle);
+        for (int i = 0; i < 8; i++) {
+            Label label = new Label();
+            label.setLayoutY(70+resize);
+            label.setLayoutX(28);
+            label.setText("0000");
+            label.getStyleClass().add("textSty");
+            labelStack[i] = label;
+
+            resize += 12;
+            paneStack.getChildren().add(labelStack[i]);
+        }
+    }
+
     private void addCode() {
         ArrayList<String> file = FileManager.getText();
         int x = 0;
@@ -400,6 +432,7 @@ public class guiManager {
 
     private void updateGUI(){
         setRamIntoField();
+        setPointerIntoField();
         labelWReg.setText(intToHex(pic.w));
         labelPC.setText(""+pic.pCounter.get());
         labelWDT.setText(""+pic.watchdog.get());
@@ -407,6 +440,7 @@ public class guiManager {
         labelC.setText(""+(pic.ram.getReg(3) & 0b001));
         labelDC.setText(""+((pic.ram.getReg(3) & 0b010) >> 1));
         labelZ.setText(""+((pic.ram.getReg(3) & 0b100) >> 2));
+        //labelStack.
 
         highLightLine();
     }
@@ -414,6 +448,12 @@ public class guiManager {
     private void setRamIntoField(){
         for(int i = 0; i < 256; i++){
             field[i].setText(intToHex(pic.ram.getBuffer(i)));
+        }
+    }
+
+    private void setPointerIntoField(){
+        for(int i = 0; i < 8; i++){
+            labelStack[i].setText(intToHex(pic.stack.getBuffer(i)));
         }
     }
 

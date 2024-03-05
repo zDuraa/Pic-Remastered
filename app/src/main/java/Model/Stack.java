@@ -31,8 +31,8 @@ public class Stack {
         return ret;
     }
 
-    public int[] getBuffer() {
-        return buffer;
+    public int getBuffer(int i) {
+        return buffer[i];
     }
 
     public int[] getStack() {

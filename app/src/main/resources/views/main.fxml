@@ -95,6 +95,7 @@
                               <Label fx:id="labelPCL" layoutX="100.0" layoutY="70.0" styleClass="textSty" text="00" />
                               <Label fx:id="labelPCLATH" layoutX="100.0" layoutY="87.0" styleClass="textSty" text="00" />
                               <Label fx:id="labelStatus" layoutX="100.0" layoutY="104.0" styleClass="textSty" text="00" />
+                              <Pane fx:id="paneStack" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </Pane>
                         <Pane fx:id="paneSFRversteckt" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
