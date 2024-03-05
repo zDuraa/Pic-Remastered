@@ -361,14 +361,18 @@ public class guiManager {
         for (String line : file) {
             GridPane gPane = new GridPane();
             gPane.getStyleClass().add("gGrid");
-            CheckBox debugPoint = new CheckBox();
-            debugPoint.getStyleClass().add("CB");
             Text t = new Text(line);
             t.getStyleClass().add("TStyle");
 
-            gPane.add(debugPoint, 0, 0);
             gPane.add(t, 1, 0);
-            debugPoints.add(debugPoint);
+
+            if (FileManager.checkForCode(line)) {
+                CheckBox debugPoint = new CheckBox();
+                debugPoint.getStyleClass().add("CB");
+                gPane.add(debugPoint, 0, 0);
+                debugPoints.add(debugPoint);
+            }
+
             listViewCode.getItems().add(gPane);
         }
     }
