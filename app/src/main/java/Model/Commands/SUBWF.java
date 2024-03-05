@@ -12,13 +12,55 @@ public class SUBWF extends Command {
     public void execute(int command) {
         int f = (command & 0b1111111);
         int val = pic.ram.getReg(f) - pic.w;
+
         checkZ(val);
-        checkC(val);
-        checkDC(val, pic.w, '-');
+        checkDC(pic.ram.getReg(f), pic.w, '-');
+        checkCNew(pic.ram.getReg(f), pic.w);
 
         val &= 0b11111111;
+
         writeD(command, val);
 
         incPrescaler();
     }
+
+    @Override
+    protected void checkDC(int val, int w, char operation) {
+        int reg = pic.ram.getReg(3);
+        int bit = 0b10;
+        int vshort = 0b1111 & val;
+        int wshort = 0b1111 & w;
+        int ret = 0;
+
+        wshort ^= 0b1111;
+        wshort += 0b1;
+        ret = vshort + wshort;
+
+        if (ret >= 0b10000) {
+            reg |= bit;
+        } else if ((reg & 0b010) > 0) {
+            reg ^= bit;
+        }
+
+        pic.ram.setReg(3, reg);
+    }
+
+    private void checkCNew(int val, int w) {
+        int reg = pic.ram.getReg(3);
+        int bit = 0b1;
+        int ret = 0;
+
+        w ^= 0b11111111;
+        w += 0b1;
+        ret = val + w;
+
+        if (ret >= 0b100000000) {
+            reg |= bit;
+        } else if ((reg & bit) > 0) {
+            reg ^= bit;
+        }
+
+        pic.ram.setReg(3, reg);
+    }
+
 }
