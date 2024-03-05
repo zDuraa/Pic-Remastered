@@ -172,30 +172,30 @@ public class guiManager {
     @FXML
     void buttonGoOnClick(ActionEvent event) {
 
-            if(controle){
-                controle = false;
-                return;
-            }else{
-                controle = true;
-            }
+        if (controle) {
+            controle = false;
+            return;
+        } else {
+            controle = true;
+        }
 
-            new Thread(() -> {
-                while (controle) {
-                    if(debugPoints.get(pic.pCounter.get()).isSelected() == true){
-                        break;
-                    }else{
-                        pic.next();
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        Platform.runLater(() -> {
-                            updateGUI();
-                        });
+        new Thread(() -> {
+            while (controle) {
+                if (debugPoints.get(pic.pCounter.get()).isSelected() == true) {
+                    break;
+                } else {
+                    pic.next();
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
+                    Platform.runLater(() -> {
+                        updateGUI();
+                    });
                 }
-            }).start();
+            }
+        }).start();
     }
 
     @FXML
@@ -378,7 +378,7 @@ public class guiManager {
         }
     }
 
-    private void CreateStack(){
+    private void CreateStack() {
         int resize = 0;
         Label labelTitle = new Label();
         labelTitle.setText("Stack");
@@ -388,7 +388,7 @@ public class guiManager {
         paneStack.getChildren().add(labelTitle);
         for (int i = 0; i < 8; i++) {
             Label label = new Label();
-            label.setLayoutY(70+resize);
+            label.setLayoutY(70 + resize);
             label.setLayoutX(28);
             label.setText("0000");
             label.getStyleClass().add("textSty");
@@ -417,6 +417,11 @@ public class guiManager {
                 gPane.add(debugPoint, 0, 0);
                 debugPoints.add(debugPoint);
                 codePanes.add(gPane);
+            } else {
+                CheckBox invis = new CheckBox();
+                invis.getStyleClass().add("CB");
+                invis.visibleProperty().set(false);
+                gPane.add(invis, 0, 0);
             }
 
             bigGrid.add(gPane, 0, x);
@@ -432,12 +437,11 @@ public class guiManager {
         setPointerIntoField();
         labelWReg.setText(intToHex(pic.w));
         labelPC.setText(intToHex(pic.pCounter.get()));
-        labelWDT.setText(""+pic.watchdog.get());
-        labelStackpointer.setText(""+pic.stack.getPointer());
-        labelC.setText(""+(pic.ram.getReg(3) & 0b001));
-        labelDC.setText(""+((pic.ram.getReg(3) & 0b010) >> 1));
-        labelZ.setText(""+((pic.ram.getReg(3) & 0b100) >> 2));
-
+        labelWDT.setText("" + pic.watchdog.get());
+        labelStackpointer.setText("" + pic.stack.getPointer());
+        labelC.setText("" + (pic.ram.getReg(3) & 0b001));
+        labelDC.setText("" + ((pic.ram.getReg(3) & 0b010) >> 1));
+        labelZ.setText("" + ((pic.ram.getReg(3) & 0b100) >> 2));
 
         highLightLine();
     }
@@ -448,12 +452,11 @@ public class guiManager {
         }
     }
 
-    private void setPointerIntoField(){
-        for(int i = 0; i < 8; i++){
+    private void setPointerIntoField() {
+        for (int i = 0; i < 8; i++) {
             labelStack[i].setText(intToHex(pic.stack.getBuffer(i)));
         }
     }
-
 
     private GridPane nowHigh = new GridPane();
 
@@ -461,7 +464,6 @@ public class guiManager {
         nowHigh.setStyle("-fx-background-color: #00001a;");
         nowHigh = codePanes.get(pic.pCounter.get());
         nowHigh.setStyle("-fx-background-color: #00b8e6;");
-
     }
 
 }
