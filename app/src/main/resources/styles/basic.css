@@ -22,10 +22,16 @@
 .SPSty {
     -fx-background: #00001a;
     -fx-border-color: #00001a;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+}
+
+.SPSty > .corner {
+    -fx-background-color: #00001a;
 }
 
 .scroll-bar:vertical {
-    -fx-background-color: black;
+    -fx-background-color: transparent;
 }
 
 .scroll-bar:vertical .thumb {
@@ -33,7 +39,7 @@
 }
 
 .scroll-bar:horizontal {
-    -fx-background-color: black;
+    -fx-background-color: transparent;
 }
 
 .scroll-bar:horizontal .thumb {
