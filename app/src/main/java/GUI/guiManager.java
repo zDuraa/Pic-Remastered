@@ -437,7 +437,7 @@ public class guiManager {
         labelC.setText(""+(pic.ram.getReg(3) & 0b001));
         labelDC.setText(""+((pic.ram.getReg(3) & 0b010) >> 1));
         labelZ.setText(""+((pic.ram.getReg(3) & 0b100) >> 2));
-        //labelStack.
+
 
         highLightLine();
     }
@@ -454,11 +454,7 @@ public class guiManager {
         }
     }
 
-    private void highLightLine(){
-        int pCounter = pic.pCounter.get();
-        if(pCounter < lookupTable.size()){
-            listViewCode.getSelectionModel().select(lookupTable.get(pCounter));
-        }
+
     private GridPane nowHigh = new GridPane();
 
     private void highLightLine() {
