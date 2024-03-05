@@ -28,9 +28,18 @@
     -fx-background-color: black;
 }
 
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #00b8e6;
+}
+
 .scroll-bar:horizontal {
     -fx-background-color: black;
 }
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #00b8e6;
+}
+
 /*mainly used for labels*/
 .textSty {
     -fx-text-fill: #ffffff;

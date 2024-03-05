@@ -71,4 +71,13 @@ public class FileManager {
     public static ArrayList<String> getText() {
         return textList;
     }
+
+    public static boolean checkForCode(String line) {
+        Boolean ret = false;
+        if (line.charAt(6) != ' ') {
+            ret = true;
+        }
+        return ret;
+    }
+
 }
