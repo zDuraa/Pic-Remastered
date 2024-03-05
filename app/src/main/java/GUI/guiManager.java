@@ -9,11 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.geometry.Pos;
 import javafx.scene.text.*;
-import javax.swing.text.StyledEditorKit;
 
-import java.io.File;
 import java.util.ArrayList;
-
 import static utils.converter.intToHex;
 import utils.FileManager;
 
@@ -46,7 +43,7 @@ public class guiManager {
     @FXML
     private Label labelDC;
     @FXML
-    private Label  labelStackpointer;
+    private Label labelStackpointer;
 
     @FXML
     private Label labelFSR;
@@ -139,9 +136,6 @@ public class guiManager {
     private Label labelZ;
 
     @FXML
-    private ListView<GridPane> listViewCode;
-
-    @FXML
     private Pane paneINTCONRegister;
 
     @FXML
@@ -149,8 +143,6 @@ public class guiManager {
 
     @FXML
     private Pane paneRA;
-
-
 
     @FXML
     private Pane paneRB;
@@ -242,11 +234,12 @@ public class guiManager {
     Label[] labelStack = new Label[8];
 
     ArrayList<CheckBox> debugPoints = new ArrayList<>();
+    ArrayList<GridPane> codePanes = new ArrayList<>();
 
     ArrayList<Integer> lookupTable = new ArrayList<>();
 
-
     Pic pic;
+
     public void initialize() {
         pic = new Pic(FileManager.getCommands());
         scrollPaneRam.setContent(CreateRamGrid());
@@ -408,8 +401,8 @@ public class guiManager {
 
     private void addCode() {
         ArrayList<String> file = FileManager.getText();
+        GridPane bigGrid = new GridPane();
         int x = 0;
-        int y = 0;
         for (String line : file) {
             GridPane gPane = new GridPane();
             gPane.getStyleClass().add("gGrid");
@@ -423,15 +416,18 @@ public class guiManager {
                 debugPoint.getStyleClass().add("CB");
                 gPane.add(debugPoint, 0, 0);
                 debugPoints.add(debugPoint);
+                codePanes.add(gPane);
             }
 
-            listViewCode.getItems().add(gPane);
+            bigGrid.add(gPane, 0, x);
+
             x++;
         }
+
+        scrollPaneCode.setContent(bigGrid);
     }
 
-
-    private void updateGUI(){
+    private void updateGUI() {
         setRamIntoField();
         setPointerIntoField();
         labelWReg.setText(intToHex(pic.w));
@@ -446,8 +442,8 @@ public class guiManager {
         highLightLine();
     }
 
-    private void setRamIntoField(){
-        for(int i = 0; i < 256; i++){
+    private void setRamIntoField() {
+        for (int i = 0; i < 256; i++) {
             field[i].setText(intToHex(pic.ram.getBuffer(i)));
         }
     }
@@ -463,10 +459,13 @@ public class guiManager {
         if(pCounter < lookupTable.size()){
             listViewCode.getSelectionModel().select(lookupTable.get(pCounter));
         }
+    private GridPane nowHigh = new GridPane();
+
+    private void highLightLine() {
+        nowHigh.setStyle("-fx-background-color: #00001a;");
+        nowHigh = codePanes.get(pic.pCounter.get());
+        nowHigh.setStyle("-fx-background-color: #00b8e6;");
 
     }
-
-
-
 
 }
