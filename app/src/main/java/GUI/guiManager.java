@@ -177,7 +177,17 @@ public class guiManager {
 
     @FXML
     void buttonGoOnClick(ActionEvent event) {
-
+        boolean breakpoint = false;
+        int i = 0;
+        while(breakpoint == false){
+            if(i != pic.pCode.size()){
+                pic.next();
+                updateGUI();
+                i++;
+            }else{
+                break;
+            }
+        }
     }
 
     @FXML
