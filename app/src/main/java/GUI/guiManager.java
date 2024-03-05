@@ -431,7 +431,7 @@ public class guiManager {
         setRamIntoField();
         setPointerIntoField();
         labelWReg.setText(intToHex(pic.w));
-        labelPC.setText(""+pic.pCounter.get());
+        labelPC.setText(intToHex(pic.pCounter.get()));
         labelWDT.setText(""+pic.watchdog.get());
         labelStackpointer.setText(""+pic.stack.getPointer());
         labelC.setText(""+(pic.ram.getReg(3) & 0b001));
