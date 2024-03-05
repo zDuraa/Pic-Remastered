@@ -376,7 +376,10 @@ public class guiManager {
             Text t = new Text(line);
             t.getStyleClass().add("TStyle");
 
-            gPane.add(debugPoint, 0, 0);
+            if(isCode(line)){
+                gPane.add(debugPoint, 0, 0);
+            }
+
             gPane.add(t, 1, 0);
             debugPoints.add(debugPoint);
             listViewCode.getItems().add(gPane);
@@ -393,6 +396,7 @@ public class guiManager {
         labelC.setText(""+(pic.ram.getReg(3) & 0b001));
         labelDC.setText(""+((pic.ram.getReg(3) & 0b010) >> 1));
         labelZ.setText(""+((pic.ram.getReg(3) & 0b100) >> 2));
+        listViewCode.getSelectionModel().select(pic.pCounter.get());
 
 
     }
@@ -401,6 +405,17 @@ public class guiManager {
         for(int i = 0; i < 256; i++){
             field[i].setText(intToHex(pic.ram.getBuffer(i)));
         }
+    }
+
+    public boolean isCode(String line) {
+        boolean ret = false;
+        char beginning = line.charAt(0);
+
+        if (beginning != ' ') {
+            ret = true;
+        }
+
+        return ret;
     }
 
 }
