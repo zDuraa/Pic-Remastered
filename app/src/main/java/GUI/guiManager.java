@@ -182,6 +182,7 @@ public class guiManager {
 
             if(controle){
                 controle = false;
+                return;
             }else{
                 controle = true;
             }
