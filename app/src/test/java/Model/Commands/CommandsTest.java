@@ -162,7 +162,7 @@ public class CommandsTest {
         int c = pic.ram.getReg(3) & 0b1;
 
         assertEquals(10, pic.w);
-        assertEquals(0, c);
+        assertEquals(1, c);
     }
 
     @Test

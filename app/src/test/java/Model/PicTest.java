@@ -87,31 +87,10 @@ public class PicTest {
 
     @Test
     public void test3() {
-        ArrayList<String> list = new ArrayList<>();
+        FileManager.setFile("./../Testprogramme/TPicSim3.LST");
+        FileManager.ladeDatei();
 
-        list.add("3011"); // movlw
-        list.add("008C"); // movwf
-        list.add("3014"); // movlw
-        list.add("070C"); // addwf
-        list.add("078C"); // addwf
-        list.add("050C"); // andwf
-        list.add("008D"); // movwf
-        list.add("018C"); // clrf
-        list.add("090D"); // comf
-        list.add("030C"); // decf
-        list.add("0A8D"); // incf
-        list.add("088C"); // movf
-        list.add("048C"); // iorwf
-        list.add("020D"); // subwf
-        list.add("0E8D"); // swapf
-        list.add("068C"); // xorwf
-        list.add("0100"); // clearw
-        list.add("020C"); // subwf
-        list.add("020D"); // subwf
-        list.add("028D"); // subwf
-        list.add("028D"); // subwf
-
-        Pic pic = new Pic(list);
+        Pic pic = new Pic(FileManager.getCommands());
 
         pic.next();
         assertEquals(17, pic.w);
@@ -121,40 +100,74 @@ public class PicTest {
         assertEquals(20, pic.w);
         pic.next();
         assertEquals(37, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(37, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(36, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(36, pic.w);
+
         pic.next();
         assertEquals(36, pic.w);
+        assertEquals(0b100, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(219, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(255, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(255, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(255, pic.w);
+        assertEquals(0b100, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(255, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(38, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(38, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(38, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(0, pic.w);
+        assertEquals(0b100, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(217, pic.w);
+        assertEquals(0b011, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(121, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(121, pic.w);
+        assertEquals(0b000, pic.ram.getReg(3) & 0b111);
+
         pic.next();
         assertEquals(121, pic.w);
+        assertEquals(0b011, pic.ram.getReg(3) & 0b111);
 
     }
 
