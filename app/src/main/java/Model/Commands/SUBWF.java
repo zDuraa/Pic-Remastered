@@ -24,27 +24,6 @@ public class SUBWF extends Command {
         incPrescaler();
     }
 
-    @Override
-    protected void checkDC(int val, int w, char operation) {
-        int reg = pic.ram.getReg(3);
-        int bit = 0b10;
-        int vshort = 0b1111 & val;
-        int wshort = 0b1111 & w;
-        int ret = 0;
-
-        wshort ^= 0b1111;
-        wshort += 0b1;
-        ret = vshort + wshort;
-
-        if (ret >= 0b10000) {
-            reg |= bit;
-        } else if ((reg & 0b010) > 0) {
-            reg ^= bit;
-        }
-
-        pic.ram.setReg(3, reg);
-    }
-
     private void checkCNew(int val, int w) {
         int reg = pic.ram.getReg(3);
         int bit = 0b1;

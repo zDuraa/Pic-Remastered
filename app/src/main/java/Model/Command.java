@@ -80,8 +80,8 @@ public abstract class Command {
                 break;
 
             case '-':
-                lshort ^= 0b1111;
-                lshort += 0b1;
+                wshort ^= 0b1111;
+                wshort += 0b1;
                 ret = lshort + wshort;
                 break;
         }
