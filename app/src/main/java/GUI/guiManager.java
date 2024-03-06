@@ -157,6 +157,11 @@ public class guiManager {
     private Pane paneStack;
 
     @FXML
+    private Pane paneControlls1;
+
+    @FXML
+    private Pane paneControlls2;
+    @FXML
     private Pane paneStatusRegister;
 
     @FXML
@@ -169,14 +174,20 @@ public class guiManager {
     private ScrollPane scrollPaneRam;
     private boolean controle = false;
 
+
+    private Label labelRunning = new Label();
     @FXML
     void buttonGoOnClick(ActionEvent event) {
 
         if (controle) {
             controle = false;
+            paneControlls2.getChildren().remove(labelRunning);
             return;
         } else {
             controle = true;
+            labelRunning.setText("Running");
+            labelRunning.getStyleClass().add("textSty");
+            paneControlls2.getChildren().add(labelRunning);
         }
 
         new Thread(() -> {
