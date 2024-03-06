@@ -4,6 +4,8 @@ import Model.Pic;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -157,10 +159,10 @@ public class guiManager {
     private Pane paneStack;
 
     @FXML
-    private Pane paneControlls1;
+    private GridPane paneControlls1;
 
     @FXML
-    private Pane paneControlls2;
+    private GridPane paneControlls2;
     @FXML
     private Pane paneStatusRegister;
 
@@ -174,20 +176,16 @@ public class guiManager {
     private ScrollPane scrollPaneRam;
     private boolean controle = false;
 
-
-    private Label labelRunning = new Label();
     @FXML
     void buttonGoOnClick(ActionEvent event) {
 
         if (controle) {
             controle = false;
-            paneControlls2.getChildren().remove(labelRunning);
+            buttonGo.setText("Go");
             return;
         } else {
             controle = true;
-            labelRunning.setText("Running");
-            labelRunning.getStyleClass().add("textSty");
-            paneControlls2.getChildren().add(labelRunning);
+            buttonGo.setText("Is Running");
         }
 
         new Thread(() -> {
