@@ -195,7 +195,7 @@ public class guiManager {
                 } else {
                     pic.next();
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(10);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -314,14 +314,13 @@ public class guiManager {
         int x;
         for (x = 0; x < 8; x++) {
             fieldRATris[x] = new TextField();
-            fieldRATris[x].setMinSize(20, 20);
-            fieldRATris[x].setMaxSize(20, 20);
+            fieldRATris[x].setPrefSize(28, 15);
             fieldRATris[x].setLayoutX(30 + resize);
             fieldRATris[x].setLayoutY(23);
             fieldRATris[x].setAlignment(Pos.CENTER);
             fieldRATris[x].getStyleClass().add("TFSty");
             paneRA.getChildren().add(fieldRATris[x]);
-            resize += 20;
+            resize += 27;
         }
         Label label1 = new Label();
         label1.setText("Pin");
@@ -333,14 +332,13 @@ public class guiManager {
         resize = 0;
         for (x = 0; x < 8; x++) {
             fieldRAPin[x] = new TextField();
-            fieldRAPin[x].setMinSize(20, 20);
-            fieldRAPin[x].setMaxSize(20, 20);
+            fieldRAPin[x].setPrefSize(28, 15);
             fieldRAPin[x].setLayoutX(40 + resize);
-            fieldRAPin[x].setLayoutY(40);
+            fieldRAPin[x].setLayoutY(50);
             fieldRAPin[x].setAlignment(Pos.CENTER);
             fieldRAPin[x].getStyleClass().add("TFSty");
             paneRA.getChildren().add(fieldRAPin[x]);
-            resize += 20;
+            resize += 27;
         }
     }
 
@@ -357,14 +355,13 @@ public class guiManager {
         int x;
         for (x = 0; x < 8; x++) {
             fieldRBTris[x] = new TextField();
-            fieldRBTris[x].setMinSize(20, 20);
-            fieldRBTris[x].setMaxSize(20, 20);
+            fieldRBTris[x].setPrefSize(28, 15);
             fieldRBTris[x].setLayoutX(30 + resize);
             fieldRBTris[x].setLayoutY(23);
             fieldRBTris[x].setAlignment(Pos.CENTER);
             fieldRBTris[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBTris[x]);
-            resize += 20;
+            resize += 27;
         }
         Label label1 = new Label();
         label1.setText("Pin");
@@ -376,14 +373,13 @@ public class guiManager {
         resize = 0;
         for (x = 0; x < 8; x++) {
             fieldRBPin[x] = new TextField();
-            fieldRBPin[x].setMinSize(20, 20);
-            fieldRBPin[x].setMaxSize(20, 20);
+            fieldRBPin[x].setPrefSize(28, 15);
             fieldRBPin[x].setLayoutX(40 + resize);
-            fieldRBPin[x].setLayoutY(40);
+            fieldRBPin[x].setLayoutY(50);
             fieldRBPin[x].setAlignment(Pos.CENTER);
             fieldRBPin[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBPin[x]);
-            resize += 20;
+            resize += 27;
         }
     }
 
@@ -451,6 +447,7 @@ public class guiManager {
         labelC.setText("" + (pic.ram.getReg(3) & 0b001));
         labelDC.setText("" + ((pic.ram.getReg(3) & 0b010) >> 1));
         labelZ.setText("" + ((pic.ram.getReg(3) & 0b100) >> 2));
+        updateRB();
 
         highLightLine();
     }
@@ -473,6 +470,14 @@ public class guiManager {
         nowHigh.setStyle("-fx-background-color: #00001a;");
         nowHigh = codePanes.get(pic.pCounter.get());
         nowHigh.setStyle("-fx-background-color: #00b8e6;");
+    }
+
+    private void updateRB()
+    {
+
+        for (int i = 0; i < 8; i++) {
+            fieldRBPin[i].setText(""+ ((pic.ram.getReg(6) & (0b1 << i)) >> i));
+        }
     }
 
 }
