@@ -50,6 +50,7 @@ public class Ram {
         return ret;
     }
 
+
     public void setReg(int pos, int val) {
         if (pos == 0) {
             setReg(getReg(4), val);
@@ -70,6 +71,10 @@ public class Ram {
         if ((getReg(3) & 0b00100000) > 0 || pos == 3 || pos == 4 || pos == 11) {
             buffer[pos + 128] = val;
         }
+    }
+
+    public void addToReg(int pos, int val) {
+        buffer[pos] += val;
     }
 
     public int GetTmr0() {

@@ -343,10 +343,34 @@ public class guiManager {
             fieldRAPin[x].setPrefSize(28, 15);
             fieldRAPin[x].setLayoutX(40 + resize);
             fieldRAPin[x].setLayoutY(50);
+            fieldRAPin[x].setEditable(false);
             fieldRAPin[x].setAlignment(Pos.CENTER);
             fieldRAPin[x].getStyleClass().add("TFSty");
             paneRA.getChildren().add(fieldRAPin[x]);
             resize += 27;
+        }
+        manageRaPins();
+    }
+
+
+    private void manageRaPins()
+    {
+        for (int i = 0; i < 8; i++) {
+            int finalI = i;
+            fieldRAPin[i].setOnMouseClicked(e -> {
+                if(fieldRAPin[finalI].getText() == "0")
+                {
+                    pic.ram.addToReg(5,(0b1 << finalI));
+                    System.out.println("set1" + finalI);
+                    updateGUI();
+
+                }else{
+                    pic.ram.setReg(5,0);
+                    System.out.println("set0" + finalI);
+                    updateGUI();
+                }
+            });
+
         }
     }
 
@@ -450,7 +474,7 @@ public class guiManager {
         setPointerIntoField();
         labelWReg.setText(intToHex(pic.w));
         labelPC.setText(intToHex(pic.pCounter.get()));
-        labelWDT.setText(intToHex(pic.watchdog.get()));
+        labelWDT.setText("" + pic.watchdog.get());
         labelStackpointer.setText("" + pic.stack.getPointer());
         labelC.setText("" + (pic.ram.getReg(3) & 0b001));
         labelDC.setText("" + ((pic.ram.getReg(3) & 0b010) >> 1));
@@ -480,10 +504,17 @@ public class guiManager {
         nowHigh.setStyle("-fx-background-color: #00b8e6;");
     }
 
-    private void updateRB() {
-
+    private void updateRB()
+    {
         for (int i = 0; i < 8; i++) {
-            fieldRBPin[i].setText("" + ((pic.ram.getReg(6) & (0b1 << i)) >> i));
+            fieldRBPin[i].setText(""+ ((pic.ram.getReg(6) & (0b1 << i)) >> i));
+        }
+    }
+
+    private void updateRA()
+    {
+        for (int i = 0; i < 8; i++) {
+            fieldRAPin[i].setText(""+ ((pic.ram.getReg(5) & (0b1 << i)) >> i));
         }
     }
 
