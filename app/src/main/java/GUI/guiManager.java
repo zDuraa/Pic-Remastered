@@ -349,28 +349,27 @@ public class guiManager {
             paneRA.getChildren().add(fieldRAPin[x]);
             resize += 27;
         }
-        manageRaPins();
+        manageRPins(fieldRAPin, 5);
     }
 
 
-    private void manageRaPins()
+    private void manageRPins(TextField felder[], int register)
     {
+
         for (int i = 0; i < 8; i++) {
             int finalI = i;
-            fieldRAPin[i].setOnMouseClicked(e -> {
-                if(fieldRAPin[finalI].getText() == "0")
+            felder[i].setOnMouseClicked(e -> {
+                if(felder[finalI].getText().equals("0"))
                 {
-                    pic.ram.addToReg(5,(0b1 << finalI));
+                    pic.ram.addToReg(register,(0b1 << finalI));
                     System.out.println("set1" + finalI);
                     updateGUI();
-
                 }else{
-                    pic.ram.setReg(5,0);
+                    pic.ram.setReg(register,0);
                     System.out.println("set0" + finalI);
                     updateGUI();
                 }
             });
-
         }
     }
 
@@ -408,11 +407,13 @@ public class guiManager {
             fieldRBPin[x].setPrefSize(28, 15);
             fieldRBPin[x].setLayoutX(40 + resize);
             fieldRBPin[x].setLayoutY(50);
+            fieldRBPin[x].setEditable(false);
             fieldRBPin[x].setAlignment(Pos.CENTER);
             fieldRBPin[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBPin[x]);
             resize += 27;
         }
+        manageRPins(fieldRBPin, 6);
     }
 
     private void CreateStack() {
@@ -480,7 +481,7 @@ public class guiManager {
         labelDC.setText("" + ((pic.ram.getReg(3) & 0b010) >> 1));
         labelZ.setText("" + ((pic.ram.getReg(3) & 0b100) >> 2));
         updateRB();
-
+        updateRA();
         highLightLine();
     }
 
