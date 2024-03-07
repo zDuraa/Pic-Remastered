@@ -96,7 +96,7 @@ public abstract class Command {
     }
 
     public void incPrescaler() {
-        if ((pic.ram.getOpt() & 0b100000) == 0 || (pic.ram.getOpt() & 0b1000) == 0b1000)
+        if ((pic.ram.getOpt() & 0b100000) == 0 || (pic.ram.getOpt() & 0b100) == 0b100)
             pic.prescaler.inc(zyc);
     }
 }

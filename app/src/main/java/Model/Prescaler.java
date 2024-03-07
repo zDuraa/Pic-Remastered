@@ -18,15 +18,34 @@ public class Prescaler {
             if (buffer >= checkOps()) {
                 buffer -= checkOps();
                 pic.ram.incTmr0();
+
             }
         } else {
-            pic.ram.incTmr0();
+            if ((pic.ram.getOpt() & 0b100000) == 0) {
+                pic.ram.incTmr0();
+            }
             buffer += val;
             if (buffer >= pic.watchdog.checkOps()) {
                 buffer -= pic.watchdog.checkOps();
                 pic.watchdog.incWTD(1);
             }
         }
+    }
+
+    public void incRA4() {
+
+        if ((pic.ram.getOpt() & 0b1000) == 0) {
+            buffer++;
+            if (buffer >= checkOps()) {
+                buffer -= checkOps();
+                pic.ram.incTmr0();
+
+            }
+        }else{
+            pic.ram.incTmr0();
+        }
+
+
     }
 
     public int checkOps() {
@@ -59,7 +78,7 @@ public class Prescaler {
                 break;
             default:
                 ret = 0; // Hier kannst du einen Standardwert setzen, falls keine der Bedingungen erfüllt
-                         // ist
+                // ist
         }
 
         return ret;
@@ -68,4 +87,11 @@ public class Prescaler {
     public void reset() {
         buffer = 0;
     }
+
+    public int getPrescaler() {
+
+        return buffer;
+    }
+
+
 }

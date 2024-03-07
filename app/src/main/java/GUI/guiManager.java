@@ -3,15 +3,20 @@ package GUI;
 import Model.Pic;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.geometry.Pos;
 import javafx.scene.text.*;
+import javafx.scene.input.MouseEvent;
+
 
 import java.util.ArrayList;
+
 import static utils.converter.intToHex;
+
 import utils.FileManager;
 
 public class guiManager {
@@ -169,6 +174,9 @@ public class guiManager {
 
     @FXML
     private ScrollPane scrollPaneCode;
+
+    @FXML
+    private Label labelVT;
 
     @FXML
     private ScrollPane scrollPaneRam;
@@ -347,6 +355,7 @@ public class guiManager {
             fieldRAPin[x].setLayoutY(50);
             fieldRAPin[x].setEditable(false);
             fieldRAPin[x].setAlignment(Pos.CENTER);
+            fieldRAPin[x].setId("RA"+x);
             fieldRAPin[x].getStyleClass().add("TFSty");
             paneRA.getChildren().add(fieldRAPin[x]);
             resize += 27;
@@ -363,12 +372,26 @@ public class guiManager {
                     pic.ram.addToReg(register, (0b1 << finalI));
                     System.out.println("set1" + finalI);
                     updateGUI();
+
                 } else {
                     pic.ram.setReg(register, 0);
                     System.out.println("set0" + finalI);
                     updateGUI();
                 }
+                checkRA4(e);
             });
+        }
+    }
+
+    private void checkRA4(MouseEvent e) {
+        TextField tempTF = (TextField)e.getSource();
+        int val = Integer.parseInt(tempTF.getText());
+        if(tempTF.getId().equals("RA4")){
+            if(((pic.ram.getOpt() & 0b10000) >> 4) == 0 && val == 1){
+                pic.RA4();
+            }else if(((pic.ram.getOpt() & 0b10000) >> 4) == 1 && val == 0){
+                pic.RA4();
+            }
         }
     }
 
@@ -407,6 +430,7 @@ public class guiManager {
             fieldRBPin[x].setLayoutX(40 + resize);
             fieldRBPin[x].setLayoutY(50);
             fieldRBPin[x].setEditable(false);
+            fieldRBPin[x].setId("RB"+x);
             fieldRBPin[x].setAlignment(Pos.CENTER);
             fieldRBPin[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBPin[x]);
@@ -472,17 +496,65 @@ public class guiManager {
     private void updateGUI() {
         setRamIntoField();
         setPointerIntoField();
-        labelWReg.setText(intToHex(pic.w));
-        labelPC.setText(intToHex(pic.pCounter.get()));
-        labelWDT.setText("" + pic.watchdog.get());
-        labelStackpointer.setText("" + pic.stack.getPointer());
-        labelC.setText("" + (pic.ram.getReg(3) & 0b001));
-        labelDC.setText("" + ((pic.ram.getReg(3) & 0b010) >> 1));
-        labelZ.setText("" + ((pic.ram.getReg(3) & 0b100) >> 2));
-        radioWDT.setSelected(pic.watchdog.WTD);
+
+        updateSichtbar();
+        updateVersteckt();
+        updateStatus();
+        updateOption();
+        updateIntCon();
+
         updateRB();
         updateRA();
         highLightLine();
+    }
+
+    private void updateSichtbar() {
+        labelWReg.setText(intToHex(pic.w));
+        labelFSR.setText(intToHex(pic.ram.getReg(4)));
+        labelPCL.setText(intToHex(pic.pCounter.get()));
+        labelPCLATH.setText(intToHex(pic.ram.getReg(10)));
+        labelStatus.setText(intToHex(pic.ram.getReg(3)));
+    }
+
+    private void updateVersteckt() {
+        labelPC.setText(intToHex(pic.pCounter.get()));
+        labelWDT.setText("" + pic.watchdog.get());
+        labelStackpointer.setText("" + pic.stack.getPointer());
+        radioWDT.setSelected(pic.watchdog.WTD);
+        labelVT.setText("" + pic.prescaler.getPrescaler());
+    }
+
+    private void updateStatus() {
+        labelC.setText("" + (pic.ram.getReg(3) & 0b001));
+        labelDC.setText("" + ((pic.ram.getReg(3) & 0b010) >> 1));
+        labelZ.setText("" + ((pic.ram.getReg(3) & 0b100) >> 2));
+        labelPD.setText("" + ((pic.ram.getReg(3) & 0b1000) >> 3));
+        labelTO.setText("" + ((pic.ram.getReg(3) & 0b10000) >> 4));
+        labelRP0.setText("" + ((pic.ram.getReg(3) & 0b100000) >> 5));
+        labelRP1.setText("" + ((pic.ram.getReg(3) & 0b1000000) >> 6));
+        labelIRP.setText("" + ((pic.ram.getReg(3) & 0b10000000) >> 7));
+    }
+
+    private void updateOption(){
+        labelPS0.setText("" + (pic.ram.getOpt() & 0b001));
+        labelPS1.setText("" + ((pic.ram.getOpt() & 0b010) >> 1));
+        labelPS2.setText("" + ((pic.ram.getOpt() & 0b100) >> 2));
+        labelPSA.setText("" + ((pic.ram.getOpt() & 0b1000) >> 3));
+        labelT0SE.setText("" + ((pic.ram.getOpt() & 0b10000) >> 4));
+        labelT0CS.setText("" + ((pic.ram.getOpt() & 0b100000) >> 5));
+        labelIntEdg.setText("" + ((pic.ram.getOpt() & 0b1000000) >> 6));
+        labelRBP.setText("" + ((pic.ram.getOpt() & 0b10000000) >> 7));
+    }
+
+    private void updateIntCon(){
+        labelRBIF.setText("" + (pic.ram.getReg(11) & 0b001));
+        labelINTF.setText("" + ((pic.ram.getReg(11) & 0b010) >> 1));
+        labelT0IF.setText("" + ((pic.ram.getReg(11) & 0b100) >> 2));
+        labelRBIF.setText("" + ((pic.ram.getReg(11) & 0b1000) >> 3));
+        labelINTE.setText("" + ((pic.ram.getReg(11) & 0b10000) >> 4));
+        labelT0IE.setText("" + ((pic.ram.getReg(11) & 0b100000) >> 5));
+        labelPIE.setText("" + ((pic.ram.getReg(11) & 0b1000000) >> 6));
+        labelGIE.setText("" + ((pic.ram.getReg(11) & 0b10000000) >> 7));
     }
 
     private void setRamIntoField() {

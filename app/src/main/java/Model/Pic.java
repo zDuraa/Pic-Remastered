@@ -37,7 +37,7 @@ public class Pic {
         if ((ram.getOpt() & 0b10000) == 0)
             return;
 
-        prescaler.inc(1);
+        prescaler.incRA4();
     }
 
     public void reset() {
