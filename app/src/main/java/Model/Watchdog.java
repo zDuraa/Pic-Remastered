@@ -4,7 +4,7 @@ public class Watchdog {
 
     private Pic pic;
 
-    private boolean WTD;
+    public boolean WTD;
     private int quarzfrequenz;
     private int WTDVal;
     private boolean triggert = false;
@@ -83,5 +83,4 @@ public class Watchdog {
     public int get() {
         return WTDVal;
     }
-
 }

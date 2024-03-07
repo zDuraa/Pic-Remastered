@@ -189,6 +189,9 @@ public class guiManager {
         new Thread(() -> {
             while (controle) {
                 if (debugPoints.get(pic.pCounter.get()).isSelected() == true) {
+                    Platform.runLater(() -> {
+                        buttonGo.setText("Go");
+                    });
                     break;
                 } else {
                     pic.next();
@@ -213,7 +216,6 @@ public class guiManager {
     @FXML
     void buttonResetOnClick(ActionEvent event) {
         pic = new Pic(FileManager.getCommands());
-        radioWDT.setSelected(false);
         updateGUI();
     }
 
@@ -352,20 +354,17 @@ public class guiManager {
         manageRPins(fieldRAPin, 5);
     }
 
-
-    private void manageRPins(TextField felder[], int register)
-    {
+    private void manageRPins(TextField felder[], int register) {
 
         for (int i = 0; i < 8; i++) {
             int finalI = i;
             felder[i].setOnMouseClicked(e -> {
-                if(felder[finalI].getText().equals("0"))
-                {
-                    pic.ram.addToReg(register,(0b1 << finalI));
+                if (felder[finalI].getText().equals("0")) {
+                    pic.ram.addToReg(register, (0b1 << finalI));
                     System.out.println("set1" + finalI);
                     updateGUI();
-                }else{
-                    pic.ram.setReg(register,0);
+                } else {
+                    pic.ram.setReg(register, 0);
                     System.out.println("set0" + finalI);
                     updateGUI();
                 }
@@ -480,6 +479,7 @@ public class guiManager {
         labelC.setText("" + (pic.ram.getReg(3) & 0b001));
         labelDC.setText("" + ((pic.ram.getReg(3) & 0b010) >> 1));
         labelZ.setText("" + ((pic.ram.getReg(3) & 0b100) >> 2));
+        radioWDT.setSelected(pic.watchdog.WTD);
         updateRB();
         updateRA();
         highLightLine();
@@ -505,17 +505,15 @@ public class guiManager {
         nowHigh.setStyle("-fx-background-color: #00b8e6;");
     }
 
-    private void updateRB()
-    {
+    private void updateRB() {
         for (int i = 0; i < 8; i++) {
-            fieldRBPin[i].setText(""+ ((pic.ram.getReg(6) & (0b1 << i)) >> i));
+            fieldRBPin[i].setText("" + ((pic.ram.getReg(6) & (0b1 << i)) >> i));
         }
     }
 
-    private void updateRA()
-    {
+    private void updateRA() {
         for (int i = 0; i < 8; i++) {
-            fieldRAPin[i].setText(""+ ((pic.ram.getReg(5) & (0b1 << i)) >> i));
+            fieldRAPin[i].setText("" + ((pic.ram.getReg(5) & (0b1 << i)) >> i));
         }
     }
 
