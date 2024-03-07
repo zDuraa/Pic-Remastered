@@ -213,6 +213,7 @@ public class guiManager {
     @FXML
     void buttonResetOnClick(ActionEvent event) {
         pic = new Pic(FileManager.getCommands());
+        radioWDT.setSelected(false);
         updateGUI();
     }
 
@@ -230,6 +231,15 @@ public class guiManager {
     @FXML
     void buttonStepOverOnClick(ActionEvent event) {
 
+    }
+
+    @FXML
+    void clickWDT(ActionEvent event) {
+        if (radioWDT.isSelected()) {
+            pic.watchdog.start();
+        } else {
+            pic.watchdog.stop();
+        }
     }
 
     TextField[] field = new TextField[256];
@@ -440,7 +450,7 @@ public class guiManager {
         setPointerIntoField();
         labelWReg.setText(intToHex(pic.w));
         labelPC.setText(intToHex(pic.pCounter.get()));
-        labelWDT.setText("" + pic.watchdog.get());
+        labelWDT.setText(intToHex(pic.watchdog.get()));
         labelStackpointer.setText("" + pic.stack.getPointer());
         labelC.setText("" + (pic.ram.getReg(3) & 0b001));
         labelDC.setText("" + ((pic.ram.getReg(3) & 0b010) >> 1));
@@ -470,11 +480,10 @@ public class guiManager {
         nowHigh.setStyle("-fx-background-color: #00b8e6;");
     }
 
-    private void updateRB()
-    {
+    private void updateRB() {
 
         for (int i = 0; i < 8; i++) {
-            fieldRBPin[i].setText(""+ ((pic.ram.getReg(6) & (0b1 << i)) >> i));
+            fieldRBPin[i].setText("" + ((pic.ram.getReg(6) & (0b1 << i)) >> i));
         }
     }
 

@@ -103,7 +103,7 @@
                               <Label layoutX="48.0" layoutY="38.0" styleClass="textSty" text="PC" />
                               <Label layoutX="48.0" layoutY="55.0" styleClass="textSty" text="Stackpointer" />
                               <Label layoutX="48.0" layoutY="72.0" styleClass="textSty" text="VT" />
-                              <CheckBox fx:id="radioWDT" layoutX="48.0" layoutY="89.0" mnemonicParsing="false" styleClass="" text="WDT aktiv" />
+                              <CheckBox fx:id="radioWDT" onAction="#clickWDT" layoutX="48.0" layoutY="89.0" mnemonicParsing="false" styleClass="" text="WDT aktiv" />
                               <Label layoutX="48.0" layoutY="106.0" styleClass="textSty" text="WDT" />
                               <Label fx:id="labelPC" layoutX="138.0" layoutY="38.0" styleClass="textSty" text="0000" />
                               <Label fx:id="labelStackpointer" layoutX="138.0" layoutY="55.0" styleClass="textSty" text="0" />
