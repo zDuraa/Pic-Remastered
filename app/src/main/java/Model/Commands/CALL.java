@@ -10,12 +10,14 @@ public class CALL extends Command {
 
     @Override
     public void execute(int command) {
-        int k = command & 0b11111111111;
+        int k = command & 0b11111111;
         int returnAdr = pic.pCounter.get() + 1;
-        int pcLath = pic.ram.getReg(10) << 10;
+        int pcLath = (pic.ram.getReg(10) & 0b11);
 
         pic.stack.push(returnAdr);
-        pic.pCounter.set(k | pcLath);
+
+        pic.pCounter.set(k | pcLath << 8);
+
         pic.pCounter.dec();
         incPrescaler();
     }

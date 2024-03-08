@@ -17,7 +17,7 @@ public class Pic {
     public Pic(ArrayList<String> ProgrammFile) {
         ram = new Ram(this);
         stack = new Stack();
-        pCounter = new PCounter();
+        pCounter = new PCounter(this);
         decoder = new Decoder(this);
         prescaler = new Prescaler(this);
         interrupt = new Interrupt(this);
@@ -43,7 +43,7 @@ public class Pic {
     public void reset() {
         ram = new Ram(this);
         stack = new Stack();
-        pCounter = new PCounter();
+        pCounter = new PCounter(this);
         decoder = new Decoder(this);
         prescaler = new Prescaler(this);
         interrupt = new Interrupt(this);

@@ -31,6 +31,10 @@ public abstract class Command {
             pic.w = value;
         } else {
             pic.ram.setReg(f, value);
+            if(f == 2){
+                int temp = pic.pCounter.get() & 0b1100000000;
+                pic.pCounter.set(value | temp);
+            }
         }
     }
 
@@ -99,4 +103,5 @@ public abstract class Command {
         if ((pic.ram.getOpt() & 0b100000) == 0 || (pic.ram.getOpt() & 0b100) == 0b100)
             pic.prescaler.inc(zyc);
     }
+
 }
