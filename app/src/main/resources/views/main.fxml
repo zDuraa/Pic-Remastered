@@ -218,7 +218,7 @@
               </rowConstraints>
                <children>
                   <Button fx:id="buttonReset" mnemonicParsing="false" onAction="#buttonResetOnClick" styleClass="buttonSty" text="Reset" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="buttonIgnore" mnemonicParsing="false" onAction="#buttonIgnoreOnClick" styleClass="buttonSty" text="Ignore" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="buttonIgnore" mnemonicParsing="false" onAction="#buttonIgnoreOnClick" styleClass="buttonSty" text="LED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button fx:id="buttonStepIn" mnemonicParsing="false" onAction="#buttonStepInOnClick" styleClass="buttonSty" text="Step in" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
@@ -232,7 +232,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="buttonStepOut" mnemonicParsing="false" onAction="#buttonStepOutOnClick" styleClass="buttonSty" text="Step out" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="buttonStepOut" mnemonicParsing="false" onAction="#buttonStepOutOnClick" styleClass="buttonSty" text="File" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button fx:id="buttonStepOver" mnemonicParsing="false" onAction="#buttonStepOverOnClick" styleClass="buttonSty" text="Step over" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button fx:id="buttonGo" mnemonicParsing="false" onAction="#buttonGoOnClick" styleClass="buttonSty" text="Go" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                </children>
