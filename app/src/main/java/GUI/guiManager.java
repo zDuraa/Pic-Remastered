@@ -5,6 +5,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -13,31 +16,18 @@ import javafx.scene.text.*;
 import javafx.scene.input.MouseEvent;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static utils.converter.intToHex;
 
+import javafx.stage.Stage;
 import utils.FileManager;
 
 public class guiManager {
 
     @FXML
     private Button buttonGo;
-
-    @FXML
-    private Button buttonIgnore;
-
-    @FXML
-    private Button buttonReset;
-
-    @FXML
-    private Button buttonStepIn;
-
-    @FXML
-    private Button buttonStepOut;
-
-    @FXML
-    private Button buttonStepOver;
 
     @FXML
     private Label labeINTCON;
@@ -157,7 +147,11 @@ public class guiManager {
 
     @FXML
     private Pane paneSFRversteckt;
+    @FXML
+    private Button buttonFile;
 
+    @FXML
+    private Button buttonLED;
     @FXML
     private Pane paneStack;
 
@@ -216,10 +210,6 @@ public class guiManager {
         }).start();
     }
 
-    @FXML
-    void buttonIgnoreOnClick(ActionEvent event) {
-
-    }
 
     @FXML
     void buttonResetOnClick(ActionEvent event) {
@@ -233,16 +223,32 @@ public class guiManager {
         updateGUI();
     }
 
-    @FXML
-    void buttonStepOutOnClick(ActionEvent event) {
-
-    }
 
     @FXML
-    void buttonStepOverOnClick(ActionEvent event) {
+    void buttonFileOnClick(ActionEvent event) {
 
     }
+    ledManager lM;
+    @FXML
+    void buttonLEDOnClick(ActionEvent event) {
+        Stage ledStage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(start.class.getResource("./../views/led.fxml"));
+        try {
 
+            root = loader.load();
+            Scene scene = new Scene(root);
+            ledStage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Typisiere den Controller, um auf die getController-Methode zugreifen zu können
+        lM = loader.getController();
+        lM.addGM(this);
+        ledStage.show();
+
+    }
     @FXML
     void clickWDT(ActionEvent event) {
         if (radioWDT.isSelected()) {
@@ -266,6 +272,7 @@ public class guiManager {
     ArrayList<Integer> lookupTable = new ArrayList<>();
 
     Pic pic;
+
 
     public void initialize() {
         pic = new Pic(FileManager.getCommands());
@@ -506,6 +513,10 @@ public class guiManager {
         updateRB();
         updateRA();
         highLightLine();
+
+        if(lM != null)
+            lM.manageImage();
+
     }
 
     private void updateSichtbar() {
@@ -587,6 +598,10 @@ public class guiManager {
         for (int i = 0; i < 8; i++) {
             fieldRAPin[i].setText("" + ((pic.ram.getReg(5) & (0b1 << i)) >> i));
         }
+    }
+
+    public TextField getPinB(int i){
+        return fieldRBPin[i];
     }
 
 }
