@@ -224,7 +224,22 @@ public class guiManager {
 
     @FXML
     void buttonFileOnClick(ActionEvent event) {
+        FileManager.resetFile();
+        FileManager.openFile();
+        Stage secondStage = new Stage();
+        try {
+            Parent root = FXMLLoader.load(start.class.getResource("./../views/main.fxml"));
+            Scene scene = new Scene(root);
+            secondStage.setScene(scene);
 
+        } catch (Exception e) {
+            System.out.println("loading the file went wrong\n" + e);
+        }
+        secondStage.show();
+
+        Stage currentStage = (Stage) buttonFile.getScene().getWindow();
+        currentStage.close();
+        initialize();
     }
 
     ledManager lM;
@@ -598,6 +613,11 @@ public class guiManager {
 
     private void updateRB() {
         for (int i = 0; i < 8; i++) {
+            if(pic.ram.getBuffer(134) == 255){
+                fieldRBTris[i].setText("i");
+            }else{
+                fieldRBTris[i].setText("o");
+            }
             fieldRBPin[i].setText("" + ((pic.ram.getReg(6) & (0b1 << i)) >> i));
         }
     }
@@ -623,4 +643,5 @@ public class guiManager {
 
         return ret;
     }
+
 }

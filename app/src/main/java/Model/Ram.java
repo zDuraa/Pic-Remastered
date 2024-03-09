@@ -24,7 +24,7 @@ public class Ram {
         buffer[129] = 255;
         buffer[130] = 0;
         buffer[131] = 24;
-        buffer[133] = 31;
+        buffer[133] = 255;
         buffer[134] = 255;
         buffer[135] = 0;
         buffer[137] = 0;
@@ -108,5 +108,6 @@ public class Ram {
     public int getBuffer(int pos) {
         return buffer[pos];
     }
+
 
 }

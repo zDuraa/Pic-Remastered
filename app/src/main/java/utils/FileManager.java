@@ -22,6 +22,12 @@ public class FileManager {
         ladeDatei();
     }
 
+    public static void resetFile(){
+        codeInt = new ArrayList<>();
+        commandsString = new ArrayList<>();
+        textList = new ArrayList<>();
+        filePath = "";
+    }
     public static void setFilePath(String file) {
         FileManager.filePath = file;
     }
