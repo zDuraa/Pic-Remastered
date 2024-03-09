@@ -342,6 +342,7 @@ public class guiManager {
             fieldRATris[x].setPrefSize(28, 15);
             fieldRATris[x].setLayoutX(30 + resize);
             fieldRATris[x].setLayoutY(23);
+            fieldRATris[x].setText("i");
             fieldRATris[x].setAlignment(Pos.CENTER);
             fieldRATris[x].getStyleClass().add("TFSty");
             paneRA.getChildren().add(fieldRATris[x]);
@@ -418,6 +419,7 @@ public class guiManager {
             fieldRBTris[x].setPrefSize(28, 15);
             fieldRBTris[x].setLayoutX(30 + resize);
             fieldRBTris[x].setLayoutY(23);
+            fieldRBTris[x].setText("i");
             fieldRBTris[x].setAlignment(Pos.CENTER);
             fieldRBTris[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBTris[x]);
