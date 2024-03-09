@@ -7,6 +7,7 @@ public class Watchdog {
     public boolean WTD;
     private int quarzfrequenz;
     private int WTDVal;
+    private int Zeit = 0;
     private boolean triggert = false;
 
     public Watchdog(Pic pic) {
@@ -37,6 +38,7 @@ public class Watchdog {
         }
 
     }
+
 
     public int checkOps() {
         int ret;
