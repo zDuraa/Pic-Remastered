@@ -8,63 +8,71 @@ import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 
 public class FileManager {
-    private static String file = "";
+    private static String filePath = "";
+    public static ArrayList<Integer> codeInt = new ArrayList<>();
+    private static ArrayList<String> commandsString = new ArrayList<>();
+    private static ArrayList<String> textList = new ArrayList<>();
 
     public static void openFile() {
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("FileChooser");
         File selectedFile = fileChooser.showOpenDialog(stage);
-        file = selectedFile.toPath().toString();
+        filePath = selectedFile.toPath().toString();
         ladeDatei();
     }
 
-    public static void setFile(String file) {
-        FileManager.file = file;
+    public static void setFilePath(String file) {
+        FileManager.filePath = file;
     }
 
-    public static String getFile() {
-        return file;
+    public static String getFilePath() {
+        return filePath;
     }
-
-    public static ArrayList<Integer> code = new ArrayList<>();
-    private static ArrayList<String> commands = new ArrayList<>();
-    private static ArrayList<String> textList = new ArrayList<>();
 
     public static ArrayList<String> getCommands() {
-        return (ArrayList<String>) commands.clone();
+        return (ArrayList<String>) commandsString.clone();
     }
 
     public static void ladeDatei() {
-        commands = new ArrayList<>();
+        commandsString = new ArrayList<>();
         BufferedReader br = null; // liest Text aus Symbolen und puffert die Symbole, um Zeichen, Arrays und
                                   // Strings effizient einzulesen
         String command;
 
         int i;
         try {
-            br = new BufferedReader(new java.io.FileReader(file));
+            br = new BufferedReader(new java.io.FileReader(filePath));
             String line = null;
+            int before = -1;
             while ((line = br.readLine()) != null) {
 
                 textList.add(line); // Jede einzelne Zeile die ausgegeben wird, wird in die Liste abgespeichert
                 command = line.substring(5, 9);
 
                 if (!command.equals("    ")) {
+                    int lineNumber = Integer.parseInt(line.substring(0, 4), 16);
+                    // if line numbers get skiped
+                    if (lineNumber - 1 != before) {
+                        fillNops(commandsString, lineNumber - before - 1);
+                    }
+
                     i = Integer.parseInt(command, 16);
-                    code.add(i);
-                    commands.add(command);
+                    codeInt.add(i);
+                    commandsString.add(command);
+                    before = lineNumber;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (br != null)
+            if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
                     System.out.println(e);
                 }
+            }
         }
     }
 
@@ -78,6 +86,12 @@ public class FileManager {
             ret = true;
         }
         return ret;
+    }
+
+    private static void fillNops(ArrayList<String> list, int count) {
+        for (int i = 0; i < count; i++) {
+            list.add("0000");
+        }
     }
 
 }

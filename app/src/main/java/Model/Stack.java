@@ -21,11 +21,20 @@ public class Stack {
     }
 
     public int pop() {
-        int ret = buffer[pointer - 1];
+        int ret = buffer[decPointer()];
         pointer--;
 
         if (pointer < 0) {
             pointer = 7;
+        }
+
+        return ret;
+    }
+
+    private int decPointer() {
+        int ret = pointer - 1;
+        if (ret == -1) {
+            ret = 7;
         }
 
         return ret;
@@ -39,7 +48,7 @@ public class Stack {
         return Arrays.copyOf(buffer, buffer.length);
     }
 
-    public int getPointer(){
+    public int getPointer() {
         return pointer;
     }
 

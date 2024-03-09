@@ -15,7 +15,6 @@ import javafx.geometry.Pos;
 import javafx.scene.text.*;
 import javafx.scene.input.MouseEvent;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -190,9 +189,10 @@ public class guiManager {
 
         new Thread(() -> {
             while (controle) {
-                if (debugPoints.get(pic.pCounter.get()).isSelected() == true) {
+                if (debugSelected()) {
                     Platform.runLater(() -> {
                         buttonGo.setText("Go");
+                        controle = false;
                     });
                     break;
                 } else {
@@ -210,7 +210,6 @@ public class guiManager {
         }).start();
     }
 
-
     @FXML
     void buttonResetOnClick(ActionEvent event) {
         pic = new Pic(FileManager.getCommands());
@@ -223,12 +222,13 @@ public class guiManager {
         updateGUI();
     }
 
-
     @FXML
     void buttonFileOnClick(ActionEvent event) {
 
     }
+
     ledManager lM;
+
     @FXML
     void buttonLEDOnClick(ActionEvent event) {
         Stage ledStage = new Stage();
@@ -243,12 +243,14 @@ public class guiManager {
             throw new RuntimeException(e);
         }
 
-        // Typisiere den Controller, um auf die getController-Methode zugreifen zu können
+        // Typisiere den Controller, um auf die getController-Methode zugreifen zu
+        // können
         lM = loader.getController();
         lM.addGM(this);
         ledStage.show();
 
     }
+
     @FXML
     void clickWDT(ActionEvent event) {
         if (radioWDT.isSelected()) {
@@ -272,7 +274,6 @@ public class guiManager {
     ArrayList<Integer> lookupTable = new ArrayList<>();
 
     Pic pic;
-
 
     public void initialize() {
         pic = new Pic(FileManager.getCommands());
@@ -362,7 +363,7 @@ public class guiManager {
             fieldRAPin[x].setLayoutY(50);
             fieldRAPin[x].setEditable(false);
             fieldRAPin[x].setAlignment(Pos.CENTER);
-            fieldRAPin[x].setId("RA"+x);
+            fieldRAPin[x].setId("RA" + x);
             fieldRAPin[x].getStyleClass().add("TFSty");
             paneRA.getChildren().add(fieldRAPin[x]);
             resize += 27;
@@ -391,12 +392,12 @@ public class guiManager {
     }
 
     private void checkRA4(MouseEvent e) {
-        TextField tempTF = (TextField)e.getSource();
+        TextField tempTF = (TextField) e.getSource();
         int val = Integer.parseInt(tempTF.getText());
-        if(tempTF.getId().equals("RA4")){
-            if(((pic.ram.getOpt() & 0b10000) >> 4) == 0 && val == 1){
+        if (tempTF.getId().equals("RA4")) {
+            if (((pic.ram.getOpt() & 0b10000) >> 4) == 0 && val == 1) {
                 pic.RA4();
-            }else if(((pic.ram.getOpt() & 0b10000) >> 4) == 1 && val == 0){
+            } else if (((pic.ram.getOpt() & 0b10000) >> 4) == 1 && val == 0) {
                 pic.RA4();
             }
         }
@@ -437,7 +438,7 @@ public class guiManager {
             fieldRBPin[x].setLayoutX(40 + resize);
             fieldRBPin[x].setLayoutY(50);
             fieldRBPin[x].setEditable(false);
-            fieldRBPin[x].setId("RB"+x);
+            fieldRBPin[x].setId("RB" + x);
             fieldRBPin[x].setAlignment(Pos.CENTER);
             fieldRBPin[x].getStyleClass().add("TFSty");
             paneRB.getChildren().add(fieldRBPin[x]);
@@ -479,7 +480,7 @@ public class guiManager {
             gPane.add(t, 1, 0);
 
             if (FileManager.checkForCode(line)) {
-                lookupTable.add(x);
+                lookupTable.add(Integer.parseInt(line.substring(0, 4), 16));
                 CheckBox debugPoint = new CheckBox();
                 debugPoint.getStyleClass().add("CB");
                 gPane.add(debugPoint, 0, 0);
@@ -514,7 +515,7 @@ public class guiManager {
         updateRA();
         highLightLine();
 
-        if(lM != null)
+        if (lM != null)
             lM.manageImage();
 
     }
@@ -546,7 +547,7 @@ public class guiManager {
         labelIRP.setText("" + ((pic.ram.getReg(3) & 0b10000000) >> 7));
     }
 
-    private void updateOption(){
+    private void updateOption() {
         labelPS0.setText("" + (pic.ram.getOpt() & 0b001));
         labelPS1.setText("" + ((pic.ram.getOpt() & 0b010) >> 1));
         labelPS2.setText("" + ((pic.ram.getOpt() & 0b100) >> 2));
@@ -557,7 +558,7 @@ public class guiManager {
         labelRBP.setText("" + ((pic.ram.getOpt() & 0b10000000) >> 7));
     }
 
-    private void updateIntCon(){
+    private void updateIntCon() {
         labelRBIF.setText("" + (pic.ram.getReg(11) & 0b001));
         labelINTF.setText("" + ((pic.ram.getReg(11) & 0b010) >> 1));
         labelT0IF.setText("" + ((pic.ram.getReg(11) & 0b100) >> 2));
@@ -584,7 +585,12 @@ public class guiManager {
 
     private void highLightLine() {
         nowHigh.setStyle("-fx-background-color: #00001a;");
-        nowHigh = codePanes.get(pic.pCounter.get());
+        for (int i = 0; i < lookupTable.size(); i++) {
+            if (lookupTable.get(i) == pic.pCounter.get()) {
+                nowHigh = codePanes.get(i);
+                break;
+            }
+        }
         nowHigh.setStyle("-fx-background-color: #00b8e6;");
     }
 
@@ -600,8 +606,19 @@ public class guiManager {
         }
     }
 
-    public TextField getPinB(int i){
+    public TextField getPinB(int i) {
         return fieldRBPin[i];
     }
 
+    private boolean debugSelected() {
+        boolean ret = false;
+        for (int i = 0; i < debugPoints.size(); i++) {
+            if (lookupTable.get(i) == pic.pCounter.get()) {
+                ret = debugPoints.get(i).isSelected();
+                break;
+            }
+        }
+
+        return ret;
+    }
 }
