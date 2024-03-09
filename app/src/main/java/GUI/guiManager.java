@@ -36,6 +36,9 @@ public class guiManager {
 
     @FXML
     private Label labelDC;
+
+    @FXML
+    private Label labelLaufzeit;
     @FXML
     private Label labelStackpointer;
 
@@ -643,5 +646,6 @@ public class guiManager {
 
         return ret;
     }
+
 
 }
