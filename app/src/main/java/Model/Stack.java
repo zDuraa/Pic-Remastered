@@ -21,23 +21,13 @@ public class Stack {
     }
 
     public int pop() {
-        int ret = buffer[decPointer()];
         pointer--;
 
         if (pointer < 0) {
             pointer = 7;
         }
 
-        return ret;
-    }
-
-    private int decPointer() {
-        int ret = pointer - 1;
-        if (ret == -1) {
-            ret = 7;
-        }
-
-        return ret;
+        return buffer[pointer];
     }
 
     public int getBuffer(int i) {
