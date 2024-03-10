@@ -286,8 +286,8 @@ public class guiManager {
 
     @FXML
     void onDragDetectedQuarz(MouseEvent event) {
-        pic.runtime.setQuarzfrequenz(sliderQuarzfrequenz.getValue());
-        labelQuarzfrequenz.setText(""+(int)sliderQuarzfrequenz.getValue()+"μs");
+        pic.runtime.setQuarzfrequenz((int)sliderQuarzfrequenz.getValue());
+        labelQuarzfrequenz.setText(""+(int)sliderQuarzfrequenz.getValue());
     }
 
 

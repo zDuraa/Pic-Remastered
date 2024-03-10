@@ -114,9 +114,9 @@
                               <Label fx:id="labelLaufzeit" layoutX="138.0" layoutY="123.0" prefWidth="27.0" text="0.0" textFill="WHITE" />
                               <Pane layoutX="-10.0" layoutY="129.0" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Label fx:id="labelQuarzfrequenz" layoutX="128.0" layoutY="55.0" text="4000000" textFill="WHITE" />
+                                    <Label fx:id="labelQuarzfrequenz" layoutX="128.0" layoutY="55.0" text="4" textFill="WHITE" />
                                     <Label layoutX="14.0" layoutY="55.0" text="Quarzfrequenz:" textFill="WHITE" />
-                                    <Slider fx:id="sliderQuarzfrequenz" blockIncrement="1000000.0" layoutX="14.0" layoutY="72.0" majorTickUnit="1000000.0" max="4000000.0" min="1000000.0" minorTickCount="0" onDragDetected="#onDragDetectedQuarz" prefHeight="14.0" prefWidth="116.0" showTickMarks="true" snapToTicks="true" value="4000000.0" />
+                                    <Slider fx:id="sliderQuarzfrequenz" blockIncrement="1.0" layoutX="14.0" layoutY="72.0" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" onDragDetected="#onDragDetectedQuarz" prefHeight="14.0" prefWidth="116.0" showTickMarks="true" snapToTicks="true" value="4.0" />
                                  </children>
                               </Pane>
                            </children>
