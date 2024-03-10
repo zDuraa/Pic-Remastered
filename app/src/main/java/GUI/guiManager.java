@@ -133,6 +133,9 @@ public class guiManager {
     private Label labelZ;
 
     @FXML
+    private Label labelQuarzfrequenz;
+
+    @FXML
     private Pane paneINTCONRegister;
 
     @FXML
@@ -146,6 +149,9 @@ public class guiManager {
 
     @FXML
     private Pane paneSFRSichtbar;
+
+    @FXML
+    private Slider sliderQuarzfrequenz;
 
     @FXML
     private Pane paneSFRversteckt;
@@ -277,6 +283,13 @@ public class guiManager {
             pic.watchdog.stop();
         }
     }
+
+    @FXML
+    void onDragDetectedQuarz(MouseEvent event) {
+        pic.runtime.setQuarzfrequenz(sliderQuarzfrequenz.getValue());
+        labelQuarzfrequenz.setText(""+(int)sliderQuarzfrequenz.getValue()+"μs");
+    }
+
 
     TextField[] field = new TextField[256];
     TextField[] fieldRATris = new TextField[8];
@@ -554,6 +567,7 @@ public class guiManager {
         labelStackpointer.setText("" + pic.stack.getPointer());
         radioWDT.setSelected(pic.watchdog.WTD);
         labelVT.setText("" + pic.prescaler.getPrescaler());
+        labelLaufzeit.setText(""+pic.runtime.getRuntime());
     }
 
     private void updateStatus() {

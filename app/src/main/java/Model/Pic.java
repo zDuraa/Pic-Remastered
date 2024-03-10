@@ -11,6 +11,7 @@ public class Pic {
     private Interrupt interrupt;
     public Watchdog watchdog;
 
+    public Runtime runtime;
     public ArrayList<String> pCode;
     public int w;
 
@@ -23,6 +24,7 @@ public class Pic {
         interrupt = new Interrupt(this);
         watchdog = new Watchdog(this);
         pCode = ProgrammFile;
+        runtime = new Runtime(this);
 
 
     }
