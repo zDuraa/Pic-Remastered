@@ -87,7 +87,8 @@ public class PicTest {
 
     @Test
     public void test3() {
-        FileManager.setFile("./../Testprogramme/TPicSim3.LST");
+
+        FileManager.setFilePath("./../Testprogramme/TPicSim3.LST");
         FileManager.ladeDatei();
 
         Pic pic = new Pic(FileManager.getCommands());
@@ -173,7 +174,7 @@ public class PicTest {
 
     @Test
     public void test4() {
-        FileManager.setFile("./../Testprogramme/TPicSim4.LST");
+        FileManager.setFilePath("./../Testprogramme/TPicSim4.LST");
         FileManager.ladeDatei();
         ArrayList<String> commands = FileManager.getCommands();
 
@@ -280,7 +281,7 @@ public class PicTest {
 
     @Test
     public void test5() {
-        FileManager.setFile("./../Testprogramme/TPicSim5.LST");
+        FileManager.setFilePath("./../Testprogramme/TPicSim5.LST");
         FileManager.ladeDatei();
         ArrayList<String> commands = FileManager.getCommands();
         Pic pic = new Pic(commands);

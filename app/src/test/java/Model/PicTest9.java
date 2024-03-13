@@ -8,7 +8,7 @@ import utils.*;
 public class PicTest9 {
     @Test
     public void test9() {
-        FileManager.setFile("./../Testprogramme/TPicSim9.LST");
+        FileManager.setFilePath("./../Testprogramme/TPicSim9.LST");
         FileManager.ladeDatei();
         ArrayList<String> commands = FileManager.getCommands();
 
@@ -40,7 +40,7 @@ public class PicTest9 {
     // Test 11 ist grundlegend für das TPicSim9-Testprogramm.
     @Test
     public void test11() {
-        FileManager.setFile("./../Testprogramme/TPicSim11.LST");
+        FileManager.setFilePath("./../Testprogramme/TPicSim11.LST");
         FileManager.ladeDatei();
         ArrayList<String> commands = FileManager.getCommands();
 

@@ -8,7 +8,7 @@ import utils.*;
 public class PicTest7 {
     @Test
     public void Test7() {
-        FileManager.setFile("./../Testprogramme/TPicSim7.LST");
+        FileManager.setFilePath("./../Testprogramme/TPicSim7.LST");
         FileManager.ladeDatei();
         ArrayList<String> commands = FileManager.getCommands();
 

@@ -104,4 +104,7 @@ public abstract class Command {
             pic.prescaler.inc(zyc);
     }
 
+    public int getZyc(){
+        return zyc;
+    }
 }

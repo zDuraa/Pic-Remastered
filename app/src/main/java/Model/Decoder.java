@@ -5,8 +5,9 @@ import Model.Commands.*;
 
 public class Decoder {
     ArrayList<Command> commands;
-
+    private Pic pic;
     public Decoder(Pic pic) {
+        this.pic = pic;
         commands = new ArrayList<Command>();
         commands.add(new ADDWF(pic));
         commands.add(new ANDWF(pic));
@@ -54,6 +55,7 @@ public class Decoder {
         for (var command : commands) {
             if (command.is(iinst)) {
                 command.execute(iinst);
+                pic.runtime.inc(command.getZyc());
                 break;
             }
 
