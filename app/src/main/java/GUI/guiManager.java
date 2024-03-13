@@ -235,20 +235,10 @@ public class guiManager {
     void buttonFileOnClick(ActionEvent event) {
         FileManager.resetFile();
         FileManager.openFile();
-        Stage secondStage = new Stage();
-        try {
-            Parent root = FXMLLoader.load(start.class.getResource("./../views/main.fxml"));
-            Scene scene = new Scene(root);
-            secondStage.setScene(scene);
-
-        } catch (Exception e) {
-            System.out.println("loading the file went wrong\n" + e);
-        }
-        secondStage.show();
-
-        Stage currentStage = (Stage) buttonFile.getScene().getWindow();
-        currentStage.close();
-        initialize();
+        pic = new Pic(FileManager.getCommands());
+        lookupTable = new ArrayList<>();
+        addCode();
+        updateGUI();
     }
 
     ledManager lM;
@@ -286,10 +276,9 @@ public class guiManager {
 
     @FXML
     void onDragDetectedQuarz(MouseEvent event) {
-        pic.runtime.setQuarzfrequenz((int)sliderQuarzfrequenz.getValue());
-        labelQuarzfrequenz.setText(""+(int)sliderQuarzfrequenz.getValue());
+        pic.runtime.setQuarzfrequenz((int) sliderQuarzfrequenz.getValue());
+        labelQuarzfrequenz.setText("" + (int) sliderQuarzfrequenz.getValue());
     }
-
 
     TextField[] field = new TextField[256];
     TextField[] fieldRATris = new TextField[8];
@@ -504,6 +493,8 @@ public class guiManager {
     private void addCode() {
         ArrayList<String> file = FileManager.getText();
         GridPane bigGrid = new GridPane();
+        debugPoints = new ArrayList<>();
+        codePanes = new ArrayList<>();
         int x = 0;
         for (String line : file) {
             GridPane gPane = new GridPane();
@@ -567,7 +558,7 @@ public class guiManager {
         labelStackpointer.setText("" + pic.stack.getPointer());
         radioWDT.setSelected(pic.watchdog.WTD);
         labelVT.setText("" + pic.prescaler.getPrescaler());
-        labelLaufzeit.setText(""+pic.runtime.getRuntime());
+        labelLaufzeit.setText("" + pic.runtime.getRuntime());
     }
 
     private void updateStatus() {
@@ -630,9 +621,9 @@ public class guiManager {
 
     private void updateRB() {
         for (int i = 0; i < 8; i++) {
-            if(pic.ram.getBuffer(134) == 255){
+            if (pic.ram.getBuffer(134) == 255) {
                 fieldRBTris[i].setText("i");
-            }else{
+            } else {
                 fieldRBTris[i].setText("o");
             }
             fieldRBPin[i].setText("" + ((pic.ram.getReg(6) & (0b1 << i)) >> i));
@@ -660,6 +651,5 @@ public class guiManager {
 
         return ret;
     }
-
 
 }
